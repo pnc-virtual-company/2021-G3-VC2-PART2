@@ -12,7 +12,7 @@
                   >
                       <div class="d-flex justify-space-between" >  
                           <v-card-title class="text-h5">
-                              {{item.firstname}} {{item.lastname}}
+                              {{item.firstName}} {{item.lastName}}
                           </v-card-title>
                           <v-card-title>
                               {{item.gender}}

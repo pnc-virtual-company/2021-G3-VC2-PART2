@@ -30,6 +30,7 @@ export default {
             axios.get(APP_URL+'/users').then(res=>{
                 this.userData = res.data;
                 console.log(this.userData);
+                console.log('hello')
             })
         },
         createUser(firstname,lastname,email,password,gender,role){
@@ -46,7 +47,7 @@ export default {
         }
     },
     mounted() {
-       this.getUser;
+       this.getUser();
     },
 }
 </script>
