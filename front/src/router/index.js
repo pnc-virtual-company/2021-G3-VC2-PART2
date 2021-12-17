@@ -4,6 +4,16 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/',
+    name:'Login',
+    component: () => import('@/components/user/login.vue')
+  },
+  {
+    path:'/navbar',
+    name:'Navbar',
+    component: () => import('@/components/nav/Navbar.vue')
+  }
   
 ]
 
