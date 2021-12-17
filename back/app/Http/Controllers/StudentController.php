@@ -25,6 +25,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'gender' => 'required',
+            'class' => 'required',
+            'phone' => 'min:5|max:10',
+            'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
+        ]);
         $student = new Student();
         $student->firstName = $request->firstName;
         $student->lastName = $request->lastName;
@@ -57,6 +65,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'gender' => 'required',
+            'class' => 'required',
+            'phone' => 'min:5|max:10',
+            'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
+        ]);
+
         $student =  Student::findOrFail($id);
         $student->firstName = $request->firstName;
         $student->lastName = $request->lastName;
