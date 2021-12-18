@@ -1,7 +1,5 @@
 <template>
-  <section>
-      <h2>Hello World what are you doing </h2>
-  </section>
+    <h1>Discipline</h1>
 </template>
 
 <script>

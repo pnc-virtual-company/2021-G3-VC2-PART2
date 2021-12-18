@@ -10,7 +10,7 @@
             <v-form class="mt-5">
                 <div class="text-center ">
                     <img
-                        src="../../assets/logo.png"
+                        src="../../assets/pnc.png"
                         alt="Vuetify Admin"
                         width="80"
                         height="80"
@@ -72,8 +72,8 @@ export default {
            }
            axios.post(APP_URL + '/signin',dataUser).then(res =>{
                this.dataUser = res.data.user;
-               this.$router.push('/navbar');
-               console.log('login success');
+               this.$router.push('/user');
+            
            }).catch(error => {
             let statusCode = error.response.status;
             if(statusCode === 401) {
