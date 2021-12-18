@@ -9,7 +9,7 @@
         @click.stop="showDrawer = !showDrawer"
       ></v-app-bar-nav-icon>
       <v-avatar size="50px" class=" ml-3 mr-3">
-          <img alt="Avatar" src="/assets/pnc.pnc">
+          <img alt="Avatar" src="assets/pnc.pnc">
       </v-avatar>
       <v-toolbar-title>
           <h2>Student Life</h2>
@@ -18,7 +18,7 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <v-icon>mdi-exit-to-app</v-icon>
+        <v-icon @click.prevent="logOut"> mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -44,6 +44,13 @@ export default {
       showDrawer: false,
     };
   },
+  methods: {
+      logOut(){
+            this.$router.push('/');
+          }
+  },
+  
+
   
 };
 </script>

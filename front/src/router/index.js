@@ -10,6 +10,7 @@ const routes = [
     name:'Login',
     component: () => import('@/components/user/login.vue')
   },
+
   {
     path:'/navbar',
     name:'Navbar',
