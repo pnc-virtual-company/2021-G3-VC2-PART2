@@ -29,24 +29,18 @@ export default {
         getUser(){
             axios.get(APP_URL+'/users').then(res=>{
                 this.userData = res.data;
-                console.log(this.userData);
+        
             })
         },
-        createUser(firstname,lastname,email,password,gender,role){
-            const addData = {
-                firstname:firstname,
-                lastname:lastname,
-                email:email,
-                password:password,
-                gender:gender,
-                role:role
-            }
-            this.userData.push(addData);
-            console.log(this.userData);
+        createUser(userInfo){
+            axios.post(APP_URL + '/users', userInfo).then(res=>{
+                this.getUser();
+                console.log(res.data);
+            })
         }
     },
     mounted() {
-       this.getUser;
+       this.getUser();
     },
 }
 </script>

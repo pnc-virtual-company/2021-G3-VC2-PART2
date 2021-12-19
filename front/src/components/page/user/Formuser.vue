@@ -48,6 +48,16 @@
             >
               
             </v-text-field>
+            <v-autocomplete
+              ref="role"
+              v-model="role"
+              :rules="[() => !!role || 'This field is required']"
+              :items="roles"
+              prepend-icon="mdi-account-star"
+              label="Role"
+              placeholder="Select..."
+              required
+            ></v-autocomplete>
             <v-text-field
               label='Password'
               prepend-icon="mdi-lock"
@@ -56,20 +66,17 @@
             >
               
             </v-text-field>
-            <v-text-field
-              label="Gender"
-              v-model="gender"
-              prepend-icon="mdi-gender-transgender"
-              type='selected'
-            >
-
-            </v-text-field>
-             <v-text-field
-              label='Profile'
-              prepend-icon="mdi-image"
-              type='file'
-             >
-            </v-text-field>
+         
+            <v-radio-group v-model="gender" >
+                <v-radio
+                  v-for="n in genders"
+                  :key="n"
+                  :label="`${n}`"
+                  :value="n"
+                ></v-radio>
+            </v-radio-group>
+            <input type="file" @change="onFileSelected">
+        
         </v-card-text>
 
         <v-divider></v-divider>
@@ -103,29 +110,31 @@
             lastname: '',
             email:'',
             password: '',
-            gender:'',
-            userinfo:[]
+            gender:'Female',
+            image:'',
+            role:'',
+            userinfo:[],
+            roles:['Admin', 'Student', 'Social Affair'],
+            genders:['Female','Male']
             }
         },
         methods: {
+          onFileSelected(event){
+            this.image = event.target.files[0];
+          },
           createUser(){
             if(this.firstname !== ''){
-                this.dialog = false;
-              this.$emit(
-                "add-user",
-                this.firstname,
-                this.lastname,
-                this.email,
-                this.password,
-                this.gender,
-                (
-                  this.firstname='',
-                  this.lastname='',
-                  this.email='',
-                  this.password='',
-                  this.gender=''
-                )
-              )
+              this.dialog = false;
+              let newUser = new FormData();
+              newUser.append('firstName', this.firstname);
+              newUser.append('lastName', this.lastname);
+              newUser.append('email', this.email);
+              newUser.append('role', this.role);
+              newUser.append('password', this.password);
+              newUser.append('gender', this.gender);
+              newUser.append('profile', this.image);
+
+              this.$emit("add-user",newUser);
             }
               
           }
@@ -137,7 +146,9 @@
     color: white;
   }
   .btn-create{
-  
     margin: 10px; 
+  }
+  v-radio{
+    display: flex;
   }
 </style>
