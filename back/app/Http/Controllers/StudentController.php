@@ -90,7 +90,7 @@ class StudentController extends Controller
         $student->phone = $request->phone;
 
         $student->save();
-        return response()->json(['Update student seccussfuly'], 200);
+        return response()->json(['Update student seccussfuly', 'data',$student], 200);
     }
 
     /**
