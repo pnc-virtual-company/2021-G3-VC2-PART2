@@ -34,7 +34,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->profile= $request->profile;
         $user->save();
-        return response()->json(['Message' =>' Create user Succesfully'], 201);
+        return response()->json(['Message' =>' Create user Succesfully', 'user' => $user], 201);
     }
 
 // .............................User signin.........................
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+        return User::findOrFail($id);
     }
 
     /**

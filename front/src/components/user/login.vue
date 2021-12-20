@@ -52,40 +52,43 @@
 </template>
 
 <script>
-import axios from 'axios';
-let APP_URL = 'http://127.0.0.1:8000/api'
 export default {
-   data() {
+    emits: ["requestToLogin"],
+    data() {
         return {
-        email:'',
-        password:'',
-        message_error:'',
-        loading: false,
+            email:'',
+            password:'',
+            message_error:'',
+            loading: false,
         };
-      
-   },
-   methods: {
-       login(){
-           let dataUser = {
+        
+    },
+    methods: {
+    //    login(){
+    //        let dataUser = {
+    //            email:this.email,
+    //            password:this.password
+    //        }
+    //        axios.post(APP_URL + '/signin',dataUser).then(res =>{
+    //            this.dataUser = res.data.user;
+    //            this.$router.push('/user');
+            
+    //        }).catch(error => {
+    //         let statusCode = error.response.status;
+    //         if(statusCode === 401) {
+    //             this.message_error= 'Invalid data, please try again';
+    //             console.log(this.message_error);
+    //         }
+    //     })
+        login() {
+            let dataUser = {
                email:this.email,
                password:this.password
-           }
-           axios.post(APP_URL + '/signin',dataUser).then(res =>{
-               this.dataUser = res.data.user;
-               this.$router.push('/user');
-            
-           }).catch(error => {
-            let statusCode = error.response.status;
-            if(statusCode === 401) {
-                this.message_error= 'Invalid data, please try again';
-                console.log(this.message_error);
             }
-        })
+            this.$emit("requestToLogin", dataUser);
+        }
 
-       }
-
-
-   },
+    }
 
 };
 </script>

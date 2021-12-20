@@ -39,6 +39,7 @@
         <v-btn
           active-class="grey-5 red--text" 
           text
+          @click="requestLogOut"
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
@@ -52,6 +53,7 @@
 
 <script>
 export default {
+ 
   data() {
     return {
         appTitle: 'PNC Cambodia',
@@ -65,7 +67,10 @@ export default {
             { title: 'logout', path: '/', icon: 'mdi-login' },
         ]
     }
-  }
+  },
+  methods: {
+   
+  },
 }
 </script>
 
