@@ -26,7 +26,6 @@ export default {
         getUser(){
             axios.get(APP_URL+'/users').then(res=>{
                 this.userData = res.data;
-                console.log(this.userData);
         
             })
         },
@@ -45,11 +44,12 @@ export default {
             
         },
         searchUser(search){
-            console.log(search);
+          
             if(this.search !== ''){
-                axios.get(APP_URL + '/users' + '/search/' + search).then(res =>{
-                    this.userInfo = res.data;
+                axios.get(APP_URL + '/users/search/' + search).then(res =>{
+                    this.userData = res.data;
                 })
+                ;
             }else{
                 this.getUser();
             }

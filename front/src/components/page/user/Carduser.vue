@@ -5,7 +5,7 @@
   <v-card color="#81BEF7"
         green>
     <v-card-title >
-        Student List
+        User List
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
