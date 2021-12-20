@@ -1,8 +1,10 @@
 <template>
     <section>
+         
         <form-user @add-user="createUser"></form-user>
         <search-user></search-user>
         <card-user :userinfo="userData"></card-user>
+       
     </section>
 </template>
 
@@ -20,9 +22,10 @@ export default {
                 'search-user': Searchuser,
                 'form-user':Formsearch,
             },
+        
     data(){
         return{
-            userData:[]
+            userData:[],
         }
     },
     methods: {
