@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::all();
+        return Student::latest()->get();
     }
 
     /**
@@ -28,19 +28,22 @@ class StudentController extends Controller
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
+            'email' => 'required',
             'gender' => 'required',
             'class' => 'required',
+            'password' => 'required',
             'phone' => 'min:5|max:10',
             'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
         ]);
         $student = new Student();
         $student->firstName = $request->firstName;
         $student->lastName = $request->lastName;
+        $student->email = $request->email;
         $student->class = $request->class;
         $student->image = $request->image;
         $student->gender = $request->gender;
+        $student->password = $request->password;
         $student->phone = $request->phone;
-
         $student->save();
         return response()->json(['Create student seccussfuly'], 201);
     }
@@ -68,8 +71,10 @@ class StudentController extends Controller
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
+            'email' => 'required',
             'gender' => 'required',
             'class' => 'required',
+            'password' => 'required',
             'phone' => 'min:5|max:10',
             'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
         ]);
@@ -77,13 +82,15 @@ class StudentController extends Controller
         $student =  Student::findOrFail($id);
         $student->firstName = $request->firstName;
         $student->lastName = $request->lastName;
+        $student->email = $request->email;
         $student->class = $request->class;
         $student->image = $request->image;
         $student->gender = $request->gender;
+        $student->password = $request->password;
         $student->phone = $request->phone;
 
         $student->save();
-        return response()->json(['Update student seccussfuly'], 200);
+        return response()->json(['Update student seccussfuly', 'data',$student], 200);
     }
 
     /**
