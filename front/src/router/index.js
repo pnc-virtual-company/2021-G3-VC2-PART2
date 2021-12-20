@@ -38,6 +38,7 @@ const routes = [
   name: 'Discipline',
   component: () => import('@/components/views/Discipline.vue')
 },
+
 ]
 
 

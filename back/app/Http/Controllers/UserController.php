@@ -15,9 +15,7 @@ class UserController extends Controller
     public function index()
     {
         return User::all();
-        
     }
-    //
 
     /**
      * Store a newly created resource in storage.
@@ -27,14 +25,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'role' => 'required',
+            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
+        ]);
+        $request -> file('profile')->store('public/images');
         $user = new User();
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->email= $request->email;
-        $user->password = bcrypt($request->password);
-        $user->profile= $request->profile;
+        $user->firstName = $request->firstName;
+        $user->lastName = $request->lastName;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->gender = $request->gender;
+        $user->role = $request->role;
+        $user->profile =$request->file('profile')->hashName();
         $user->save();
-        return response()->json(['Message' =>' Create user Succesfully', 'user' => $user], 201);
+
+        return response()->json(['message' => 'User created successfully'], 201);
+    
     }
 
 // .............................User signin.........................
@@ -44,9 +55,9 @@ class UserController extends Controller
         $user = User::where ('email', $request->email)->first();
 
         //Create user
-        if(!$user || !Hash::check($request->password, $user->password)){
-            return response()->json(['message' => 'User can not lognin'], 401);
-        }
+        // if(!$user || !Hash::check($request->password, $user->password)){
+        //     return response()->json(['message' => 'User can not lognin'], 401);
+        // }
         return response()->json([
             'User signin succesfuly'
         ]);
@@ -57,6 +68,10 @@ class UserController extends Controller
     {
         return response()->json(['message'=>'User signout successfuly']);
     }
+       
+
+    
+
     /**
      * Display the specified resource.
      *
@@ -77,7 +92,29 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+        
+            'gender' => 'required',
+            'role' => 'required',
+            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
+        ]);
+        $request -> file('profile')->store('public/images');
+        $user = User::findOrFail($id);
+        $user->firstName = $request->firstName;
+        $user->lastName = $request->lastName;
+        $user->email = $request->email;
+    
+        $user->gender = $request->gender;
+        $user->role = $request->role;
+        $user->profile =$request->file('profile')->hashName();
+        $user->save();
+
+        return response()->json(['message' => 'User update successfully'], 200);
+    
+
     }
 
     /**
@@ -88,6 +125,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $isDelete = User::destroy($id);
+        if($isDelete == 1) 
+            return response()->json(['message' => 'User deleted successfully'], 200);
+        return response()->json(['message' => 'ID NOT EXIST'], 404);
     }
 }

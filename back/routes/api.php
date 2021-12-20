@@ -34,5 +34,14 @@ Route::post('/signin', [UserController::class, 'signin']);
 // ................User signout ........................
 Route::post('/signout',[UserController::class, 'signout']); 
 
+Route::delete('/users/{id}',[UserController::class, 'destroy']);
 
+//====================Public Route===============================
+
+// Route::get('/users',[UserController::class, 'index']);
+// Route::get('/users/{id}',[UserController::class, 'store']);
+
+// //====================Private Route========================
+// Route::post('/users',[UserController::class, 'store']);
+// Route::put('/users/{id}',[UserController::class, 'update']);
 

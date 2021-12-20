@@ -5,7 +5,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-const app = new Vue({
+let app = new Vue({
   router,
   vuetify,
   render: h => h(App)
