@@ -24,9 +24,9 @@
                               {{item.role}}
                           </v-card-title>
                           <v-card-title>
-                                  <v-icon
-                                    class="mr-4 "
-                                  >mdi-delete</v-icon>
+                                  
+                                  
+                                  <Modaldelete></Modaldelete>
                                   <v-icon>mdi-lead-pencil</v-icon>
                           </v-card-title>
                       </div>
@@ -36,12 +36,18 @@
       </v-card>
       
   </section>
+  <!-- table -->
+    
+
 </template>
 
 <script>
-
+import Modaldelete from "../../ui/Modaldelete.vue"
 export default {
-  props:['userinfo']
+  props:['userinfo'],
+  components: {
+      Modaldelete
+  },
 }
 </script>
 

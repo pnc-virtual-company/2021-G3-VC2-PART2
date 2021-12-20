@@ -3,7 +3,6 @@
         <form-user @add-user="createUser"></form-user>
         <search-user></search-user>
         <card-user :userinfo="userData"></card-user>
-        
     </section>
 </template>
 
@@ -12,13 +11,14 @@ import axios from 'axios';
 const APP_URL = 'http://127.0.0.1:8000/api';
 import Carduser from "../page/user/Carduser.vue";
 import Searchuser from "../page/user/Searchuser.vue";
-import Formsearch from "../page/user/Formuser.vue"
+import Formsearch from "../page/user/Formuser.vue";
+
 export default {
     name:'App',
     components: {
                 'card-user': Carduser,
                 'search-user': Searchuser,
-                'form-user':Formsearch
+                'form-user':Formsearch,
             },
     data(){
         return{
