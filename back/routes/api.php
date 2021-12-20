@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,3 +47,12 @@ Route::delete('/users/{id}',[UserController::class, 'destroy']);
 // Route::post('/users',[UserController::class, 'store']);
 // Route::put('/users/{id}',[UserController::class, 'update']);
 
+//========================= Public ===============================
+Route::get('/students', [StudentController::class, 'index']);
+Route::get('/students/{id}', [StudentController::class, 'show']);
+Route::post('/students', [StudentController::class, 'store']);
+Route::get('/students/search/{firstName}',[StudentController::class ,'search']);
+
+//=========================== Private
+Route::put('/students/{id}', [StudentController::class, 'update']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
