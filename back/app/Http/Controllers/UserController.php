@@ -51,15 +51,14 @@ class UserController extends Controller
 // .............................User signin.........................
     public function signin(Request $request)
     {
-        //Chek password
-        $user = User::where ('email', $request->email)->first();
-
-        //Create user
-        // if(!$user || !Hash::check($request->password, $user->password)){
-        //     return response()->json(['message' => 'User can not lognin'], 401);
-        // }
+        //Check password 
+        $user = User::where('email', $request->email)->first();
+        //Create 
+        if(!$user || !Hash::check($request->password, $user->password)){
+            return response()->json(['message' => 'Bad login'], 401);
+        }
         return response()->json([
-            'User signin succesfuly'
+            'message' => 'User login successfully'
         ]);
     }
 
@@ -96,7 +95,6 @@ class UserController extends Controller
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required',
-        
             'gender' => 'required',
             'role' => 'required',
             'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
@@ -129,5 +127,11 @@ class UserController extends Controller
         if($isDelete == 1) 
             return response()->json(['message' => 'User deleted successfully'], 200);
         return response()->json(['message' => 'ID NOT EXIST'], 404);
+    }
+
+    public function search($name)
+    {
+        # code...
+        return User::where('firstName', 'like', '%' .$name .'%')->get();
     }
 }
