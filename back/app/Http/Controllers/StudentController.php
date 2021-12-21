@@ -32,7 +32,7 @@ class StudentController extends Controller
             'gender' => 'required',
             'class' => 'required',
             'password' => 'required',
-            'phone' => 'min:5|max:10',
+            'phone' => 'min:5|max:20',
             'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
         ]);
         $student = new Student();
@@ -106,5 +106,11 @@ class StudentController extends Controller
                 return response()->json(['message' => 'Deleted student successfully'], 200);
             return response()->json(['message' => 'ID NOT EXIST'], 404);
         
+    }
+
+    public function search($name)
+    {
+        # code...
+        return Student::where('firstName', 'like', '%' .$name .'%')->get();
     }
 }

@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/students/{id}', [StudentController::class, 'show']);
 Route::post('/students', [StudentController::class, 'store']);
+Route::get('/students/search/{firstName}',[StudentController::class ,'search']);
 
 //=========================== Private
 Route::put('/students/{id}', [StudentController::class, 'update']);
