@@ -10,6 +10,7 @@
           dark
           v-bind="attrs"
           v-on="on"
+          class="ma-3"
         >
           Create
         </v-btn>

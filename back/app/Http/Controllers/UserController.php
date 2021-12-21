@@ -129,4 +129,10 @@ class UserController extends Controller
             return response()->json(['message' => 'User deleted successfully'], 200);
         return response()->json(['message' => 'ID NOT EXIST'], 404);
     }
+
+    public function search($name)
+    {
+        # code...
+        return User::where('firstName', 'like', '%' .$name .'%')->get();
+    }
 }

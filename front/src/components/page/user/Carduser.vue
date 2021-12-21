@@ -23,7 +23,6 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Gender</th>
                             <th>Role</th>
                             <th>Action</th>
@@ -34,7 +33,6 @@
                            <td>{{item.firstName}}</td>
                            <td>{{item.lastName}}</td>
                            <td>{{item.email}}</td>
-                           <td>{{item.phone}}</td>
                            <td>{{item.gender}}</td>
                            <td>{{item.role}}</td>
                            <td> 
