@@ -1,33 +1,24 @@
 <template>
-  <v-toolbar
-    dark
-    color="#385F73"
-    max-width = "900px"
-    class="mx-auto"
-  >
-    <v-toolbar-title>Search</v-toolbar-title>
-    <v-autocomplete 
-      cache-items
-      class="mx-4"
-      flat
-      hide-no-data
-      hide-details 
-      label="What do you want to search?"
-      solo-inverted 
-      v-model="title"
-      v-on:keyup="searchUser"
-    ></v-autocomplete>
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
-  </v-toolbar>
+   <v-card-title >
+      Welcome to search here
+      <v-spacer></v-spacer>
+      <v-text-field 
+        
+        class="mr-16 mt-4"
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details 
+      ></v-text-field>
+    </v-card-title>
 </template>
 
 <script>
 export default {
     data(){
         return{
-            title:''
+            search:''
         }
     },
     methods: {
@@ -42,6 +33,7 @@ export default {
 </script>
 
 <style scoped>
+
  
 </style>
 

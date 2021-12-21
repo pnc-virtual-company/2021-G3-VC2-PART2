@@ -3,8 +3,13 @@
          
         <form-user @add-user="createUser"></form-user>
         <search-user></search-user>
+        <!-- <v-data-table
+           :headers="headers"
+           :items="desserts"
+           :>
+
+        </v-data-table> -->
         <card-user :userinfo="userData"></card-user>
-       
     </section>
 </template>
 
@@ -26,7 +31,16 @@ export default {
     data(){
         return{
             userData:[],
+            
         }
+        
+   
+
+
+
+
+
+
     },
     methods: {
         getUser(){
