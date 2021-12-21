@@ -8,6 +8,7 @@
     >
       <router-view
       @requestToLogin="login"
+      :message="message_error"
       />
       
     </v-main>
@@ -25,7 +26,8 @@ export default {
   },
   data(){
     return {
-      user: null
+      user: null,
+      message_error:''
     }
   },
   methods: {

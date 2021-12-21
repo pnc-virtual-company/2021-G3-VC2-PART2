@@ -39,7 +39,6 @@
         <v-btn
           active-class="grey-5 red--text" 
           text
-          @click="requestLogOut"
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">

@@ -13,6 +13,7 @@ import Formsearch from "../page/user/Formuser.vue";
 
 export default {
     name:'App',
+    
     components: {
                 'card-user': Carduser,
                 'form-user':Formsearch,

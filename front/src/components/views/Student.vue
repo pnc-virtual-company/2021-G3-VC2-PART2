@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Cardstudent from '../page/Cardstudent.vue'
-import Formstudent from '../page/Formstudent.vue'
+import Cardstudent from '../page/student/Cardstudent.vue'
+import Formstudent from '../page/student/Formstudent.vue'
 import axios from 'axios';
 const APP_URL = 'http://127.0.0.1:8000/api';
 export default {

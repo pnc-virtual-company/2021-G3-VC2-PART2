@@ -54,12 +54,8 @@
                 v-model="password"
                 >
             </v-text-field>
-            <!-- <v-file-input
-                label='Profile'
-                type='file'
-                truncate-length="15"
-                @change="onFileSelected"> 
-            </v-file-input> -->
+            
+            
             <input type="file" label='Profile' @change="onFileSelected">
             <v-radio-group v-model="gender" >
                 <v-radio
@@ -101,7 +97,8 @@
         classes:'',
         image:'',
         password:'',
-        gender:'Male'
+        gender:'Male',
+        
       }
     },
     methods: {
@@ -117,9 +114,11 @@
                 newStudent.append('email', this.email);
                 newStudent.append('class', this.classes);
                 newStudent.append('password', this.password);
+              
                 newStudent.append('image', this.image);
                 newStudent.append('gender', this.gender);
                 newStudent.append('phone', this.phone);
+
 
                 this.$emit("add-student", newStudent);
             }
