@@ -10,14 +10,11 @@
           dark
           v-bind="attrs"
           v-on="on"
+          display="none"
+         
         >
-        <v-icon>mdi-delete</v-icon>
+        
         </v-btn>
-         <!-- <v-icon
-            class="mr-4 "
-            v-bind="attrs"
-            v-on="on"
-        >mdi-delete </v-icon> -->
       </template>
 
       <v-card>
@@ -38,19 +35,30 @@
             text
             @click="dialog = false"
           >
-            I accept
+            Yes
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
 </template>
+
 <script>
+import API from '@/api/api.js'
   export default {
     data () {
       return {
         dialog: false,
+        
       }
+    },
+    methods: {
+        
+        deleteItem(){
+            API.deleteItem('/user'+'/').then(res=>{
+                console.log(res.data);
+            });
+        }
     },
   }
 </script>
