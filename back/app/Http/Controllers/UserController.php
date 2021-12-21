@@ -38,10 +38,11 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->gender = $request->gender;
         $user->role = $request->role;
         $user->profile =$request->file('profile')->hashName();
+        
         $user->save();
 
         return response()->json(['message' => 'User created successfully'], 201);
@@ -52,14 +53,12 @@ class UserController extends Controller
     public function signin(Request $request)
     {
         //Chek password
-        $user = User::where ('email', $request->email)->first();
-
-        //Create user
-        // if(!$user || !Hash::check($request->password, $user->password)){
-        //     return response()->json(['message' => 'User can not lognin'], 401);
-        // }
+        $user = User::where ('email', $request -> email)->first();
+        if(!$user || !Hash::check($request->password, $user->password)){
+            return response()->json(['message'=>'User cannot login'], 401);
+        }
         return response()->json([
-            'User signin succesfuly'
+            'User login successfully'
         ]);
     }
 
