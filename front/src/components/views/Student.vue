@@ -53,7 +53,8 @@ export default {
             }else{
                 this.getStudent();
             }
-        }
+        },
+        
     },
     
     mounted(){
