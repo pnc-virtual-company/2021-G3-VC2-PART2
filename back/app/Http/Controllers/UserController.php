@@ -30,7 +30,6 @@ class UserController extends Controller
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required',
-           
             'gender' => 'required',
             'role' => 'required',
             'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
@@ -75,7 +74,6 @@ class UserController extends Controller
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required',
-        
             'gender' => 'required',
             'role' => 'required',
             'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
@@ -85,7 +83,6 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
-    
         $user->gender = $request->gender;
         $user->role = $request->role;
         $user->profile =$request->file('profile')->hashName();
