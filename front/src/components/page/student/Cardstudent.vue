@@ -1,7 +1,7 @@
 <template>
   <v-container>
   <template>
-  <v-card color="#81BEF7"
+  <v-card class="table-student" color="#81BEF7"
         green>
     <v-card-title >
         Student List
@@ -45,8 +45,15 @@
                            <td>{{student.gender}}</td>
                            <td> 
                                <div class="i-con">
-                                  <v-icon @click="getStudentId(student.id)">mdi-delete</v-icon>
-                                  <v-icon>mdi-lead-pencil</v-icon>
+                                  <v-icon class="red--text" @click="getStudentId(student.id)">mdi-delete</v-icon>
+                                  <v-icon @click="getStudentInfo(student)">mdi-lead-pencil</v-icon>
+                                  <update-student 
+                                  v-if="showForm"
+                                  :studentInfo="studentData"
+                                  @cancel="Cencel"
+                                  @update="Updatestudent"
+                                  >
+                                  </update-student>
                                </div>
                                
                            </td>
@@ -59,16 +66,25 @@
   </v-container>
 </template>
 <script>
+ import axios from 'axios';
+ const APP_URL = 'http://127.0.0.1:8000/api'
+  import Updatestudent from "../student/Updatestudent.vue";
   export default {
+ 
     props:['dataUser'],
-    emits:['deleteItem',"search-user"],
+    emits:['deleteItem',"search-user","update-student"],
+    components:{
+        'update-student':Updatestudent,
+    },
     data () {
+      
+      
       return {
         search: '',
         studentId:0,
         url: "http://127.0.0.1:8000/storage/student/images/",
-
-       
+        showForm:false,
+       studentData:[]
       }
     },
     methods: {
@@ -78,6 +94,22 @@
         },
         searchUsername(){
             this.$emit("search-user", this.search);
+        },
+        getStudentInfo(student){
+          this.showForm = true;
+          this.studentData = student;
+        },
+        Cencel(hidden){
+          this.showForm = hidden;
+        },
+        Updatestudent(id,student,hidden){
+          axios.put(APP_URL + '/students/' + id, student).then((res) =>{
+            console.log(res.data);
+            this.$emit("update-student", res.data);
+            this.showForm = hidden;
+            console.log('hello');
+
+          })
         }
     },
   }
@@ -101,5 +133,8 @@
     img{
       border-radius: 50%;
       margin-top: 5px;
+    }
+    .table-student{
+       margin-top: 25px;
     }
 </style>

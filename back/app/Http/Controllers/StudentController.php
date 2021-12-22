@@ -77,7 +77,7 @@ class StudentController extends Controller
             'class' => 'required',
             'password' => 'required',
             'phone' => 'min:5|max:10',
-            'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
+
         ]);
 
         $student =  Student::findOrFail($id);
@@ -85,7 +85,7 @@ class StudentController extends Controller
         $student->lastName = $request->lastName;
         $student->email = $request->email;
         $student->class = $request->class;
-        $student->image = $request->image;
+      
         $student->gender = $request->gender;
         $student->password = $request->password;
         $student->phone = $request->phone;

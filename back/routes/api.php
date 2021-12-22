@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
-
+Route::get('/users/search/{firstName}',[UserController::class ,'search']);
 // ..................create User ..........................
 Route::post('/users', [UserController::class, 'store']);
 
@@ -35,7 +35,7 @@ Route::post('/signin', [UserController::class, 'signin']);
 
 // ................User signout ........................
 Route::post('/signout',[UserController::class, 'signout']); 
-
+Route::put('/users/{id}',[UserController::class, 'update']);
 Route::delete('/users/{id}',[UserController::class, 'destroy']);
 Route::get('/users/search/{firstName}',[UserController::class ,'search']);
 //====================Public Route===============================
@@ -45,7 +45,7 @@ Route::get('/users/search/{firstName}',[UserController::class ,'search']);
 
 // //====================Private Route========================
 // Route::post('/users',[UserController::class, 'store']);
-// Route::put('/users/{id}',[UserController::class, 'update']);
+
 
 //========================= Public ===============================
 Route::get('/students', [StudentController::class, 'index']);

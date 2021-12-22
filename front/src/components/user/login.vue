@@ -1,6 +1,6 @@
 <template>
     <v-card
-        elevation="2"
+        elevation="15"
         width="350"
         height="370"
         class="card"
@@ -20,7 +20,7 @@
                 <v-text-field
                     prepend-icon="mdi-account"
                     required
-                    label="email"
+                    label="Email"
                     v-model="email"
                     
                 ></v-text-field>
@@ -28,7 +28,7 @@
                 <v-text-field
                     prepend-icon="mdi-lock"
                     type="password"
-                    label="password"
+                    label="Password"
                     required
                     v-model="password"
                    
@@ -44,7 +44,7 @@
                     text
                     rounded
                     @click.prevent="login"
-                    >submit</v-btn
+                    >Login</v-btn
                 >
                 </div>
             </v-form>
@@ -87,6 +87,7 @@ export default {
 }
 .btn{
     margin-top: 15px;
+    background: rgb(202, 243, 185);
 }
 small{
     color: red;

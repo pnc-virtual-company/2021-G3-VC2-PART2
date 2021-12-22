@@ -5,19 +5,23 @@
       width="500"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="btn-create"
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
+         <v-btn
+            color="blue"
+            dark
+            fab
+            fixed
+            right
+            v-bind="attrs" v-on="on"
+            class="btn-create"
         >
-          Create
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
         </v-btn>
       </template>
 
       <v-card>
-        <v-card-title class="text-h5 purple lighten-2" >
+        <v-card-title class="text-h5 blue" >
           Create User
         </v-card-title>
 
@@ -26,6 +30,7 @@
             <v-text-field
               label='Firstname'
               prepend-icon="mdi-account"
+              :rules="[() => !!role || 'This field is required']"
               type='text'
               v-model="firstname"
             >
@@ -34,6 +39,7 @@
             <v-text-field
               label='Lastname'
               prepend-icon="mdi-account"
+              :rules="[() => !!role || 'This field is required']"
               type='name'
               v-model="lastname"
             >
@@ -43,6 +49,7 @@
             <v-text-field
               label='Email'
               prepend-icon="mdi-gmail"
+              :rules="[() => !!role || 'This field is required']"
               type='email'
               v-model="email"
             >
@@ -61,6 +68,7 @@
             <v-text-field
               label='Password'
               prepend-icon="mdi-lock"
+              :rules="[() => !!role || 'This field is required']"
               type="password"
               v-model="password"
             >
@@ -68,6 +76,7 @@
             </v-text-field>
             <v-text-field label='Confirm Password' type='password'
                 prepend-icon="mdi-lock"
+                :rules="[() => !!role || 'This field is required']"
                 v-model="confirm"
                 >
             </v-text-field>
@@ -85,11 +94,10 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions class="purple lighten-2">
+        <v-card-actions class="blue">
           <v-spacer></v-spacer>
           <v-btn
-            color="black"
-        
+            color="white"
             text
             @click.prevent="createUser"
           >
@@ -156,5 +164,8 @@
   }
   v-radio{
     display: flex;
+  }
+  btn-create{
+    margin-top: 15px;
   }
 </style>
