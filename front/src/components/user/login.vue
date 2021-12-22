@@ -4,6 +4,7 @@
         width="350"
         height="370"
         class="card"
+        color='#dcdcdc'
         
     >
         <div class="d-flex align-center justify-center  "   >
