@@ -31,7 +31,9 @@ class UserController extends Controller
             'email' => 'required',
             'gender' => 'required',
             'role' => 'required',
-            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
+            'password' =>'min:1|max:20|confirmed',
+            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999',
+            
         ]);
         $request -> file('profile')->store('public/images');
         $user = new User();
@@ -128,5 +130,11 @@ class UserController extends Controller
         if($isDelete == 1) 
             return response()->json(['message' => 'User deleted successfully'], 200);
         return response()->json(['message' => 'ID NOT EXIST'], 404);
+    }
+
+    public function search($name)
+    {
+        # code...
+        return User::where('firstName', 'like', '%' .$name .'%')->get();
     }
 }
