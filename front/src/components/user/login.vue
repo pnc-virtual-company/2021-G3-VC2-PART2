@@ -32,7 +32,7 @@
                     v-model="password"
                    
                 ></v-text-field>
-                <small red>{{message_error}}</small>
+                <small red>{{message}}</small>
                 <div class="text-center">
                     
                 <v-btn
@@ -54,6 +54,7 @@
 <script>
 export default {
     emits: ["requestToLogin"],
+    props:['message'],
     data() {
         return {
             email:'',
@@ -64,22 +65,6 @@ export default {
         
     },
     methods: {
-    //    login(){
-    //        let dataUser = {
-    //            email:this.email,
-    //            password:this.password
-    //        }
-    //        axios.post(APP_URL + '/signin',dataUser).then(res =>{
-    //            this.dataUser = res.data.user;
-    //            this.$router.push('/user');
-            
-    //        }).catch(error => {
-    //         let statusCode = error.response.status;
-    //         if(statusCode === 401) {
-    //             this.message_error= 'Invalid data, please try again';
-    //             console.log(this.message_error);
-    //         }
-    //     })
         login() {
             let dataUser = {
                email:this.email,

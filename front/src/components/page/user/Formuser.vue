@@ -66,7 +66,11 @@
             >
               
             </v-text-field>
-         
+            <v-text-field label='Confirm Password' type='password'
+                prepend-icon="mdi-lock"
+                v-model="confirm"
+                >
+            </v-text-field>
             <v-radio-group v-model="gender" >
                 <v-radio
                   v-for="n in genders"
@@ -115,7 +119,8 @@
             role:'',
             userinfo:[],
             roles:['Admin', 'Student', 'Social Affair'],
-            genders:['Female','Male']
+            genders:['Female','Male'],
+            confirm:''
             }
         },
         methods: {
@@ -131,6 +136,7 @@
               newUser.append('email', this.email);
               newUser.append('role', this.role);
               newUser.append('password', this.password);
+              newUser.append('password_confirmation', this.confirm);
               newUser.append('gender', this.gender);
               newUser.append('profile', this.image);
 

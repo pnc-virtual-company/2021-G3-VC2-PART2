@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Student;
 
@@ -35,12 +35,13 @@ class StudentController extends Controller
             'phone' => 'min:5|max:20',
             'image' =>'nullable|image|mimes:jpg,jpeg,png|max:2000',
         ]);
+        $request -> file('image')->store('public/student/images');
         $student = new Student();
         $student->firstName = $request->firstName;
         $student->lastName = $request->lastName;
         $student->email = $request->email;
         $student->class = $request->class;
-        $student->image = $request->image;
+        $student->image =$request->file('image')->hashName();
         $student->gender = $request->gender;
         $student->password = $request->password;
         $student->phone = $request->phone;

@@ -33,15 +33,16 @@ class UserController extends Controller
             'role' => 'required',
             'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
         ]);
-        $request -> file('profile')->store('public/images');
+        $request -> file('profile')->store('public/users/images');
         $user = new User();
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->gender = $request->gender;
         $user->role = $request->role;
         $user->profile =$request->file('profile')->hashName();
+        
         $user->save();
 
         return response()->json(['message' => 'User created successfully'], 201);
