@@ -1,7 +1,7 @@
 <template>
     <section>
         <form-user @add-user="createUser"></form-user>
-        <card-user :userinfo="userData"  @delete-Item="deleteUser" @search-user="searchUser"></card-user>
+        <card-user :userinfo="userData"  @delete-Item="deleteUser" @search-user="searchUser" @update-user="getUser"></card-user>
     </section>
 </template>
 

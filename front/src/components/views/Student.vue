@@ -1,7 +1,7 @@
 <template>
   <section>
         <form-student @add-student="createStudent"></form-student>
-        <card-student :dataUser="userStudent" @deleteItem="deleteStudent" @search-user="searchStudent"></card-student>
+        <card-student :dataUser="userStudent" @deleteItem="deleteStudent" @search-user="searchStudent" @update-student="getStudent"></card-student>
     </section>
 </template>
 

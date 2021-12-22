@@ -26,6 +26,7 @@
             <v-text-field
               label='Firstname'
               prepend-icon="mdi-account"
+              :rules="[() => !!role || 'This field is required']"
               type='text'
               v-model="firstname"
             >
@@ -34,6 +35,7 @@
             <v-text-field
               label='Lastname'
               prepend-icon="mdi-account"
+              :rules="[() => !!role || 'This field is required']"
               type='name'
               v-model="lastname"
             >
@@ -43,6 +45,7 @@
             <v-text-field
               label='Email'
               prepend-icon="mdi-gmail"
+              :rules="[() => !!role || 'This field is required']"
               type='email'
               v-model="email"
             >
@@ -61,6 +64,7 @@
             <v-text-field
               label='Password'
               prepend-icon="mdi-lock"
+              :rules="[() => !!role || 'This field is required']"
               type="password"
               v-model="password"
             >
@@ -68,6 +72,7 @@
             </v-text-field>
             <v-text-field label='Confirm Password' type='password'
                 prepend-icon="mdi-lock"
+                :rules="[() => !!role || 'This field is required']"
                 v-model="confirm"
                 >
             </v-text-field>

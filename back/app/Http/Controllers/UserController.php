@@ -47,7 +47,7 @@ class UserController extends Controller
         
         $user->save();
 
-        return response()->json(['message' => 'User created successfully'], 201);
+        return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
     
     }
 
@@ -61,7 +61,8 @@ class UserController extends Controller
             return response()->json(['message' => 'Bad login'], 401);
         }
         return response()->json([
-            'message' => 'User login successfully'
+            'message' => 'User login successfully',
+            'user' => $user
         ]);
     }
 
@@ -100,9 +101,8 @@ class UserController extends Controller
             'email' => 'required',
             'gender' => 'required',
             'role' => 'required',
-            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
         ]);
-        $request -> file('profile')->store('public/images');
+
         $user = User::findOrFail($id);
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
@@ -110,10 +110,9 @@ class UserController extends Controller
     
         $user->gender = $request->gender;
         $user->role = $request->role;
-        $user->profile =$request->file('profile')->hashName();
         $user->save();
 
-        return response()->json(['message' => 'User update successfully'], 200);
+        return response()->json(['message' => 'User update successfully', 'user' => $user], 200);
     
 
     }

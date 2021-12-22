@@ -38,7 +38,13 @@
                            <td> 
                                <div class="i-con">
                                     <v-icon @click="getId(item.id)" @>mdi-delete</v-icon>
-                                    <v-icon>mdi-lead-pencil</v-icon>
+                                    <v-icon @click="ShowEdit(item)">mdi-lead-pencil</v-icon>
+                                    <Updateuser
+                                    v-if="showForm"
+                                    :userInfo="userData"
+                                    @cancel="Cancel"
+                                    @update="UpdateUser"
+                                    />
                                </div>
                            </td>
                        </tr>
@@ -58,17 +64,22 @@
 
 <script>
 // import Modaldelete from "../../ui/Modaldelete.vue"
+import axios from "axios";
+const APP_URL = "http://127.0.0.1:8000/api"
+import Updateuser from "../user/Updateuser.vue"
 export default {
   props:['userinfo'],
-  emits:['delete-Item','search-user'],
+  emits:['delete-Item','search-user','update-user'],
   components: {
-    //   Modaldelete
+    Updateuser
   },
   data(){
       return{
           deleteId:0,
           search:'',
           dialog: false,
+          showForm:false,
+          userData:""
            
       }
 
@@ -80,6 +91,19 @@ export default {
     },
     searchUser(){
         this.$emit("search-user", this.search);
+    },
+    ShowEdit(user){
+      this.userData = user;
+      this.showForm = true
+    },
+    Cancel(hidden){
+        this.showForm = hidden
+    },
+    UpdateUser(id, user, hidden){
+        axios.put(APP_URL + '/users/'+ id, user).then((res)=>{
+          this.$emit("update-user", res.data);
+          this.showForm = hidden;
+        })
     }
 
   },
