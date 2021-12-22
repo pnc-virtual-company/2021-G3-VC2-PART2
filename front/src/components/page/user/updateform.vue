@@ -22,7 +22,7 @@
         />Male
         <br />
         <form>
-          <label for="role"> Select of Role: </label>
+          <!-- <label for="role"> Select of Role: </label> -->
           <select name="role" v-model="role">
              <option value="Select role" disabled>Select role</option>
              <option value="Student">Student</option>
