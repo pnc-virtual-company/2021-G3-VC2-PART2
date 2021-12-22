@@ -31,7 +31,12 @@
                     <tbody class="blue lighten-4">
                        <tr class="" v-for="student in dataUser" :key="student.name">
                            <td class= "text-4">
-                               <img src="student.profile" alt="">
+                              <img
+                                  :src="url + student.image"
+                                  alt="No internet"
+                                  width="50"
+                                  height="52"
+                              />
                             </td>
                            <td>{{student.firstName}}</td>
                            <td>{{student.lastName}}</td>
@@ -40,8 +45,8 @@
                            <td>{{student.gender}}</td>
                            <td> 
                                <div class="i-con">
-                                   <v-icon @click="getStudentId(student.id)">mdi-delete</v-icon>
-                                    <v-icon>mdi-lead-pencil</v-icon>
+                                  <v-icon @click="getStudentId(student.id)">mdi-delete</v-icon>
+                                  <v-icon>mdi-lead-pencil</v-icon>
                                </div>
                                
                            </td>
@@ -49,7 +54,6 @@
                     </tbody>
                 </template>
             </v-simple-table>
-    
     </v-card>
     </template>
   </v-container>
@@ -61,7 +65,10 @@
     data () {
       return {
         search: '',
-        studentId:0
+        studentId:0,
+        url: "http://127.0.0.1:8000/storage/student/images/",
+
+       
       }
     },
     methods: {
@@ -90,5 +97,9 @@
     td{
         color: black;
        
+    }
+    img{
+      border-radius: 50%;
+      margin-top: 5px;
     }
 </style>

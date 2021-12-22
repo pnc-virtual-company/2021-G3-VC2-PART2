@@ -23,7 +23,6 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Gender</th>
                             <th>Role</th>
                             <th>Action</th>
@@ -34,12 +33,11 @@
                            <td>{{item.firstName}}</td>
                            <td>{{item.lastName}}</td>
                            <td>{{item.email}}</td>
-                           <td>{{item.phone}}</td>
                            <td>{{item.gender}}</td>
                            <td>{{item.role}}</td>
                            <td> 
                                <div class="i-con">
-                                   <v-icon @click="getId(item.id)">mdi-delete</v-icon>
+                                    <v-icon @click="getId(item.id)" @>mdi-delete</v-icon>
                                     <v-icon>mdi-lead-pencil</v-icon>
                                </div>
                            </td>
@@ -69,7 +67,9 @@ export default {
   data(){
       return{
           deleteId:0,
-          search:''
+          search:'',
+          dialog: false,
+           
       }
 
   },

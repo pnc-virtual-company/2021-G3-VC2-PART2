@@ -20,7 +20,7 @@ export default {
             },
     data(){
         return{
-            userData:[]
+            userData:[], 
         }
     },
     methods: {
