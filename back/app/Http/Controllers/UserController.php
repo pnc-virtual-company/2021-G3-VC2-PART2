@@ -78,9 +78,9 @@ class UserController extends Controller
         
             'gender' => 'required',
             'role' => 'required',
-            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
+            // 'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif,jfif|max:1999'
         ]);
-        $request -> file('profile')->store('public/images');
+        // $request -> file('profile')->store('public/images');
         $user = User::findOrFail($id);
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
@@ -88,7 +88,8 @@ class UserController extends Controller
     
         $user->gender = $request->gender;
         $user->role = $request->role;
-        $user->profile =$request->file('profile')->hashName();
+        
+        // $user->profile =$request->file('profile')->hashName();
         $user->save();
 
         return response()->json(['message' => 'User update successfully'], 200);
