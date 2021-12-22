@@ -1,15 +1,8 @@
 <template>
     <section>
-         
-        <form-user @add-user="createUser"></form-user>
-        <search-user></search-user>
-        <!-- <v-data-table
-           :headers="headers"
-           :items="desserts"
-           :>
+        <form-user @add-user="createUser" ></form-user>
 
-        </v-data-table> -->
-        <card-user :userinfo="userData"></card-user>
+        <card-user :userinfo="userData"  @delete-Item="deleteUser" @search-user="searchUser" @update-user="getUser"></card-user>
     </section>
 </template>
 
@@ -17,14 +10,12 @@
 import axios from 'axios';
 const APP_URL = 'http://127.0.0.1:8000/api';
 import Carduser from "../page/user/Carduser.vue";
-import Searchuser from "../page/user/Searchuser.vue";
 import Formsearch from "../page/user/Formuser.vue";
 
 export default {
     name:'App',
     components: {
                 'card-user': Carduser,
-                'search-user': Searchuser,
                 'form-user':Formsearch,
             },
         
@@ -33,29 +24,44 @@ export default {
             userData:[],
             
         }
-        
-   
-
-
-
-
-
 
     },
     methods: {
-        getUser(){
+        getUser(user){
             axios.get(APP_URL+'/users').then(res=>{
                 this.userData = res.data;
+                console.log(this.userData);
         
             })
+            return user;
         },
         createUser(userInfo){
             axios.post(APP_URL + '/users', userInfo).then(res=>{
                 this.getUser();
                 console.log(res.data);
             })
+        },
+        deleteUser(deleteId){
+            axios.delete(APP_URL +'/users'+'/'+ deleteId).then(res=>{
+                console.log(res.data);
+                this.getUser();
+                console.log("deleteId")
+            });
+            
+        },
+        searchUser(search){
+            console.log(search);
+            if(this.search !== ''){
+                axios.get(APP_URL + '/users' + '/search/' + search).then(res =>{
+                    this.userInfo = res.data;
+                })
+            }else{
+                this.getUser();
+            }
         }
     },
+
+    
     mounted() {
        this.getUser();
     },

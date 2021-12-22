@@ -133,7 +133,6 @@
               newUser.append('password', this.password);
               newUser.append('gender', this.gender);
               newUser.append('profile', this.image);
-
               this.$emit("add-user",newUser);
             }
               
