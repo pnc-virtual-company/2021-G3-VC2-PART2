@@ -4,7 +4,6 @@
         width="350"
         height="370"
         class="card"
-        
     >
         <div class="d-flex align-center justify-center  "   >
             <v-form class="mt-5">
@@ -86,6 +85,7 @@ export default {
 }
 .btn{
     margin-top: 15px;
+    background: rgb(202, 243, 185);
 }
 small{
     color: red;
