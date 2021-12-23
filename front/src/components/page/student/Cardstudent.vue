@@ -35,7 +35,7 @@
                                   :src="url + student.image"
                                   alt="No internet"
                                   width="50"
-                                  height="52"
+                                  height="50"
                               />
                             </td>
                            <td>{{student.firstName}}</td>
@@ -67,8 +67,6 @@
         search: '',
         studentId:0,
         url: "http://127.0.0.1:8000/storage/student/images/",
-
-       
       }
     },
     methods: {
