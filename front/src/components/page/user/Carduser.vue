@@ -2,7 +2,7 @@
   <section>
       <v-container>
   <template>
-  <v-card color="#81BEF7"
+  <v-card class="table-user" color="#81BEF7"
         green>
     <v-card-title >
         User List
@@ -37,7 +37,7 @@
                            <td>{{item.role}}</td>
                            <td> 
                                <div class="i-con">
-                                    <v-icon @click="getId(item.id)" @>mdi-delete</v-icon>
+                                    <v-icon class="red--text" @click="getId(item.id)" @>mdi-delete</v-icon>
                                     <v-icon @click="ShowEdit(item)">mdi-lead-pencil</v-icon>
                                     <Updateuser
                                     v-if="showForm"
@@ -122,6 +122,9 @@ table,td{
        background:rgb(242, 242, 245);
 
    }
+.table-user{
+  margin-top: 25px;
+}
 
 </style>
 

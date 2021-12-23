@@ -45,6 +45,15 @@
           <v-icon left class="orange--text">{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
+        <v-btn
+          active-class="grey-5 red--text" 
+          text
+          :to="{ path: '/'}"
+          @click="Logout"
+        >
+          <v-icon left class="orange--text">mdi-login</v-icon>
+          Log out
+        </v-btn>
       </v-toolbar-items> 
     </v-toolbar>
   </nav>
@@ -52,23 +61,27 @@
 
 <script>
 export default {
- 
+  emits: ['log-out'],
   data() {
     return {
         appTitle: 'PNC Cambodia',
         sidebar: false,
         group: false,
+        isLogout: false,
         menuItems: [
             { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
-            { title: 'logout', path: '/', icon: 'mdi-login' },
+            // { title: 'logout', path: '/', icon: 'mdi-login' },
         ]
     }
   },
   methods: {
-   
+    Logout(){
+      this.$emit('log-out', this.isLogout);
+      console.log("Logout");
+    }
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
   <template>
-  <v-card color="#81BEF7"
+  <v-card class="table-student" color="#81BEF7"
         green>
     <v-card-title >
         Student List
@@ -45,7 +45,7 @@
                            <td>{{student.gender}}</td>
                            <td> 
                                <div class="i-con">
-                                  <v-icon @click="getStudentId(student.id)">mdi-delete</v-icon>
+                                  <v-icon class="red--text" @click="getStudentId(student.id)">mdi-delete</v-icon>
                                   <v-icon @click="getStudentInfo(student)">mdi-lead-pencil</v-icon>
                                   <update-student 
                                   v-if="showForm"
@@ -98,7 +98,6 @@
         getStudentInfo(student){
           this.showForm = true;
           this.studentData = student;
-          console.log(this.studentData);
         },
         Cencel(hidden){
           this.showForm = hidden;
@@ -134,5 +133,8 @@
     img{
       border-radius: 50%;
       margin-top: 5px;
+    }
+    .table-student{
+       margin-top: 25px;
     }
 </style>

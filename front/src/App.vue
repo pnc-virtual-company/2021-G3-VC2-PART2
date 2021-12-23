@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <Navbar
-      v-if="user !== null"
+      v-if="isLogin"
+      @log-out="Logout"
     />
     <v-main
       
@@ -9,6 +10,7 @@
       <router-view
       @requestToLogin="login"
       :message="message_error"
+      
       />
       
     </v-main>
@@ -27,7 +29,8 @@ export default {
   data(){
     return {
       user: null,
-      message_error:''
+      message_error:'',
+      isLogin: false,
     }
   },
   methods: {
@@ -35,6 +38,7 @@ export default {
            axios.post(APP_URL + '/signin',userData).then(res =>{
                this.dataUser = res.data.user;
                this.$router.push('/user');
+               this.isLogin = true;
                this.user = res.data.user;
                localStorage.setItem("userId", res.data.user.id);
             
@@ -46,11 +50,10 @@ export default {
             }
         })
       },
-      logOut() {
-        this.user = null
-        localStorage.removeItem('name');
-        localStorage.removeItem('id');
-        console.log('hi')
+      Logout(isLogout) {
+        localStorage.clear();
+        this.isLogin = isLogout;
+        console.log("Hello");
       }
   },
   mounted() {
@@ -60,6 +63,10 @@ export default {
         this.user = res.data;
         console.log(this.user)
       })
+    }
+    let userid = localStorage.getItem('userId');
+    if(userid !== null){
+      this.isLogin = true;
     }
   },
   
