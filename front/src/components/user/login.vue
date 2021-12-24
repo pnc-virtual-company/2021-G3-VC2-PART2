@@ -22,18 +22,19 @@
                     v-model="email"
                     
                 ></v-text-field>
-
                 <v-text-field
-                    prepend-icon="mdi-lock"
-                    type="password"
-                    label="Password"
-                    required
-                    v-model="password"
-                   
-                ></v-text-field>
+                :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show3 ? 'text' : 'password'"
+                name="input-10-2"
+                label="Password"
+                hint="At least 8 characters"
+                prepend-icon="mdi-lock"
+                class="input-group--focused"
+                @click:append="show3 = !show3"
+                v-model="password"
+            ></v-text-field>
                 <small red>{{message}}</small>
                 <div class="text-center">
-                    
                 <v-btn
                     class="btn"
                     color="primary"
@@ -60,6 +61,8 @@ export default {
             password:'',
             message_error:'',
             loading: false,
+            show3:false
+
         };
         
     },

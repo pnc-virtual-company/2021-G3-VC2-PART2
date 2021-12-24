@@ -41,10 +41,10 @@ export default {
       });
     },
     deleteUser(deleteId) {
-      axios.delete(APP_URL + "/users" + "/" + deleteId).then((res) => {
+      axios.delete(APP_URL + "/users/" + deleteId).then((res) => {
         console.log(res.data);
         this.getUser();
-        console.log("deleteId");
+      
       });
     },
     searchUser(search) {
