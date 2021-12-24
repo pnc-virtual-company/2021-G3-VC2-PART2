@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::latest()->get();
+        return Student::with('Permission')->latest()->get();
     }
 
     /**
@@ -85,13 +85,12 @@ class StudentController extends Controller
         $student->lastName = $request->lastName;
         $student->email = $request->email;
         $student->class = $request->class;
-      
         $student->gender = $request->gender;
         $student->password = $request->password;
         $student->phone = $request->phone;
 
         $student->save();
-        return response()->json(['Update student seccussfuly', 'data',$student], 200);
+        return response()->json(['Update student seccussfuly', 'data',$student],200);
     }
 
     /**
