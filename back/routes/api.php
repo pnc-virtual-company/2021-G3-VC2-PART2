@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PermissionController;
 
 
 /*
@@ -56,3 +57,11 @@ Route::get('/students/search/{firstName}',[StudentController::class ,'search']);
 //=========================== Private
 Route::put('/students/{id}', [StudentController::class, 'update']);
 Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+
+//=======================permission 
+Route::get('/permission', [PermissionController::class, 'index']);
+Route::get('/permission/{id}', [PermissionController::class, 'show']);
+Route::post('/permission', [PermissionController::class, 'store']);
+Route::put('/permission/{id}', [PermissionController::class, 'update']);
+Route::delete('/permission/{id}', [PermissionController::class, 'destroy']);
+
