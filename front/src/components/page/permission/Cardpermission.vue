@@ -40,8 +40,25 @@
 </template>
 
 <script>
+import axios from "axios";
+const APP_URL = "http://127.0.0.1:8000/api"
 export default {
-
+    data(){
+        return{
+            dataStudent:[]
+        }
+    },
+    methods: {
+    getStudent() {
+      axios.get(APP_URL + "/students").then((res) => {
+        this.dataStudent = res.data;
+        console.log(this.dataStudent)
+      });
+    },
+  },
+  mounted() {
+    this.getStudent()
+  },
 }
 </script>
 
