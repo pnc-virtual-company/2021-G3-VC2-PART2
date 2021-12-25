@@ -59,7 +59,7 @@
                           <v-card-title class="text-h5 blue lighten-2 white--text">
                             Delete User
                           </v-card-title>
-                          <h3 class="ma">Are you sure you want to delete?</h3>
+                          <h3 class="ma"> <v-icon class="orange--text">mdi-alert-outline mdi-48px</v-icon>    Are you sure you want to delete?</h3>
                           <v-divider></v-divider>
 
                           <v-card-actions class="blue lighten-2">
