@@ -74,7 +74,7 @@ class PermissionController extends Controller
             'end_date' => 'required|after:start_date'
         ]);
         $permission = Permission::findOrFail($id);
-        $permission->reason = $request->reasson;
+        $permission->reason = $request->reason;
         $permission -> description = $request -> description;
         $permission->start_date = $request->start_date;
         $permission->end_date = $request->end_date;
