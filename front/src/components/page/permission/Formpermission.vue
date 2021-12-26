@@ -12,7 +12,7 @@
                 fixed
                 right
                 v-bind="attrs" v-on="on"
-                class="btn-create"
+                class="ma-4"
             >
             <v-icon dark>
                 mdi-plus
@@ -54,13 +54,6 @@
                     type="text"
                     prepend-icon="mdi-comment-text"
                     v-model = "description"
-                >
-                </v-text-field>
-                <v-text-field
-                    label="Amount"
-                    type="text"
-                    prepend-icon="mdi-comment-text"
-                    v-model = "amount"
                 >
                 </v-text-field>
                 <v-text-field
@@ -110,7 +103,6 @@ export default {
             studentId:[],
             student_id: "",
             reason: "",
-            amount:0,
             description: "",
             start_date: "",
             end_date: ""
@@ -130,10 +122,10 @@ export default {
             this.dialog = false;
             let newPermission = new FormData();
             newPermission.append('student_id', this.student_id);
-            newPermission.append('reasson', this.reason);
-            // newPermission.append('description', this.description);
-            newPermission.append('datetime', this.start_date);
-            newPermission.append('amount', this.amount);
+            newPermission.append('reason', this.reason);
+            newPermission.append('description', this.description);
+            newPermission.append('start_date', this.start_date);
+            newPermission.append('end_date', this.end_date);
             this.$emit('add-permission', newPermission);
         }
 
@@ -149,5 +141,8 @@ export default {
 <style  scoped>
     select{
         width: 90%;
+    }
+    btn-create{
+        margin-top: 40px;
     }
 </style>

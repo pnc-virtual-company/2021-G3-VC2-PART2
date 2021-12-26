@@ -3,7 +3,7 @@
 <template>
   <section>
     <Formpermission @add-permission="Createpermission"></Formpermission>
-    <Cardpermission></Cardpermission>
+    <Cardpermission :dataPermission="studentPermission" @delete-item="deleteStudentPermission"></Cardpermission>
     
     </section>
 </template>
@@ -27,15 +27,26 @@ export default {
     getPermission(){
       axios.get(APP_URL + '/permission').then(res=>{
         this.studentPermission = res.data;
-        console.log(this.studentPermission);
       })
     },
     Createpermission(newPermission){
       axios.post(APP_URL + '/permission',newPermission).then(res =>{
-        console.log(res.data);
+        this.studentPermission = res.data.permission;
+         this.getPermission();
+        
       })
-    }
+    },
+    deleteStudentPermission(deleteId){
+    axios.delete(APP_URL + "/permission/" +   deleteId).then(res =>{
+      console.log(res.data);
+      this.getPermission();
+    })
+
   },
+  },
+
+  // ======== delete item =========
+  
   mounted() {
     this.getPermission();
   },

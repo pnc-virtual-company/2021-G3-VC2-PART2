@@ -37,7 +37,7 @@ export default {
     createStudent(newStudent) {
       axios.post(APP_URL + "/students", newStudent).then((res) => {
         this.getStudent();
-        console.log(res.data);
+        console.log(res.data);  
       });
     },
 
