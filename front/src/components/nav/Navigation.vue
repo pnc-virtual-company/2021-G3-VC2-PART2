@@ -39,20 +39,28 @@
         <v-btn
           active-class="grey-5 red--text" 
           text
+          :to="{ path: '/user'}"
+          
+        >
+          <v-icon left class="orange--text">mdi-account-multiple-plus</v-icon>
+          USERS
+        </v-btn>
+        <v-btn
+          active-class="grey-5 red--text" 
+          text
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
-          <v-icon left class="orange--text">{{ item.icon }}</v-icon>
+          <v-icon left class="orange--text">{{item.icon}}</v-icon>
           {{ item.title }}
         </v-btn>
         <v-btn
           active-class="grey-5 red--text" 
           text
           :to="{ path: '/'}"
-          @click="Logout"
         >
           <v-icon left class="orange--text">mdi-login</v-icon>
-          Log out
+           Log out
         </v-btn>
       </v-toolbar-items> 
     </v-toolbar>
@@ -69,7 +77,7 @@ export default {
         group: false,
         isLogout: false,
         menuItems: [
-            { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
+            // { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
@@ -80,7 +88,6 @@ export default {
   methods: {
     Logout(){
       this.$emit('log-out', this.isLogout);
-      console.log("Logout");
     }
   },
 }
