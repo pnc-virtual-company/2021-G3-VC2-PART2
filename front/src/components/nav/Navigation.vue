@@ -77,11 +77,11 @@ export default {
         group: false,
         isLogout: false,
         menuItems: [
-            // { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
+        
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
-            // { title: 'logout', path: '/', icon: 'mdi-login' },
+          
         ]
     }
   },
