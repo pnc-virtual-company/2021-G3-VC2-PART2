@@ -36,6 +36,14 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
+         <v-btn
+          active-class="grey-5 red--text" 
+          text
+          :to="{ path: '/user'}"
+        >
+          <v-icon left class="orange--text">mdi-account-multiple-plus</v-icon>
+          USERS
+        </v-btn>
         <v-btn
           active-class="grey-5 red--text" 
           text
@@ -56,10 +64,11 @@ export default {
   data() {
     return {
         appTitle: 'PNC Cambodia',
+        usermanange:true,
         sidebar: false,
         group: false,
         menuItems: [
-            { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
+            // { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
@@ -67,8 +76,16 @@ export default {
         ]
     }
   },
+
   methods: {
-   
+    
+  },
+  mounted() {
+    if(localStorage.getItem("Roleuser") === "Admin"){
+      this.usermanange = true;
+    }else{
+      this.usermanange = false;
+    }
   },
 }
 </script>

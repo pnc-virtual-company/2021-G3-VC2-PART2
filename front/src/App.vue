@@ -36,8 +36,8 @@ export default {
                this.dataUser = res.data.user;
                this.$router.push('/user');
                this.user = res.data.user;
-               localStorage.setItem("userId", res.data.user.id);
-            
+              localStorage.setItem("userId", res.data.user.id);
+              localStorage.setItem("Roleuser", res.data.user.role);
            }).catch(error => {
             let statusCode = error.response.status;
             if(statusCode === 401) {
@@ -50,7 +50,7 @@ export default {
         this.user = null
         localStorage.removeItem('name');
         localStorage.removeItem('id');
-        console.log('hi')
+       
       }
   },
   mounted() {
@@ -58,7 +58,6 @@ export default {
       axios.get("/users/" + localStorage.userId)
       .then(res => {
         this.user = res.data;
-        console.log(this.user)
       })
     }
   },
