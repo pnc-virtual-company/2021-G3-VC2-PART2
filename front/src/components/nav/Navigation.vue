@@ -37,6 +37,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
          <v-btn
+          v-if="usermanange" 
           active-class="grey-5 red--text" 
           text
           :to="{ path: '/user'}"
@@ -81,7 +82,7 @@ export default {
     
   },
   mounted() {
-    if(localStorage.getItem("Roleuser") === "Admin"){
+    if(localStorage.getItem("Userrole") === "Admin"){
       this.usermanange = true;
     }else{
       this.usermanange = false;
