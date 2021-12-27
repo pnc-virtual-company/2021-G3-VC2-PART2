@@ -107,7 +107,7 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
-    
+        $user->password = bcrypt($request->password);
         $user->gender = $request->gender;
         $user->role = $request->role;
         $user->save();
