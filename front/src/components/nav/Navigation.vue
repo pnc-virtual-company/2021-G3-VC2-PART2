@@ -90,7 +90,6 @@ export default {
   methods: {
     Logout(){
       this.$emit('log-out', this.isLogout);
-      console.log("Hello");
     }
   },
 }
