@@ -36,11 +36,11 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-         <v-btn
-          v-if="usermanange" 
+        <v-btn
           active-class="grey-5 red--text" 
           text
           :to="{ path: '/user'}"
+          
         >
           <v-icon left class="orange--text">mdi-account-multiple-plus</v-icon>
           USERS
@@ -51,8 +51,18 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
-          <v-icon left class="orange--text">{{ item.icon }}</v-icon>
+          
+          <v-icon left class="orange--text">{{item.icon}}</v-icon>
           {{ item.title }}
+        </v-btn>
+        <v-btn
+          active-class="grey-5 red--text" 
+          text
+          :to="{ path: '/'}"
+          @click="Logout"
+        >
+          <v-icon left class="orange--text">mdi-login</v-icon>
+           Log out
         </v-btn>
       </v-toolbar-items> 
     </v-toolbar>
@@ -61,31 +71,25 @@
 
 <script>
 export default {
- 
+  emits: ['log-out'],
   data() {
     return {
         appTitle: 'PNC Cambodia',
-        usermanange:true,
         sidebar: false,
         group: false,
+        isLogout: false,
         menuItems: [
-            // { title: 'Users', path: '/user', icon: 'mdi-account-multiple-plus' },
+        
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
-            { title: 'logout', path: '/', icon: 'mdi-login' },
+          
         ]
     }
   },
-
   methods: {
-    
-  },
-  mounted() {
-    if(localStorage.getItem("Userrole") === "Admin"){
-      this.usermanange = true;
-    }else{
-      this.usermanange = false;
+    Logout(){
+      this.$emit('log-out', this.isLogout);
     }
   },
 }
