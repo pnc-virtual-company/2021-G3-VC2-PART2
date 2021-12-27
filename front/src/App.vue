@@ -41,6 +41,7 @@ export default {
                this.isLogin = true;
                this.user = res.data.user;
                localStorage.setItem("userId", res.data.user.id);
+               localStorage.setItem("Userrole", res.data.user.role);
             
            }).catch(error => {
             let statusCode = error.response.status;

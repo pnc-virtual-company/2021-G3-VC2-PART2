@@ -51,6 +51,7 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
+          
           <v-icon left class="orange--text">{{item.icon}}</v-icon>
           {{ item.title }}
         </v-btn>
@@ -58,6 +59,7 @@
           active-class="grey-5 red--text" 
           text
           :to="{ path: '/'}"
+          @click="Logout"
         >
           <v-icon left class="orange--text">mdi-login</v-icon>
            Log out
@@ -88,6 +90,7 @@ export default {
   methods: {
     Logout(){
       this.$emit('log-out', this.isLogout);
+      console.log("Hello");
     }
   },
 }
