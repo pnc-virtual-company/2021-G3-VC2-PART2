@@ -37,13 +37,16 @@
                            <td>{{item.role}}</td>
                            <td> 
                                <div class="i-con">
-                                    <v-icon class="red--text" @click="getId(item.id)" >mdi-delete</v-icon>
-                                    <v-icon @click="ShowEdit(item)">mdi-lead-pencil</v-icon>
+                                    <v-icon class="red--text" @click="getId(item.id)" v-if="item.role !=='Admin'">mdi-delete</v-icon>
+                                    <v-icon @click="ShowEdit(item)" 
+                                    
+                                    >mdi-lead-pencil</v-icon>
                                     <Updateuser
                                     v-if="showForm"
                                     :userInfo="userData"
                                     @cancel="Cancel"
                                     @update="UpdateUser"
+                                    
                                     />
                                </div>
                            </td>
@@ -106,7 +109,6 @@ export default {
   emits:['delete-Item','search-user','update-user'],
   components: {
     Updateuser,
-
   },
   data(){
       return{
@@ -114,8 +116,8 @@ export default {
           search:'',
           dialog: false,
           showForm:false,
-          userData:""
-           
+          userData:"",
+          admin:localStorage.getItem("Userrole")
       }
 
   },

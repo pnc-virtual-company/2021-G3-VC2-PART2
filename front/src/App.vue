@@ -42,6 +42,7 @@ export default {
                this.user = res.data.user;
                localStorage.setItem("userId", res.data.user.id);
                localStorage.setItem("Userrole", res.data.user.role);
+               localStorage.setItem("user", res.data.user.firstName);
             
            }).catch(error => {
             let statusCode = error.response.status;

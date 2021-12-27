@@ -40,6 +40,7 @@
           active-class="grey-5 red--text" 
           text
           :to="{ path: '/user'}"
+          v-if="usermanage"
           
         >
           <v-icon left class="orange--text">mdi-account-multiple-plus</v-icon>
@@ -77,6 +78,7 @@ export default {
         appTitle: 'PNC Cambodia',
         sidebar: false,
         group: false,
+        usermanage:true,
         isLogout: false,
         menuItems: [
         
@@ -90,6 +92,13 @@ export default {
   methods: {
     Logout(){
       this.$emit('log-out', this.isLogout);
+    }
+  },
+  mounted() {
+    if(localStorage.getItem("Userrole") === "Admin"){
+      this.usermanage = true;
+    }else{
+      this.usermanage = false;
     }
   },
 }

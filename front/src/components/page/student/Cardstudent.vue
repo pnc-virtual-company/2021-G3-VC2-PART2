@@ -25,7 +25,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Gender</th>
-                            <th>Action</th>
+                            <th v-if="admin !=='Student'">Action</th>
                       </tr>
                     </thead> 
                     <tbody class="blue lighten-4">
@@ -43,7 +43,7 @@
                            <td>{{student.email}}</td>
                            <td>{{student.phone}}</td>
                            <td>{{student.gender}}</td>
-                           <td> 
+                           <td v-if="admin !=='Student'"> 
                                <div class="i-con">
                                   <v-icon class="red--text"  @click="getStudentId(student.id)">mdi-delete</v-icon>
                                   <v-icon @click="getStudentInfo(student)">mdi-lead-pencil</v-icon>
@@ -119,7 +119,8 @@
         url: "http://127.0.0.1:8000/storage/student/images/",
         showForm:false,
         dialog:false,
-       studentData:[]
+        studentData:[],
+        admin:localStorage.getItem('Userrole'),
       }
     },
     methods: {

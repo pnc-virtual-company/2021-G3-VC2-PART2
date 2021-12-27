@@ -19,29 +19,45 @@ const routes = [
   },
   
 
-{
-  path: '/user',
-  name: 'Users',
-  component: () => import('@/components/views/Users.vue')
-},
-{
-  path: '/student',
-  name: 'Students',
-  component: () => import('@/components/views/Student.vue')
-},
-{
-  path: '/permission',
-  name: 'Permission',
-  component: () => import('@/components/views/Permission.vue')
-},
-{
-  path: '/discipline',
-  name: 'Discipline',
-  component: () => import('@/components/views/Discipline.vue')
-},
-
+  {
+    path: '/user',
+    name: 'Users',
+    component: () => import('@/components/views/Users.vue')
+  },
+  {
+    path: '/student',
+    name: 'Students',
+    component: () => import('@/components/views/Student.vue')
+  },
+  {
+    path: '/permission',
+    name: 'Permission',
+    component: () => import('@/components/views/Permission.vue')
+  },
+  {
+    path: '/discipline',
+    name: 'Discipline',
+    component: () => import('@/components/views/Discipline.vue')
+  },
+  {
+    path: "/unauthorized",
+    name: "NotAuthorized",
+    component: () => import('@/components/nav/NotAuthorized.vue')
+  }
 ]
+let authenticationGuard = (to, from, next) => {
+  if (to.path === "/user" || to.path ==="/student") {
+    let isLoggedIn = localStorage.getItem("user") !== null &&  localStorage.getItem("user") !== "";
 
+    if (isLoggedIn) {
+      next();
+    } else {
+      next("/unauthorized");
+    }
+  } else {
+    next();
+  }
+};
 
 const router = new VueRouter({
   mode: 'history',
@@ -49,4 +65,5 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach(authenticationGuard);
 export default router
