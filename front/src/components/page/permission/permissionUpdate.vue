@@ -34,7 +34,7 @@
         </v-text-field>
         <v-text-field
           label="start_date"
-          type="datetime"
+          type="date"
           prepend-icon="mdi-account-clock"
           v-model="start_date"
         >
@@ -42,7 +42,7 @@
 
         <v-text-field
           label="End_date"
-          type="datetime"
+          type="date"
           prepend-icon="mdi-account-clock-outline"
           v-model="end_date"
         >
@@ -92,6 +92,7 @@ export default {
           student_id:this.student_id
       };
       this.$emit('update',this.permissionInfo.id,permission,false);
+      console.log(permission);
      
     },
     cancel() {
@@ -102,8 +103,8 @@ export default {
     this.getStudent();
     this.reason = this.permissionInfo.reason;
     this.description = this.permissionInfo.description;
-    this.start_date = this.permissionInfo.start_date;
-    this.end_date = this.permissionInfo.end_date;
+    // this.start_date = this.permissionInfo.start_date;
+    // this.end_date = this.permissionInfo.end_date;
     this.student_id = this.permissionInfo.student_id;
   },
 };

@@ -126,6 +126,7 @@ export default {
       axios.put(APP_URL + "/permission/" + id, permission).then((res) => {
         this.$emit("update-permission", res.data);
         this.showForm = hidden;
+        
       });
     },
   },
