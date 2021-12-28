@@ -3,7 +3,7 @@
 <template>
   <section>
     <Formpermission @add-permission="Createpermission"></Formpermission>
-    <Cardpermission :dataPermission="studentPermission" @delete-item="deleteStudentPermission"></Cardpermission>
+    <Cardpermission :dataPermission="studentPermission" @delete-item="deleteStudentPermission" @update-permission="getPermission"></Cardpermission>
     
     </section>
 </template>

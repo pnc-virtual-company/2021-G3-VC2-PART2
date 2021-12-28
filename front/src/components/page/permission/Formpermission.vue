@@ -97,7 +97,7 @@ export default {
     emits:['add-permission'],
     data(){
         return{
-            animals: ['Dog', 'Cat', 'Rabbit', 'Turtle', 'Snake'],
+         
             dialog:false,
             dataStudent:[],
             studentId:[],
