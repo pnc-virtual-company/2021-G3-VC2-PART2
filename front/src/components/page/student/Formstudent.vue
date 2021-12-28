@@ -1,5 +1,5 @@
 <template>
-  <div class="text">
+  <div class="text" v-if="admin !=='Student'">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -101,6 +101,7 @@ export default {
       image: "",
       password: "",
       gender: "Male",
+      admin:localStorage.getItem("Userrole")
      
     };
   },

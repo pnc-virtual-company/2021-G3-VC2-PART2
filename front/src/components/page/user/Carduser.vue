@@ -37,18 +37,55 @@
                            <td>{{item.role}}</td>
                            <td> 
                                <div class="i-con">
-                                    <v-icon class="red--text" @click="getId(item.id)" @>mdi-delete</v-icon>
-                                    <v-icon @click="ShowEdit(item)">mdi-lead-pencil</v-icon>
+                                    <v-icon class="red--text" @click="getId(item.id)" v-if="item.role !=='Admin'">mdi-delete</v-icon>
+                                    <v-icon @click="ShowEdit(item)" 
+                                    
+                                    >mdi-lead-pencil</v-icon>
                                     <Updateuser
                                     v-if="showForm"
                                     :userInfo="userData"
                                     @cancel="Cancel"
                                     @update="UpdateUser"
+                                    
                                     />
                                </div>
                            </td>
                        </tr>
                     </tbody>
+                  <!-- modal delete -->
+                  <div class="text-center">
+                      <v-dialog
+                        v-model="dialog"
+                        width="500"
+                      >
+                      <v-card>
+                          <v-card-title class="text-h5 blue lighten-2 white--text">
+                            Delete User
+                          </v-card-title>
+                          <h3 class="ma"> <v-icon class="orange--text">mdi-alert-outline mdi-48px</v-icon>    Are you sure you want to delete?</h3>
+                          <v-divider></v-divider>
+
+                          <v-card-actions class="blue lighten-2">
+                            <v-spacer></v-spacer>
+                            <v-btn
+                            @click="dialog = false"
+                             class="teal darken-4 white--text"
+                            text
+                            >
+                              Cancel
+                            </v-btn>
+                            <v-btn
+                              class="red white--text"
+                              text
+                              @click="deleteUser"
+                              
+                            >
+                              Confirm
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </div>
                 </template>
             </v-simple-table>
     
@@ -63,7 +100,7 @@
 </template>
 
 <script>
-// import Modaldelete from "../../ui/Modaldelete.vue"
+
 import axios from "axios";
 const APP_URL = "http://127.0.0.1:8000/api"
 import Updateuser from "../user/Updateuser.vue"
@@ -71,7 +108,7 @@ export default {
   props:['userinfo'],
   emits:['delete-Item','search-user','update-user'],
   components: {
-    Updateuser
+    Updateuser,
   },
   data(){
       return{
@@ -79,19 +116,27 @@ export default {
           search:'',
           dialog: false,
           showForm:false,
-          userData:""
-           
+          userData:"",
+          admin:localStorage.getItem("Userrole")
       }
 
   },
   methods: {
     getId(id){
         this.deleteId = id;
-        this.$emit("delete-Item",this.deleteId);
+        this.dialog = true;
     },
+    deleteUser(){
+      this.$emit("delete-Item",this.deleteId);
+      this.dialog = false;
+    },
+  //======= fucntion==========
     searchUser(){
         this.$emit("search-user", this.search);
     },
+
+// ========== fucntion update========
+
     ShowEdit(user){
       this.userData = user;
       this.showForm = true
@@ -112,9 +157,7 @@ export default {
 </script>
 
 <style scoped>
-.mx-auto{
-  margin-top: 30px;
-}
+
 table,th{
        font-size:25px;
    }
@@ -124,6 +167,9 @@ table,td{
    }
 .table-user{
   margin-top: 25px;
+}
+.ma{
+  margin:20px;
 }
 
 </style>

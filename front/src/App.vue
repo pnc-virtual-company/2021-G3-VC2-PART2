@@ -41,6 +41,8 @@ export default {
                this.isLogin = true;
                this.user = res.data.user;
                localStorage.setItem("userId", res.data.user.id);
+               localStorage.setItem("Userrole", res.data.user.role);
+               localStorage.setItem("user", res.data.user.firstName);
             
            }).catch(error => {
             let statusCode = error.response.status;
@@ -61,7 +63,7 @@ export default {
       axios.get("/users/" + localStorage.userId)
       .then(res => {
         this.user = res.data;
-        console.log(this.user)
+        
       })
     }
     let userid = localStorage.getItem('userId');
