@@ -48,7 +48,7 @@
                 </v-text-field>
           </v-card-text>
     
-         <v-divider></v-divider>
+         <v-divider></v-divider> 
 
         <v-card-actions>
             <v-spacer></v-spacer>
@@ -58,7 +58,6 @@
       </v-card>
   </div>
 </template>
-
 <script>
 export default {
     props: ['studentInfo'],
