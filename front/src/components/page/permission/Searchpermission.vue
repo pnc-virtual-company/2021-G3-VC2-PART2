@@ -22,9 +22,9 @@ export default {
 .search{
   width: 78%;
   margin: auto;
-  margin-top: 10px;
-  
-  
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 

@@ -2,12 +2,12 @@
   <v-container fluid class="card">
     <v-row justify="center">
       <v-subheader>Student Permission</v-subheader>
-      <v-expansion-panels
+      <v-expansion-panels 
         popout
         v-for="(permission, index) in dataPermission"
         :key="index"
       >
-        <v-expansion-panel hide-actions class="ma-3">
+        <v-expansion-panel hide-actions class="ma-3" >
           <v-expansion-panel-header>
             <v-row align="center" class="spacer mx-auto" no-gutters>
               <v-col cols="4" sm="2" md="1">
@@ -148,6 +148,10 @@ export default {
   margin: 20px;
 }
 v-row {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+.ma-3{
   border: 1px solid #ccc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }

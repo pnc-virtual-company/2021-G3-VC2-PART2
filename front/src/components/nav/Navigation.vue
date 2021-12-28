@@ -81,11 +81,9 @@ export default {
         usermanage:true,
         isLogout: false,
         menuItems: [
-        
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
             { title: 'Discipline', path: '/discipline', icon: 'mdi-account-star' },
-          
         ]
     }
   },

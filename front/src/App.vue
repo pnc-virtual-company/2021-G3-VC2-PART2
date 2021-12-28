@@ -63,7 +63,7 @@ export default {
       axios.get("/users/" + localStorage.userId)
       .then(res => {
         this.user = res.data;
-        console.log(this.user)
+        
       })
     }
     let userid = localStorage.getItem('userId');
