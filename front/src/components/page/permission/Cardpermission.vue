@@ -33,7 +33,7 @@
                 <h5>{{ permission.end_date }} </h5>
                 <h5 class="mt-2">{{ permission.start_date }}</h5>
               </v-col>
-              <v-col>
+              <v-col v-if="showBtn !=='Student'">
                 <v-icon
                   @click="getPermissionId(permission.id)"
                   class="red--text"
@@ -106,10 +106,10 @@ export default {
   data: () => ({
     deleteId: 0,
     dialog: false,
+    showBtn:localStorage.getItem("Userrole"),
     url: "http://127.0.0.1:8000/storage/student/images/",
     showForm: false,
     permissionData: [],
-    // updateId:0
   }),
   methods: {
     getPermissionId(id) {
@@ -134,6 +134,9 @@ export default {
         
       });
     },
+  },
+  mounted() {
+    
   },
 };
 </script>

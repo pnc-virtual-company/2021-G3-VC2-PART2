@@ -64,4 +64,4 @@ Route::get('/permission/{id}', [PermissionController::class, 'show']);
 Route::post('/permission', [PermissionController::class, 'store']);
 Route::put('/permission/{id}', [PermissionController::class, 'update']);
 Route::delete('/permission/{id}', [PermissionController::class, 'destroy']);
-
+Route::get('/permission/search/{student.firstName}',[PermissionController::class ,'search']);

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center" v-if="showBtn !=='Student' ">
     <v-dialog
       v-model="dialog"
       width="500"
@@ -101,7 +101,7 @@ export default {
     emits:['add-permission'],
     data(){
         return{
-         
+            showBtn:localStorage.getItem("Userrole"),
             dialog:false,
             dataStudent:[],
             reasons:['Sick', "Wedding's relative", "Busy", "Interview"],
