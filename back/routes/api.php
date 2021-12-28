@@ -39,13 +39,7 @@ Route::post('/signout',[UserController::class, 'signout']);
 Route::put('/users/{id}',[UserController::class, 'update']);
 Route::delete('/users/{id}',[UserController::class, 'destroy']);
 Route::get('/users/search/{firstName}',[UserController::class ,'search']);
-//====================Public Route===============================
 
-// Route::get('/users',[UserController::class, 'index']);
-// Route::get('/users/{id}',[UserController::class, 'store']);
-
-// //====================Private Route========================
-// Route::post('/users',[UserController::class, 'store']);
 
 
 //========================= Public ===============================
