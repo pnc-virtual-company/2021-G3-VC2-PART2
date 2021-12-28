@@ -3,20 +3,22 @@
 <template>
   <section>
     <Formpermission @add-permission="Createpermission"></Formpermission>
+    <Searchpermission></Searchpermission>
     <Cardpermission :dataPermission="studentPermission" @delete-item="deleteStudentPermission" @update-permission="getPermission"></Cardpermission>
-    
     </section>
 </template>
 
 <script>
 import Cardpermission from '../../components/page/permission/Cardpermission.vue';
-import Formpermission from '../../components/page/permission/Formpermission.vue'
+import Formpermission from '../../components/page/permission/Formpermission.vue';
+import Searchpermission from '../../components/page/permission/Searchpermission.vue';
 import axios from "axios"
 const APP_URL = 'http://127.0.0.1:8000/api';
 export default {
   components:{
     Cardpermission,
-    Formpermission
+    Formpermission,
+    Searchpermission
   },
   data(){
     return{
