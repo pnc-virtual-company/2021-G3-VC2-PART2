@@ -3,7 +3,7 @@
 <template>
   <section>
     <Formpermission @add-permission="Createpermission"></Formpermission>
-    <Searchpermission></Searchpermission>
+    <Searchpermission @search="searchName"></Searchpermission>
     <Cardpermission :dataPermission="studentPermission" @delete-item="deleteStudentPermission" @update-permission="getPermission"></Cardpermission>
     </section>
 </template>
@@ -42,9 +42,19 @@ export default {
     axios.delete(APP_URL + "/permission/" +   deleteId).then(res =>{
       console.log(res.data);
       this.getPermission();
-    })
+      })
 
-  },
+    },
+    searchName(name){
+      if(name !== ''){
+        axios.get(APP_URL + "/permission/search/" + name).then(res =>{
+        this.studentPermission = res.data;
+        })
+      }else{
+        this.getPermission();
+      }
+      
+    }
   },
 
   // ======== delete item =========

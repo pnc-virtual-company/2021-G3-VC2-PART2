@@ -98,10 +98,10 @@ class PermissionController extends Controller
         return response()->json(['message' => 'ID NOT EXIST'], 404);
     }
 
-    public function search()
+    public function search($name)
     {
         # code...
-        return Permission::where('firstName', 'like', '%' .$name .'%')->get();
+        return Permission::where('reason', 'like', '%' .$name .'%')->with('student')->get();
     }
    
 }

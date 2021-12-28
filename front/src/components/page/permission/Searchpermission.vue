@@ -1,6 +1,5 @@
 <template>
-  
-<v-autocomplete
+  <v-text-field
       class="search"
       hide-details
       hide-selected
@@ -9,13 +8,27 @@
       prepend-icon="mdi-file-find"
       label="Search for a coin..."
       solo
-    >
-      
-</v-autocomplete>
+      v-model="searchPermission"
+      @keyup="searchName"
+  >
+  </v-text-field>
 </template>
 <script>
 export default {
-  
+  props:['search'],
+  data(){
+    return{
+      searchPermission:''
+    }
+  },
+  methods: {
+    searchName(){
+      this.searchPermission;
+      this.$emit('search', this.searchPermission);
+    }
+  },
+  mounted() {
+  },
 }
 </script>
 <style scoped>
