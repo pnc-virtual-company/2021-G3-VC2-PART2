@@ -15,7 +15,7 @@ class PermissionController extends Controller
     public function index()
     {
         //
-        return Permission::latest()->get();
+        return Permission::with(["student"])->latest()->get();
     }
 
     /**
@@ -27,13 +27,20 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'reason' => 'min:1|max:100',
+            'description' => 'min:1|max:200',
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date'
+        ]);
         $permission = new Permission();
-        $permission->reasson = $request->reasson;
-        $permission->datetime = $request->datetime;
-        $permission->amount = $request->amount;
+        $permission->reason = $request->reason;
+        $permission -> description = $request -> description;
+        $permission->start_date = $request->start_date;
+        $permission->end_date = $request->end_date;
         $permission->student_id = $request->student_id;
         $permission-> save();
-        return response()->json(['Create permission seccussfuly'], 201);
+        return response()->json(['Create permission seccussfuly', 'data', $permission], 201);
 
     }
 
@@ -60,13 +67,20 @@ class PermissionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'reason' => 'min:1|max:100',
+            'description' => 'min:1|max:200',
+            'start_date' => 'required|before:end_date',
+            'end_date' => 'required|after:start_date'
+        ]);
         $permission = Permission::findOrFail($id);
-        $permission->reasson = $request->reasson;
-        $permission->datetime = $request->datetime;
-        $permission->amount = $request->amount;
+        $permission->reason = $request->reason;
+        $permission -> description = $request -> description;
+        $permission->start_date = $request->start_date;
+        $permission->end_date = $request->end_date;
         $permission->student_id = $request->student_id;
         $permission-> save();
-        return response()->json(['update permission seccussfuly'], 200);
+        return response()->json(['update permission seccussfuly', 'data',$permission ], 200);
     }
 
     /**
