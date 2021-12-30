@@ -33,3 +33,4 @@ class CreateDisciplinesTable extends Migration
         Schema::dropIfExists('disciplines');
     }
 }
+
