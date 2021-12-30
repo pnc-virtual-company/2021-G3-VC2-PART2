@@ -24,14 +24,18 @@ export default {
   data() {
     return {
       userStudent: [],
+      role:localStorage.getItem("Userrole")
     };
   },
   methods: {
     //========== get student =====================
     getStudent() {
-      axios.get(APP_URL + "/students").then((res) => {
+      
+        axios.get(APP_URL + "/students").then((res) => {
         this.userStudent = res.data;
-      });
+        });
+      
+      
     },
     //=========== create student====================
     createStudent(newStudent) {

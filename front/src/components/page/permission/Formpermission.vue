@@ -26,31 +26,24 @@
             </v-card-title>
 
             <v-card-text>
-               
-                 <div>
-                     <small>Student</small> <br>
-                      <v-icon>mdi-account</v-icon>
-                    <select v-model="student_id">
-                        <option
-                        v-for="student of dataStudent"
-                        :key="student.id"
-                        :value="student.id"
-                        >
-                        {{ student.firstName }}
-                        </option>
-                      
-                    </select>
-                      <hr>
-                </div>
+                <v-combobox
+                    :rules="rules.name"
+                    prepend-icon="mdi-account-multiple"
+                    label="Student"
+                    :items="dataStudent"
+                    item-text="firstName"
+                    item-value="id"
+                    v-model="student_id"
+                    color="purple darken-2"
+                >
+                </v-combobox>
                 <v-autocomplete
-                    ref="role"
                     v-model="reason"
-                    :rules="[() => !!role || 'This field is required']"
+                    :rules="rules.name"
                     :items="reasons"
                     prepend-icon="mdi-weather-lightning"
                     label="Reason"
                     placeholder="Select..."
-                    required
                 ></v-autocomplete>
                 
                 <v-text-field
@@ -103,10 +96,13 @@ export default {
         return{
             showBtn:localStorage.getItem("Userrole"),
             dialog:false,
+            rules: {
+                name: [val => (val || '').length > 0 || 'This field is required'],
+            },
             dataStudent:[],
             reasons:['Sick', "Wedding's relative", "Busy", "Interview"],
             studentId:[],
-            student_id: "",
+            student_id: null,
             reason: "",
             description: "",
             start_date: "",
@@ -119,6 +115,7 @@ export default {
           
             axios.get(APP_URL + "/students").then((res) => {
                 this.dataStudent = res.data;
+
             });
            
               
@@ -126,12 +123,13 @@ export default {
         createPermission(){
             this.dialog = false;
             let newPermission = new FormData();
-            newPermission.append('student_id', this.student_id);
+            newPermission.append('student_id', this.student_id.id);
             newPermission.append('reason', this.reason);
             newPermission.append('description', this.description);
             newPermission.append('start_date', this.start_date);
             newPermission.append('end_date', this.end_date);
             this.$emit('add-permission', newPermission);
+            console.log(this.student_id);
         }
 
     },

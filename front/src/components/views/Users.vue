@@ -48,16 +48,15 @@ export default {
       });
     },
     searchUser(search) {
-      if (this.search !== "") {
+      if (search !== "") {
         axios.get(APP_URL + "/users/search/" + search).then((res) => {
           this.userData = res.data;
         });
-      } else {
+      }else{
         this.getUser();
       }
     },
   },
-
   mounted() {
     this.getUser();
   },
