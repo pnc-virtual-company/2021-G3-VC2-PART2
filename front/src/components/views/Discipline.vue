@@ -1,7 +1,8 @@
 <template>
   <section>
+      <Formdiscipline></Formdiscipline>
     <Carddescipline></Carddescipline>
-    <Formdiscipline></Formdiscipline>
+  
   </section>
 </template>
 
