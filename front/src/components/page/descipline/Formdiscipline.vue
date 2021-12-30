@@ -32,6 +32,7 @@
                 :items="userStudent"
                 item-text="firstName"
                 item-value="id" 
+                v-model="student_id"
                 required
             >
             </v-combobox>
@@ -43,7 +44,8 @@
               prepend-icon="mdi-note-text"
               label="Notice Type"
               placeholder="Select..."
-                color="purple darken-2"
+              color="purple darken-2"
+              v-model="type"
               required
             ></v-autocomplete>
             <v-text-field
@@ -51,6 +53,7 @@
               color="purple darken-2"
               prepend-icon="mdi-pill"
               label="Reason"
+              v-model="reason"
               required
             ></v-text-field>
             <v-text-field
@@ -59,6 +62,7 @@
               prepend-icon="mdi-calendar-clock"
               label="Date"
               type="date"
+              v-model="date"
               required
             ></v-text-field>
         </v-card-text>
@@ -69,7 +73,7 @@
           <v-btn
             color="white"
             text
-            @click="dialog = false"
+            @click.prevent="createDiscripline"
           >
             Create
           </v-btn>
@@ -82,6 +86,7 @@
     import axios from "axios";
     const APP_URL = "http://127.0.0.1:8000/api";
   export default {
+    props:['add-discipline'],
     data () {
       return {
         dialog: false,
@@ -89,7 +94,11 @@
              name: [val => (val || '').length > 0 || 'This field is required'],
             },
         userStudent:[],
-        types:['Misconduct','Oral warning', 'Warning letter','Termination']
+        types:['Misconduct','Oral warning', 'Warning letter','Termination'],
+        student_id:null,
+        reason:'',
+        date:'',
+        type:''
       }
       
     },
@@ -97,9 +106,18 @@
         getStudent() {
             axios.get(APP_URL + "/students").then((res) => {
                 this.userStudent = res.data;
-                console.log(this.userStudent);
             });
         },
+        createDiscripline(){
+          this.dialog = false;
+          let discipline = new FormData();
+          discipline.append('student_id', this.student_id.id);
+          discipline.append('notice_type', this.type);
+          discipline.append('reason', this.reason);
+          discipline.append('start_date', this.date);
+
+          this.$emit('add-discipline', discipline);
+        }
     },
      mounted(){
         this.getStudent();

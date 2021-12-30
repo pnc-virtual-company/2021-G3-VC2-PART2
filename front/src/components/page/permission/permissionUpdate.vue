@@ -108,8 +108,6 @@ export default {
     this.getStudent();
     this.reason = this.permissionInfo.reason;
     this.description = this.permissionInfo.description;
-    // this.start_date = this.permissionInfo.start_date;
-    // this.end_date = this.permissionInfo.end_date;
     this.student_id = this.permissionInfo.student_id;
   },
 };
