@@ -11,7 +11,7 @@
             fab
             fixed
             right
-            v-bind="attrs" v-on="on"
+            v-bind="attrs" v-on="on" 
             class="btn-create"
         >
           <v-icon dark>
@@ -31,6 +31,7 @@
               label='Firstname'
               prepend-icon="mdi-account"
               :rules="[() => !!role || 'This field is required']"
+              color="blue"
               type='text'
               v-model="firstname"
             >
@@ -41,6 +42,7 @@
               prepend-icon="mdi-account"
               :rules="[() => !!role || 'This field is required']"
               type='name'
+              color="blue"
               v-model="lastname"
             >
 
