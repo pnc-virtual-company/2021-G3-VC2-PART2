@@ -1,9 +1,19 @@
 <template>
-  <h1>Discipline</h1>
+  <section>
+    <Carddescipline></Carddescipline>
+    <Formdiscipline></Formdiscipline>
+  </section>
 </template>
 
 <script>
-export default {};
+import Carddescipline from "../page/descipline/Carddescipline.vue"
+import Formdiscipline from "../page/descipline/Formdiscipline.vue"
+export default {
+  components:{
+    Carddescipline,
+    Formdiscipline
+  }
+};
 </script>
 
 <style>
