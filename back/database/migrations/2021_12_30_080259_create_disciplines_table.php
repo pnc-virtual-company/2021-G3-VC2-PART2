@@ -15,10 +15,10 @@ class CreateDisciplinesTable extends Migration
     {
         Schema::create('disciplines', function (Blueprint $table) {
             $table->id();
+            $table->string('reason');
+            $table->string('notice_type');
             $table->datetime('start_date');
-            $table->string("reason");
-            $table->string("notice_type");
-            // $table->foreignId('student_id')->constrained()->onDelete('CASCADE'); 
+            // $table->foreignId('student_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }
@@ -33,4 +33,3 @@ class CreateDisciplinesTable extends Migration
         Schema::dropIfExists('disciplines');
     }
 }
-

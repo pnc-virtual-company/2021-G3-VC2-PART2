@@ -64,4 +64,9 @@ Route::get('/permission/search/{reason}',[PermissionController::class ,'search']
 // =====================================Discipline========
 
 Route::get('/discipline', [DisciplineController::class, 'index']);
+Route::get('/discipline/{id}', [DisciplineController::class, 'show']);
+Route::post('/discipline', [DisciplineController::class, 'store']);
+Route::put('/discipline/{id}', [DisciplineController::class, 'update']);
+Route::delete('/discipline/{id}', [DisciplineController::class, 'destroy']);
+Route::get('/discipline/search/{reason}',[DisciplineController::class ,'search']);
 

@@ -25,7 +25,6 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
-        // 
         $request->validate([
             'reason' => 'min:1|max:100',
             'notice_type' => 'min:1|max:200'
@@ -67,7 +66,7 @@ class DisciplineController extends Controller
             'notice_type' => 'min:1|max:200'
             ]);
             
-            $discipline = Discipline:: findOrFail($id);
+            $discipline = Discipline::findOrFail($id);
             // $desciple->student_id = $request->student_id;
             $discipline->start_date = $request->start_date;
             $discipline->reason = $request->reason;
