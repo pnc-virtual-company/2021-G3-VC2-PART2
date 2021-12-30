@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-
 Vue.use(VueRouter)
-
 
 const routes = [
   {
@@ -16,9 +14,7 @@ const routes = [
     path:'/navbar',
     name:'Navbar',
     component: () => import('@/components/nav/Navigation.vue')
-  },
-  
-
+  }, 
   {
     path: '/user',
     name: 'Users',

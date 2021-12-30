@@ -1,70 +1,111 @@
 <template>
+
     <section>
         <v-container>
-            <v-hover >
+           
                 <v-card
-                elevation="15"
-                class="ma-4"
-                @mouseover="isBtn=true" 
-                @mouseleave="isBtn = false, isReason = false"
+                    elevation="15"
+                    class="ma-4"
+                    v-for="(discipline, index) in datadiscipline"
+                    :key="index"
+             
                 >
-                    <v-card-title class="d-flex">
-                        
+                    <v-card-title class="d-flex" 
+                    >
                             <v-card-subtitle class="d-flex">
-                                <v-avatar  size="100" 
+                                <v-avatar  size="90" 
                                     mx-auto>
                                 <img
-                                    src="https://cdn.vuetifyjs.com/images/john.jpg"
+                                    :src="url + discipline.student.image"
                                     alt="John"
                                 >
                                 </v-avatar>
                                 <v-card-text class="ms-3">
-                                        <p class="text-h6">USERNAME: SOTHOUN PHAUV</p>
-                                        <p>Class: 2021B</p>
+                                        <p class="text-h6">USERNAME: {{discipline.student.firstName}} </p>
+                                        <p>Class: {{discipline.student.class}}</p>
                                 </v-card-text>
                             </v-card-subtitle>
                             <v-card-subtitle>
-                                <v-avatar size="90px">
+                                <v-avatar size="70px">
                                     <img src="https://o.remove.bg/downloads/8d1a623c-5145-4c6a-9b1d-fba348aa1af6/42081633-danger-warning-attention-sign-removebg-preview.png" alt="">
                                 </v-avatar>
                             </v-card-subtitle>
                             <v-card-subtitle class="content ms-5">
                                         <v-card-text class="text-p">
-                                            <p class="text-h6"><v-icon color="blue">mdi-calendar-multiple</v-icon> 12 Jan 2021</p>
-                                            <p class="text-p"> <v-icon color="blue">mdi-cellphone</v-icon> 0972045595</p>
+                                            <p class="text-h6"><v-icon color="blue">mdi-calendar-multiple</v-icon> {{discipline.start_date}}</p>
+                                            <p class="text-p"> <v-icon color="blue">mdi-cellphone</v-icon> {{discipline.student.phone}}</p>
                                         </v-card-text>
                             </v-card-subtitle>
-                            <v-card-subtitle class="display" v-if="isBtn">
-                                <v-icon  color="red" >mdi-delete mdi-36px</v-icon>
+                            <v-card-subtitle class="display">
+                                <v-icon  color="red" 
+                                    class="red--text"
+                                      @click="getdisciplineId(discipline.id)"
+                                >mdi-delete mdi-36px</v-icon>
                                 <v-icon color="#82E0AA "  >mdi-pencil-box mdi-36px</v-icon>
-                                <v-icon color = "#5499C7" @click="isReason = true">mdi-eye-off mdi-36px</v-icon>
+                              
                             </v-card-subtitle>
                         
                         
                     </v-card-title>
-                    <v-card-title v-if="isReason">
-                        <v-card-subtitle>
-                            <p class="text-h6"> <v-icon color="blue">mdi-file-document</v-icon> Reason </p>
-                            <p>Various educators teach rules governing the length of paragraphs. They may say that a paragraph should be 100 to 200 words long, or be no more than five or six sentences. But a good paragraph should not be measured in characters, words, or sentences. The true measure of your paragraphs should be ideas.</p>
-                        </v-card-subtitle>
-                    </v-card-title>
-                    
+                        
                 </v-card>
-            </v-hover>
+                <div class="text-center">
+                    <v-dialog v-model="dialog" width="500" height='100' >
+                        <v-card>
+                        <v-card-title class="text-h5 blue lighten-2 white--text">
+                            Delete Permission
+                        </v-card-title>
+                        <h3 class="ma">
+                            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are
+                            you sure you want to delete?
+                        </h3>
+                        <v-divider></v-divider>
+
+                        <v-card-actions class="blue lighten-2">
+                            <v-spacer></v-spacer>
+                            <v-btn
+                            @click="dialog = false"
+                            class="teal darken-4 white--text"
+                            text
+                            >
+                            Cancel
+                            </v-btn>
+                            <v-btn class="red white--text" text @click="deletediscipline">
+                            Confirm
+                            </v-btn>
+                        </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </div>
         </v-container>
-        
     </section>
 </template>
 
+
 <script>
+
 export default {
+    props: ["datadiscipline","delete_item"],
     data(){
         return{
-            isReason:false,
-            isBtn:false
+            show: false,
+            dialog:false,
+            url: "http://127.0.0.1:8000/storage/student/images/",
+            cardId:null
 
         }
-    }
+    },
+    methods: {
+        getdisciplineId(id) {
+            this.deleteId = id;
+            this.dialog = true;
+        },
+        deletediscipline() {
+            this.$emit("delete-item", this.deleteId);
+            this.dialog = false;
+        },
+        
+    },
     
 }
 </script>
@@ -76,6 +117,10 @@ export default {
     .content{
         display: flex;
         justify-content: space-between;
+        
+    }
+    .ma {
+        margin: 20px;
     }
   
 </style>

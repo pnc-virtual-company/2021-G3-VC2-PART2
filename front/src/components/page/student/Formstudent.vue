@@ -66,7 +66,6 @@
             v-model="password"
           >
           </v-text-field>
-
           <input type="file" label="Profile" @change="onFileSelected" />
           <v-radio-group v-model="gender">
             <v-radio
@@ -121,7 +120,6 @@ export default {
         newStudent.append("image", this.image);
         newStudent.append("gender", this.gender);
         newStudent.append("phone", this.phone);
-
         this.$emit("add-student", newStudent);
       }
     },

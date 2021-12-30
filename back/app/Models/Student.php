@@ -14,4 +14,9 @@ class Student extends Model
     public function Permission(){
         return $this->hasMany(Permission::class);
     }
+    public function Discipline()
+    {
+        # code...
+        return $this->hasMany(Discipline::class);
+    }
 }
