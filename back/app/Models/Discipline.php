@@ -9,11 +9,18 @@ class Discipline extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'description',
-        'explanations'
+        'reason',
+        'notice_type',
+        'start_date'
     ];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    public function student()
+    {
+        # code...
+        return $this->belongsTo(Student::class);
+    }
 }
