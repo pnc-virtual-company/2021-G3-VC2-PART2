@@ -17,4 +17,10 @@ class Discipline extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function student()
+    {
+        # code...
+        return $this->belongsTo(Student::class);
+    }
 }

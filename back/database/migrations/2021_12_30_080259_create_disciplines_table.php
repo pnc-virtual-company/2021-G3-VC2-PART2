@@ -18,7 +18,7 @@ class CreateDisciplinesTable extends Migration
             $table->string('reason');
             $table->string('notice_type');
             $table->datetime('start_date');
-            // $table->foreignId('student_id')->constrained()->onDelete('CASCADE');
+            $table->foreignId('student_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }

@@ -28,10 +28,10 @@ class DisciplineController extends Controller
         $request->validate([
             'reason' => 'min:1|max:100',
             'notice_type' => 'min:1|max:200'
-            ]);
-            
+        ]);
+
             $discipline = new Discipline();
-            // $desciple->student_id = $request->student_id;
+            $discipline->student_id = $request->student_id;
             $discipline->start_date = $request->start_date;
             $discipline->reason = $request->reason;
             $discipline->notice_type = $request->notice_type;
@@ -67,7 +67,7 @@ class DisciplineController extends Controller
             ]);
             
             $discipline = Discipline::findOrFail($id);
-            // $desciple->student_id = $request->student_id;
+            $discipline->student_id = $request->student_id;
             $discipline->start_date = $request->start_date;
             $discipline->reason = $request->reason;
             $discipline->notice_type = $request->notice_type;
