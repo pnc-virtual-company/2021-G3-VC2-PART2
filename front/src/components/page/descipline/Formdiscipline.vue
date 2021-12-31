@@ -117,7 +117,9 @@
           discipline.append('start_date', this.date);
 
           this.$emit('add-discipline', discipline);
-        }
+        },
+        
+
     },
      mounted(){
         this.getStudent();

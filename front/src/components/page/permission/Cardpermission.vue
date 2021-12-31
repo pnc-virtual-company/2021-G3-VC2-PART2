@@ -53,7 +53,6 @@
               </v-col>
             </v-row>
           </v-expansion-panel-header>
-
           <v-expansion-panel-content>
             <v-divider></v-divider>
             <v-card-text v-text="permission.description"></v-card-text>
@@ -85,7 +84,7 @@
               Cancel
             </v-btn>
             <v-btn class="red white--text" text @click="deletePermission">
-              Confirm
+              Confirm 
             </v-btn>
           </v-card-actions>
         </v-card>

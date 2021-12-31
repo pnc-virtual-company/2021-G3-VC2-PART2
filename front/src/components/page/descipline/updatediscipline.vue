@@ -3,79 +3,102 @@
     <v-card>
       <h2 id="edit">Do you want to update?</h2>
       <v-card-text>
-        <v-text-field
-          label="student_id"
-          type="text"
-          prepend-icon="mdi-account"
-          v-model="student_id"
-        >
-        </v-text-field>
-        <v-text-field
-          label="Notice_type"
-          type="text"
-          prepend-icon="mdi-gmail"
+        <div>
+          <small>Student</small> <br />
+          <v-icon>mdi-account</v-icon>
+          <select v-model="student_id">
+            <option
+              v-for="student of dataStudent"
+              :key="student.id"
+              :value="student.id"
+            >
+              <!-- {{ student.firstName }} -->
+            </option>
+          </select>
+          <hr />
+        </div>
+        <v-autocomplete
+          ref="role"
+          :rules="rules.name"
+          :items="types"
+          prepend-icon="mdi-note-text"
+          label="Notice Type"
+          placeholder="Select..."
+          color="purple darken-2"
           v-model="notice_type"
-        >
-        </v-text-field>
-  
+          required
+        ></v-autocomplete>
         <v-text-field
-          label="date" 
-          type="text"
-          prepend-icon="mdi-home"
-          v-model="start_date"
-        >
-
-        <v-text-field
-          label="reason"
-          type="text"
-          prepend-icon="mdi-home"
+          :rules="rules.name"
+          color="purple darken-2"
+          prepend-icon="mdi-pill"
+          label="Reason"
           v-model="reason"
-        >
-        </v-text-field>
-    
+          required
+        ></v-text-field>
+        <v-text-field
+          :rules="rules.name"
+          color="purple darken-2"
+          prepend-icon="mdi-calendar-clock"
+          label="Date"
+          type="date"
+          v-model="start_date"
+          required
+        ></v-text-field>
       </v-card-text>
       <v-divider></v-divider>
+
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="cancel" color="primary " text>Cancel</v-btn>
-        <v-btn @click="Update" color="success" text>Update</v-btn>
+        <v-btn @click="cancel" color="primary" text>Cancel</v-btn>
+        <v-btn @click="update" color="success" text>Update</v-btn>
       </v-card-actions>
     </v-card>
   </div>
 </template>
+
 <script>
+import axios from "axios";
+const APP_URL = "http://127.0.0.1:8000/api";
 export default {
-  props: ["discipleInfo"],
+  props: ["disciplineInfo"],
   emits: ["update", "cancel"],
   data() {
     return {
-      student_id:"",
-      notice_type: "",
-      start_date:"",
       reason: "",
+      notice_type: "",
+      start_date: "",
+      student_id: "",
+      dataStudent: [],
+      types: ["Misconduct", "Oral warning", "Warning letter", "Termination"],
     };
   },
-
   methods: {
-    Update() {
-      let disciple = {
-        student_id: this.student_id,
+    getStudent() {
+      axios.get(APP_URL + "/students").then((res) => {
+        this.dataStudent = res.data;
+      });
+    },
+    update() {
+      let discipline = {
+        reason: this.reason,
         notice_type: this.notice_type,
         start_date: this.start_date,
-        reason: this.reason,
+        student_id: this.student_id,
       };
-
-      this.$emit("update", this.discipleInfo.id, disciple, false);
+      this.$emit("update", this.disciplineInfo.id, discipline, false);
+      console.log(discipline);
     },
     cancel() {
       this.$emit("cancel", false);
     },
   },
   mounted() {
-    this.student_id =this.studentInfo.student_id;
-    this.notice_type = this.studentInfo.notice_type;
-    this.start_date = this.studentInfo.start_date;
-    this.reason = this.studentInfo.reason;
+    this.getStudent();
+    this.reason = this.disciplineInfo.reason;
+    this.notice_type = this.disciplineInfo.notice_type;
+    this.start_date = this.disciplineInfo.start_date;
+    this.student_id = this.disciplineInfo.student_id;
   },
 };
 </script>
@@ -96,7 +119,7 @@ h2 {
   text-align: center;
   padding: 15px;
   color: #fff;
-  background: rgb(108, 185, 226);
+  background: rgb(81, 118, 221);
 }
 h3 {
   text-align: center;
