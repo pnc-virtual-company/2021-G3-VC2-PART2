@@ -4,6 +4,7 @@
       v-if="isLogin"
       @log-out="Logout"
     />
+    
     <v-main
       
     >
@@ -20,11 +21,12 @@
 <script>
 import axios from 'axios';
 let APP_URL = 'http://127.0.0.1:8000/api'
+
 import Navbar from '@/components/nav/Navigation';
 export default {
   
   components: {
-    Navbar
+    Navbar,
   },
   data(){
     return {

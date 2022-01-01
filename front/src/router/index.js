@@ -39,6 +39,27 @@ const routes = [
     name: 'Discipline',
     component: () => import('@/components/views/Discipline.vue')
   },
+   // ============= student details ==================
+   {
+    path:'/studentDetails',
+    name:'Student Details',
+    component: () => import('@/components/views/Details.vue')
+  },
+   {
+    path:'/background',
+    name:'Background',
+    component: () => import('@/components/page/studentdetail/Background.vue')
+  },
+  {
+    path:'/permissions',
+    name:'Permissions',
+    component: () => import('@/components/page/studentdetail/Permissiondetail.vue')
+  },
+  {
+    path:'/disciplines',
+    name:'Disciplines',
+    component: () => import('@/components/page/studentdetail/Discipledetail.vue')
+  },
   {
     path: "/unauthorized",
     name: "NotAuthorized",
