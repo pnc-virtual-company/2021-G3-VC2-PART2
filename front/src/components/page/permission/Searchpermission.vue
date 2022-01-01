@@ -1,5 +1,19 @@
 <template>
-  <v-text-field
+  <!-- <v-text-field
+      class="search"
+      hide-details
+      hide-selected
+      item-text="name"
+      item-value="symbol"
+      prepend-icon="mdi-file-find"
+      label="Search for a coin..."
+      solo
+      v-model="searchPermission"
+      @keyup="searchName"
+  > -->
+
+  <!-- </v-text-field> -->
+    <v-text-field
       class="search"
       hide-details
       hide-selected
