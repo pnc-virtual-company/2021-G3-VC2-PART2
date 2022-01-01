@@ -1,31 +1,25 @@
 <template>
-  <!-- <v-text-field
-      class="search"
-      hide-details
-      hide-selected
-      item-text="name"
-      item-value="symbol"
-      prepend-icon="mdi-file-find"
-      label="Search for a coin..."
-      solo
-      v-model="searchPermission"
-      @keyup="searchName"
-  > -->
 
-  <!-- </v-text-field> -->
-    <v-text-field
-      class="search"
-      hide-details
-      hide-selected
-      item-text="name"
-      item-value="symbol"
-      prepend-icon="mdi-file-find"
-      label="Search for a coin..."
-      solo
-      v-model="searchPermission"
-      @keyup="searchName"
-  >
-  </v-text-field>
+    <v-form class="mx-auto">
+        <v-container>
+            <v-row class="searchForm">
+                <v-col cols="11" class="me-4">
+                <v-text-field
+                    prepend-icon="mdi-account-search"
+                    class="ma"
+                    v-model="searchPermission"
+                    filled
+                    clear-icon="mdi-close-circle"
+                    clearable
+                    label="Search"
+                    type="text"
+                    @click:clear="clearMessage"
+                    @keyup="searchName"
+                ></v-text-field>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-form>
 </template>
 <script>
 export default {
@@ -36,6 +30,9 @@ export default {
     }
   },
   methods: {
+    clearMessage () {
+        this.search = ''
+    },
     searchName(){
       this.searchPermission;
       this.$emit('search', this.searchPermission);
@@ -46,13 +43,11 @@ export default {
 }
 </script>
 <style scoped>
-.search{
-  width: 78%;
-  margin: auto;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-}
-
+.searchForm{
+    margin-top: 20px;
+  }
+  .ma{
+    margin-left: 50px;
+  }
 
 </style>

@@ -13,6 +13,7 @@
             right
             v-bind="attrs" v-on="on"
             class="btn-create"
+         
         >
           <v-icon dark>
             mdi-plus
@@ -20,12 +21,12 @@
         </v-btn>
       </template>
 
-      <v-card>
+      <v-card >
         <v-card-title class="text-h5 blue" >
           Create User
         </v-card-title>
 
-        <v-card-text>
+        <v-card-text >
      
             <v-text-field
               v-model="firstname"
@@ -142,7 +143,6 @@
   </div>
 </template>
 <script>
-    // import Card from '../../ui/Card.vue'
     import axios from "axios";
     const APP_URL = "http://127.0.0.1:8000/api";
     export default {
@@ -153,6 +153,7 @@
         data () {
         return {
             // required for create user
+
             rules: {
                 name: [val => (val || '').length > 0 || 'This field is required'],
             },
@@ -184,7 +185,8 @@
             this.image = event.target.files[0];
           },
           createUser(){
-            if(this.firstname !== ''){
+            if((this.firstname && this.lastname && this.email && this.role && this.password && this.confirm && this.image) !==''){
+              this.isBtn = true
               this.dialog = false;
               let newUser = new FormData();
               newUser.append('firstName', this.firstname);
