@@ -23,7 +23,9 @@
 </template>
 
 <script>
+    
   export default {
+      emists:['search-disciple'],
     data: () => ({
       search: '',
       
@@ -34,7 +36,7 @@
             this.search = ''
         },
         searchName(){
-            console.log(this.search);
+            this.$emit('search-disciple', this.search);
         },
     },
     mounted() {
