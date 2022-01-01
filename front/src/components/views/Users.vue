@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import axios from "axios";
-const APP_URL = "http://127.0.0.1:8000/api";
+
+import axios from '../../http-common.js'
 import Carduser from "../page/user/Carduser.vue";
 import Formsearch from "../page/user/Formuser.vue";
 
@@ -30,18 +30,18 @@ export default {
   },
   methods: {
     getUser() {
-      axios.get(APP_URL + "/users").then((res) => {
+      axios.get("/users").then((res) => {
         this.userData = res.data;
       });
     },
     createUser(userInfo) {
-      axios.post(APP_URL + "/users", userInfo).then((res) => {
+      axios.post("/users", userInfo).then((res) => {
         this.getUser();
         console.log(res.data);
       });
     },
     deleteUser(deleteId) {
-      axios.delete(APP_URL + "/users/" + deleteId).then((res) => {
+      axios.delete("/users/" + deleteId).then((res) => {
         console.log(res.data);
         this.getUser();
       
@@ -49,7 +49,7 @@ export default {
     },
     searchUser(search) {
       if (search !== "") {
-        axios.get(APP_URL + "/users/search/" + search).then((res) => {
+        axios.get("/users/search/" + search).then((res) => {
           this.userData = res.data;
         });
       }else{

@@ -27,7 +27,6 @@
 
             <v-card-text>
                 <v-combobox
-                    :rules="rules.name"
                     prepend-icon="mdi-account-multiple"
                     label="Student"
                     :items="dataStudent"
@@ -36,6 +35,21 @@
                     v-model="student_id"
                     color="purple darken-2"
                 >
+                     <template v-slot:item="dataStudent">
+                        <template>
+                            <v-list-item-avatar>
+                            <img :src="url + dataStudent.item.image"/>
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                            <v-list-item-title
+                                v-html="dataStudent.item.firstName"
+                            ></v-list-item-title>
+                            <v-list-item-subtitle
+                                v-html="dataStudent.item.class"
+                            ></v-list-item-subtitle>
+                            </v-list-item-content>
+                        </template>
+                    </template>
                 </v-combobox>
                 <v-autocomplete
                     v-model="reason"
@@ -44,7 +58,9 @@
                     prepend-icon="mdi-weather-lightning"
                     label="Reason"
                     placeholder="Select..."
-                ></v-autocomplete>
+                >
+                   
+                </v-autocomplete>
                 
                 <v-text-field
                     label="Description"
@@ -87,8 +103,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const APP_URL = 'http://127.0.0.1:8000/api';
+import axios from '../../../http-common';
 
 export default {
     emits:['add-permission'],
@@ -106,19 +121,16 @@ export default {
             reason: "",
             description: "",
             start_date: "",
-            end_date: ""
+            end_date: "",
+            url: "http://127.0.0.1:8000/storage/student/images/",
         }
     },
     methods: {
         //============== get student =================
         getStudent(){
-          
-            axios.get(APP_URL + "/students").then((res) => {
+            axios.get("/students").then((res) => {
                 this.dataStudent = res.data;
-
             });
-           
-              
         },
         createPermission(){
             this.dialog = false;
@@ -131,7 +143,6 @@ export default {
             this.$emit('add-permission', newPermission);
             console.log(this.student_id);
         }
-
     },
     mounted() {
        this.getStudent(); 
@@ -139,8 +150,6 @@ export default {
    
 }
 </script>
-    
-
 <style  scoped>
     select{
         width: 90%;

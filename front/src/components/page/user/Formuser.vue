@@ -78,6 +78,21 @@
                 item-value="id"
                 required
               >
+                <template v-slot:item="dataStudent">
+                  <template>
+                    <v-list-item-avatar>
+                      <img :src="url + dataStudent.item.image"/>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        v-html="dataStudent.item.firstName"
+                      ></v-list-item-title>
+                      <v-list-item-subtitle
+                        v-html="dataStudent.item.class"
+                      ></v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </template>
               </v-combobox>
             <v-text-field
               v-model="password"
@@ -142,6 +157,7 @@
                 name: [val => (val || '').length > 0 || 'This field is required'],
             },
             dialog: false,
+            url: "http://127.0.0.1:8000/storage/student/images/",
             firstname:'',
             lastname: '',
             email:'',
