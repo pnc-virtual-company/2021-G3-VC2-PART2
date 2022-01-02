@@ -31,6 +31,7 @@ export default {
     getStudent() {
       axios.get(APP_URL + "/students").then((res) => {
         this.userStudent = res.data;
+
       });
     },
     //=========== create student====================

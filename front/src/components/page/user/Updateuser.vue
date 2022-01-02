@@ -132,8 +132,8 @@ input[type="file"] {
   margin-top: 3%;
   padding: 5px 0;
   outline: none;
-};
-label{
+}
+label {
   font-size: 20px;
 }
 </style>

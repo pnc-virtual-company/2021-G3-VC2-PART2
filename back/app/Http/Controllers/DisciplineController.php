@@ -14,7 +14,7 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        return Discipline::all();
+        return Discipline::with(["student"])->latest()->get();
     }
 
     /**
