@@ -54,7 +54,6 @@
               </v-col>
             </v-row>
           </v-expansion-panel-header>
-
           <v-expansion-panel-content>
             <v-divider></v-divider>
             <v-card-text v-text="permission.description"></v-card-text>
@@ -71,7 +70,7 @@
             Delete Permission
           </v-card-title>
           <h3 class="ma">
-            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are
+            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are 
             you sure you want to delete?
           </h3>
           <v-divider></v-divider>
@@ -86,7 +85,7 @@
               Cancel
             </v-btn>
             <v-btn class="red white--text" text @click="deletePermission">
-              Confirm
+              Confirm 
             </v-btn>
           </v-card-actions>
         </v-card>

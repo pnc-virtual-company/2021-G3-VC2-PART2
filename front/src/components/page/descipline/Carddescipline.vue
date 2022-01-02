@@ -48,7 +48,18 @@
                       @click="getdisciplineId(discipline.id)"
                       >mdi-delete mdi-36px</v-icon
                     >
-                    <v-icon color="#82E0AA ">mdi-pencil-box mdi-36px</v-icon>
+                    <v-icon color="#82E0AA " @click="getDisciplineInfo(discipline)">
+                      mdi-pencil-box mdi-36px
+                    </v-icon>
+
+                    <update-discipline
+                      v-if="showForm"
+                      :disciplineInfo="disciplineData"
+                      @cancel="Cancel"
+                      @update="UpdateDiscipline"
+                    >
+                      
+                    </update-discipline>
                   </v-card-subtitle>
                 </v-card-title>
               </v-row>
@@ -94,14 +105,21 @@
 </template>
 
 <script>
+import axios from "axios"
+const APP_URL = "http://127.0.0.1:8000/api";
+import Udatediscipline from '../descipline/updatediscipline.vue'
 export default {
   props: ["datadiscipline", "delete_item"],
+  components:{
+    "update-discipline":Udatediscipline
+  },
   data() {
     return {
       show: false,
       dialog: false,
       url: "http://127.0.0.1:8000/storage/student/images/",
       cardId: null,
+      showForm: false,
     };
   },
   methods: {
@@ -112,6 +130,20 @@ export default {
     deletediscipline() {
       this.$emit("delete-item", this.deleteId);
       this.dialog = false;
+    },
+     getDisciplineInfo(discipline) {
+      this.showForm = true;
+      this.disciplineData = discipline;
+      console.log(this.disciplineData);
+    },
+    Cancel(hidden) {
+      this.showForm = hidden;
+    },
+    UpdateDiscipline(id, discipline, hidden) {
+      axios.put(APP_URL  + "/discipline/" + id, discipline).then((res) => {
+        this.$emit("update-discipline", res.data);
+        this.showForm = hidden;
+      });
     },
   },
 };
