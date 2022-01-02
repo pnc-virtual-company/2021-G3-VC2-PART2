@@ -10,7 +10,7 @@
           <v-card-text class="d-flex">
             <v-card-subtitle class="d-flex">
                 <v-avatar size="90">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUgoHCc0rNp3hBP7yHkhIEkev-tVfaM4GrMQ&usqp=CAU" alt="">
+                  <img :src="url + dataPermission.student.image" alt="">
                 </v-avatar>
                 <v-card-text>
                   <p class="text-h6">{{dataPermission.student.firstName}}</p>
@@ -26,7 +26,7 @@
             <v-card-subtitle>
                 <v-card-text>
                     <p>Reason: {{dataPermission.reason}}</p>
-                    <p>Amount: 2 Days</p>
+                    <strong> Amount:</strong> <strong v-html="((new Date(dataPermission.end_date)).getTime() - (new Date(dataPermission.start_date)).getTime()) / (1000 * 3600 * 24)" > </strong> |DAYS
                 </v-card-text>
             </v-card-subtitle>
             <v-card-subtitle>
@@ -89,7 +89,7 @@
     </section>
 
     <!-- card permission -->
-
+    <!-- dialog -->
     <div class="text-center">
       <v-dialog v-model="dialog" width="500">
         <v-card>
@@ -97,7 +97,7 @@
             Delete Permission
           </v-card-title>
           <h3 class="ma">
-            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are
+            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are 
             you sure you want to delete?
           </h3>
           <v-divider></v-divider>
@@ -112,7 +112,7 @@
               Cancel
             </v-btn>
             <v-btn class="red white--text" text @click="deletePermission">
-              Confirm
+              Confirm 
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -174,5 +174,8 @@ export default {
   opacity: 1 !important;
   position: absolute;
   width: 100%;
+}
+.ma{
+  margin: 10px;
 }
 </style>

@@ -11,7 +11,7 @@
             fab
             fixed
             right
-            v-bind="attrs" v-on="on"
+            v-bind="attrs" v-on="on" 
             class="btn-create"
          
         >

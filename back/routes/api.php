@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\DisciplineController;
 
 
 /*
@@ -59,3 +60,13 @@ Route::post('/permission', [PermissionController::class, 'store']);
 Route::put('/permission/{id}', [PermissionController::class, 'update']);
 Route::delete('/permission/{id}', [PermissionController::class, 'destroy']);
 Route::get('/permission/search/{reason}',[PermissionController::class ,'search']);
+
+// =====================================Discipline========
+
+Route::get('/discipline', [DisciplineController::class, 'index']);
+Route::get('/discipline/{id}', [DisciplineController::class, 'show']);
+Route::post('/discipline', [DisciplineController::class, 'store']);
+Route::put('/discipline/{id}', [DisciplineController::class, 'update']);
+Route::delete('/discipline/{id}', [DisciplineController::class, 'destroy']);
+Route::get('/discipline/search/{reason}',[DisciplineController::class ,'search']);
+

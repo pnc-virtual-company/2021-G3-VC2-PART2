@@ -5,25 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Discipline extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'reasson',
-        'start_date',
-        'amount'
+        'reason',
+        'notice_type',
+        'start_date'
     ];
     protected $hidden = [
         'created_at',
-         'updated_at'
+        'updated_at'
     ];
 
-    // protected $casts= [
-    //     'start_date'=>'datetime:l-g-Y ',
-    //     'end_date'=>'datetime:l-g-Y '
-    // ];
-    public function Student(){
+    public function student()
+    {
+        # code...
         return $this->belongsTo(Student::class);
     }
-   
 }

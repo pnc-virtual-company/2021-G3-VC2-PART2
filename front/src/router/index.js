@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-
 Vue.use(VueRouter)
-
 
 const routes = [
   {
@@ -16,9 +14,7 @@ const routes = [
     path:'/navbar',
     name:'Navbar',
     component: () => import('@/components/nav/Navigation.vue')
-  },
-  
-
+  }, 
   {
     path: '/user',
     name: 'Users',
@@ -45,19 +41,19 @@ const routes = [
     component: () => import('@/components/nav/NotAuthorized.vue')
   }
 ]
-let authenticationGuard = (to, from, next) => {
-  if (to.path === "/user" || to.path ==="/student") {
-    let isLoggedIn = localStorage.getItem("user") !== null &&  localStorage.getItem("user") !== "";
+// let authenticationGuard = (to, from, next) => {
+//   if (to.path === "/user" || to.path ==="/student") {
+//     let isLoggedIn = localStorage.getItem("user") !== null &&  localStorage.getItem("user") !== "";
 
-    if (isLoggedIn) {
-      next();
-    } else {
-      next("/unauthorized");
-    }
-  } else {
-    next();
-  }
-};
+//     if (isLoggedIn) {
+//       next();
+//     } else {
+//       next("/unauthorized");
+//     }
+//   } else {
+//     next();
+//   }
+// };
 
 const router = new VueRouter({
   mode: 'history',
@@ -65,5 +61,5 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach(authenticationGuard);
+// router.beforeEach(authenticationGuard);
 export default router

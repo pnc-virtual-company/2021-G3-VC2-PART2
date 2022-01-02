@@ -29,9 +29,9 @@
           </template>
          </v-combobox>
         <v-autocomplete
-            ref="role"
+           
             v-model="reason"
-            :rules="[() => !!role || 'This field is required']"
+          
             :items="reasons"
             prepend-icon="mdi-weather-lightning"
             label="Reason"
@@ -82,6 +82,9 @@ export default {
   data() {
     return {
       url: "http://127.0.0.1:8000/storage/student/images/",
+      rules: {
+                name: [val => (val || '').length > 0 || 'This field is required'],
+            },
       reason: '',
       description: '',
       start_date: '',
@@ -89,6 +92,7 @@ export default {
       student_id:"",
       dataStudent:[],
       reasons:['Sick', "Wedding's relative", "Busy", "Interview"],
+      idPer: null,
     };
   },
 
@@ -104,11 +108,9 @@ export default {
           description: this.description,
           start_date: this.start_date,
           end_date: this.end_date,
-          student_id:this.student_id.id
+          student_id:this.student_id
       };
-      this.$emit('update',this.permissionInfo.id,permission,false);
-      console.log(permission);
-     
+      this.$emit('update',this.idPermission,permission,false); 
     },
     cancel() {
       this.$emit('cancel', false);
@@ -118,9 +120,8 @@ export default {
     this.getStudent();
     this.reason = this.permissionInfo.reason;
     this.description = this.permissionInfo.description;
-    // this.start_date = this.permissionInfo.start_date;
-    // this.end_date = this.permissionInfo.end_date;
     this.student_id = this.permissionInfo.student_id;
+    this.idPermission = this.permissionInfo.id;
   },
 };
 </script>
