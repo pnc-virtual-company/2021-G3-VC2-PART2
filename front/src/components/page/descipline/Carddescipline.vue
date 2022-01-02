@@ -46,17 +46,17 @@
               @click="getdisciplineId(discipline.id)"
               >mdi-delete mdi-36px</v-icon
             >
-            <v-icon @click ="getDisciplineInfo" (discipline) color="#82E0AA "> 
-                mdi-pencil-box mdi-36px
+            <v-icon color="#82E0AA " @click="getDisciplineInfo(discipline)">
+              mdi-pencil-box mdi-36px
             </v-icon>
             <!-- .... -->
             <update-discipline
-                v-if="showForm"
-                :disciplineInfo="disciplineData"
-                @cancel="Cancel"
-                @update="UpdateDiscipline"
+              v-if="showForm"
+              :disciplineInfo="disciplineData"
+              @cancel="Cancel"
+              @update="UpdateDiscipline"
             >
-            <!-- ..... -->
+              <!-- ..... -->
             </update-discipline>
           </v-card-subtitle>
         </v-card-title>
@@ -94,13 +94,13 @@
 </template>
 <script>
 import axios from "axios";
-const APP_URl ="http://127.0.0.1:8000/api";
+const APP_URl = "http://127.0.0.1:8000/api";
 import UpdateDiscipline from "../descipline/updatediscipline.vue";
 export default {
   props: ["datadiscipline", "delete_item"],
-  $emits:['update-discipline'],
-  components:{
-       "update-discipline":UpdateDiscipline,
+  $emits: ["update-discipline"],
+  components: {
+    "update-discipline": UpdateDiscipline,
   },
   data() {
     return {
@@ -121,23 +121,22 @@ export default {
       this.$emit("delete-item", this.deleteId);
       this.dialog = false;
     },
-    getDisciplineInfo(discipline){
-        this.showForm =true;
-        this.disciplineData =discipline;
+    getDisciplineInfo(discipline) {
+      this.showForm = true;
+      this.disciplineData = discipline;
+      console.log(this.disciplineData);
     },
-    Cancel(hidden){
-        this.showForm=hidden;
+    Cancel(hidden) {
+      this.showForm = hidden;
     },
-    UpdateDiscipline(id,discipline,hidden){
-         axios.put(APP_URl +"/discipline" +id, discipline).then((res)=>{
-             this.$emit("update-discipline",res.data);
-             this.showForm =hidden;
-         })
-    }
+    UpdateDiscipline(id, discipline, hidden) {
+      axios.put(APP_URl + "/discipline/" + id, discipline).then((res) => {
+        this.$emit("update-discipline", res.data);
+        this.showForm = hidden;
+      });
+    },
   },
-  mounted() {
-      
-  },
+  mounted() {},
 };
 </script>
 <style scoped>

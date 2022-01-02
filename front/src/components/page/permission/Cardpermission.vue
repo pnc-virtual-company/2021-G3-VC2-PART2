@@ -69,7 +69,7 @@
             Delete Permission
           </v-card-title>
           <h3 class="ma">
-            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are
+            <v-icon class="orange--text" mdi-48px>mdi-alert-outline</v-icon>Are 
             you sure you want to delete?
           </h3>
           <v-divider></v-divider>

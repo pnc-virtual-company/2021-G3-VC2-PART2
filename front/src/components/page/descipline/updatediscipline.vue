@@ -12,7 +12,7 @@
               :key="student.id"
               :value="student.id"
             >
-              <!-- {{ student.firstName }} -->
+              {{ student.firstName }}
             </option>
           </select>
           <hr />
@@ -66,6 +66,9 @@ export default {
   data() {
     return {
       reason: "",
+       rules: {
+             name: [val => (val || '').length > 0 || 'This field is required'],
+            },
       notice_type: "",
       start_date: "",
       student_id: "",
