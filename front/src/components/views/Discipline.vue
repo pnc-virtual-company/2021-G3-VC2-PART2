@@ -22,7 +22,7 @@ export default {
   methods: {
     searchDisciple(search){
       if(search !== ''){
-        axios.get(APP_URL + "/discipline").then(res =>{
+        axios.get(APP_URL + "/discipline/" + search).then(res =>{
         this.getDisciple = res.data;
       })
       }
