@@ -28,7 +28,7 @@ export default {
     searchDisciple(search){
       if(search !== ''){
         axios.get(APP_URL + "/discipline/" + search).then(res =>{
-        // this.discipline = res.data;
+        this.discipline = res.data;
       })
       }else{
          this.getdiscipline();
