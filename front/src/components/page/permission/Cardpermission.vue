@@ -33,6 +33,7 @@
                 <h5>{{ permission.end_date }} </h5>
                 <h5 class="mt-2">{{ permission.start_date }}</h5>
               </v-col>
+              <v-col> <strong> Amount:</strong> <strong v-html="((new Date(permission.end_date)).getTime() - (new Date(permission.start_date)).getTime()) / (1000 * 3600 * 24)" ></strong> | DAYS</v-col>
               <v-col v-if="showBtn !=='Student'">
                 <v-icon
                   @click="getPermissionId(permission.id)"

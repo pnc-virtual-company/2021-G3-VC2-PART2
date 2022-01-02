@@ -18,10 +18,10 @@ class Permission extends Model
          'updated_at'
     ];
 
-    protected $casts= [
-        'start_date'=>'datetime:l-g-Y g:A',
-        'end_date'=>'datetime:l-g-Y g:A'
-    ];
+    // protected $casts= [
+    //     'start_date'=>'datetime:l-g-Y ',
+    //     'end_date'=>'datetime:l-g-Y '
+    // ];
     public function Student(){
         return $this->belongsTo(Student::class);
     }

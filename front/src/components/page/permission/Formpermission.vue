@@ -132,6 +132,8 @@ export default {
             newPermission.append('start_date', this.start_date);
             newPermission.append('end_date', this.end_date);
             this.$emit('add-permission', newPermission);
+
+            console.log(this.end_date, this.start_date)
         }
 
     },
