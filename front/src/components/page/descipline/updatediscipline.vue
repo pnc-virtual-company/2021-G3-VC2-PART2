@@ -121,8 +121,8 @@ export default {
 h2 {
   text-align: center;
   padding: 15px;
-  color: #fff;
-  background: rgb(81, 118, 221);
+  color:black;
+  background:white
 }
 h3 {
   text-align: center;
