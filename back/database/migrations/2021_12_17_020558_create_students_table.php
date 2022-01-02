@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->integer('password');
             $table->string('image');
             $table->string('gender');
+            $table->string('birthday');
             $table->integer('phone');
             $table->timestamps();
         });

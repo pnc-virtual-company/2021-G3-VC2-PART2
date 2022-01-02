@@ -11,7 +11,8 @@ class Discipline extends Model
     protected $fillable = [
         'reason',
         'notice_type',
-        'start_date'
+        'start_date',
+        'icon_type'
     ];
     protected $hidden = [
         'created_at',

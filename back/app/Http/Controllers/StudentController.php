@@ -41,6 +41,7 @@ class StudentController extends Controller
         $student->lastName = $request->lastName;
         $student->email = $request->email;
         $student->class = $request->class;
+        $student->birthday = $request->birthday;
         $student->image =$request->file('image')->hashName();
         $student->gender = $request->gender;
         $student->password = $request->password;
@@ -86,6 +87,7 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->class = $request->class;
         $student->gender = $request->gender;
+        $student->birthday = $request->birthday;
         $student->password = $request->password;
         $student->phone = $request->phone;
 

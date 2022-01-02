@@ -35,7 +35,7 @@ class DisciplineController extends Controller
             $discipline->start_date = $request->start_date;
             $discipline->reason = $request->reason;
             $discipline->notice_type = $request->notice_type;
-            
+            $discipline->icon_type = $request->icon_type;
             $discipline->save();
             return response()->json(['Create Discipline seccussfuly', 'data', $discipline], 201);
 
@@ -71,7 +71,7 @@ class DisciplineController extends Controller
             $discipline->start_date = $request->start_date;
             $discipline->reason = $request->reason;
             $discipline->notice_type = $request->notice_type;
-            
+            $discipline->icon_type = $request->icon_type;
             $discipline->save();
             return response()->json(['Update Discipline seccussfuly', 'data', $discipline], 200);
     }
