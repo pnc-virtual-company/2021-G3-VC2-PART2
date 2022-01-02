@@ -23,11 +23,9 @@
                   </v-card-subtitle>
                   <v-card-subtitle>
                     <v-avatar size="70px">
-                      <img
-                        src="https://o.remove.bg/downloads/8d1a623c-5145-4c6a-9b1d-fba348aa1af6/42081633-danger-warning-attention-sign-removebg-preview.png"
-                        alt=""
-                      />
+                     <img :src="discipline.icon_type" alt="">
                     </v-avatar>
+                    <p class="text-p"> {{discipline.notice_type}}</p>
                   </v-card-subtitle>
                   <v-card-subtitle class="content ms-5">
                     <v-card-text class="text-p">

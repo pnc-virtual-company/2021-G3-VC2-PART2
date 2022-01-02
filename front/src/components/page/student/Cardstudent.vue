@@ -24,6 +24,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>birthday</th>
                             <th>Gender</th>
                             <th v-if="admin !=='Student'">Action</th>
                       </tr>
@@ -42,6 +43,7 @@
                            <td>{{student.lastName}}</td>
                            <td>{{student.email}}</td>
                            <td>+885 {{student.phone}}</td>
+                           <td>{{student.birthday}}</td>
                            <td>{{student.gender}}</td>
                            <td v-if="admin !=='Student'"> 
                                <div class="i-con">

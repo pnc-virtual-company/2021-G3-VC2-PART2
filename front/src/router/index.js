@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
 Vue.use(VueRouter)
+
 
 const routes = [
   {
@@ -13,47 +15,86 @@ const routes = [
   {
     path:'/navbar',
     name:'Navbar',
-    component: () => import('@/components/nav/Navigation.vue')
-  }, 
+    component: () => import('@/components/nav/Navigation.vue'),
+    meta: {
+      needLogin:true,
+    }
+  },
+  
+
   {
     path: '/user',
     name: 'Users',
-    component: () => import('@/components/views/Users.vue')
+    component: () => import('@/components/views/Users.vue'),
+    meta:{
+      needLogin:true,
+    }
   },
   {
     path: '/student',
     name: 'Students',
-    component: () => import('@/components/views/Student.vue')
+    component: () => import('@/components/views/Student.vue'),
+    meta:{
+      needLogin:true,
+      needAdmin:true
+    }
   },
   {
     path: '/permission',
     name: 'Permission',
-    component: () => import('@/components/views/Permission.vue')
+    component: () => import('@/components/views/Permission.vue'),
+    meta:{
+      needLogin:true,
+      needAdmin:true
+    }
   },
   {
     path: '/discipline',
     name: 'Discipline',
-    component: () => import('@/components/views/Discipline.vue')
+    component: () => import('@/components/views/Discipline.vue'),
+    meta:{
+      needLogin:true,
+      needAdmin:true
+    }
   },
+   // ============= student details ==================
+  //  {
+  //   path:'/studentDetails',
+  //   name:'Student Details',
+  //   component: () => import('@/components/views/Details.vue'),
+  // },
+  
+  
+ 
   {
-    path: "/unauthorized",
+    path: "/*",
     name: "NotAuthorized",
     component: () => import('@/components/nav/NotAuthorized.vue')
   }
 ]
-// let authenticationGuard = (to, from, next) => {
-//   if (to.path === "/user" || to.path ==="/student") {
-//     let isLoggedIn = localStorage.getItem("user") !== null &&  localStorage.getItem("user") !== "";
 
-//     if (isLoggedIn) {
-//       next();
-//     } else {
-//       next("/unauthorized");
-//     }
-//   } else {
-//     next();
-//   }
-// };
+let authenticationGuard=(to, from, next) =>{
+  let needLogin = to.meta.needLogin;
+  if(needLogin){
+    if(!localStorage.userId){
+      next("/")
+    }else{
+      if(to.path === "/"){
+        next("/user")
+      }else{
+        next();
+      }
+    }
+  }else{
+    if(localStorage.userId){
+      if(to.path === "/"){
+        next("/user");
+      }
+    }
+  }
+  next()
+}
+
 
 const router = new VueRouter({
   mode: 'history',
@@ -61,5 +102,5 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach(authenticationGuard);
+router.beforeEach(authenticationGuard);
 export default router

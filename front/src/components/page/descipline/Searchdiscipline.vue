@@ -3,13 +3,14 @@
         <v-form>
             <v-container>
                 <v-row class="searchForm">
-                    <v-col cols="12" class="me-4">
+                    <v-col cols="11" class="me-4">
                     <v-text-field
                         prepend-icon="mdi-account-search"
                         v-model="search"
                         filled
                         clear-icon="mdi-close-circle"
                         clearable
+                        class="ma"
                         label="Search"
                         type="text"
                         @click:clear="clearMessage"
@@ -48,5 +49,8 @@
 <style scoped>
     .searchForm{
         margin-top: 20px;
+    }
+    .ma{
+        margin-left: 50px;
     }
 </style>

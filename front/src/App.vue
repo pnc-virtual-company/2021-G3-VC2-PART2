@@ -58,6 +58,7 @@ export default {
       Logout(isLogout) {
         localStorage.clear();
         this.isLogin = isLogout;
+        this.$router.push('/');
       }
   },
   mounted() {

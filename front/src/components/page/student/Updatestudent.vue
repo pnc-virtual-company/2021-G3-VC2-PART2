@@ -3,6 +3,7 @@
       <v-card>
         <h2 id="edit">Do you want to update?</h2>
         <v-card-text>
+              <v-col class="d-flex">
                 <v-text-field
                     label="Firstname"
                     type="text"
@@ -17,6 +18,8 @@
                     v-model="lastName"
                 >
                 </v-text-field>
+              </v-col> 
+              <v-col class="d-flex">
                 <v-text-field
                     label="Email"
                     type="text"
@@ -32,11 +35,22 @@
                     v-model="classes"
                 >
                 </v-text-field>
+              </v-col> 
+              
                 <v-text-field
                     label="Phone"
                     type="number"
                     prepend-icon="mdi-cellphone"
                     v-model="phone"
+                >
+                </v-text-field>
+              
+                
+                <v-text-field
+                    label="birthday"
+                    type="text"
+                    prepend-icon="mdi-cake-variant"
+                    v-model="birthday"
                 >
                 </v-text-field>
                 <v-text-field
@@ -69,8 +83,10 @@ export default {
         email: '',
         password: '',
         phone: '',
+        student:'',
         classes:'',
-        gender:''
+        gender:'',
+        birthday:''
       }
     },
 
@@ -82,6 +98,7 @@ export default {
           email: this.email,
           password: this.password,
           class:this.classes,
+          birthday:this.birthday,
           phone:this.phone,
           gender:this.gender,
          
@@ -101,6 +118,7 @@ export default {
       this.classes = this.studentInfo.class;
       this.phone = this.studentInfo.phone;
       this.gender = this.studentInfo.gender;
+      this.birthday = this.studentInfo.birthday;
 
     },
 }
@@ -109,11 +127,12 @@ export default {
 <style scoped>
 
    .overlay {
+     margin-bottom: 20px;
       position: fixed;
       background: #fff;
       top: 5%;
       left: 35%;
-      width: 35%;
+      width: 40%;
       z-index: 100;
       border-radius: 10px;
       box-shadow: rgba(50, 74, 85, 0.26) 0px 2px 4px 0px, rgba(70, 97, 109, 0.178) 0px 2px 16px 0px;

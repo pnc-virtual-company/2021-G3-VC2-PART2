@@ -48,7 +48,7 @@
         </v-text-field>
         <v-text-field
           label="start_date"
-          type="date"
+          type="datetime-local"
           prepend-icon="mdi-account-clock"
           v-model="start_date"
         >
@@ -56,7 +56,7 @@
 
         <v-text-field
           label="End_date"
-          type="date"
+          type="datetime-local"
           prepend-icon="mdi-account-clock-outline"
           v-model="end_date"
         >
@@ -122,6 +122,7 @@ export default {
     this.description = this.permissionInfo.description;
     this.student_id = this.permissionInfo.student_id;
     this.idPermission = this.permissionInfo.id;
+    this.end_date = this.permissionInfo.end_date;
   },
 };
 </script>
