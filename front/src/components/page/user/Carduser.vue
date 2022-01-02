@@ -101,8 +101,7 @@
 
 <script>
 
-import axios from "axios";
-const APP_URL = "http://127.0.0.1:8000/api"
+import axios from '../../../http-common'
 import Updateuser from "../user/Updateuser.vue"
 export default {
   props:['userinfo'],
@@ -145,7 +144,7 @@ export default {
         this.showForm = hidden
     },
     UpdateUser(id, user, hidden){
-        axios.put(APP_URL + '/users/'+ id, user).then((res)=>{
+        axios.put('/users/'+ id, user).then((res)=>{
           this.$emit("update-user", res.data);
           this.showForm = hidden;
         })

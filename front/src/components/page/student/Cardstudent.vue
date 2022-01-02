@@ -41,7 +41,7 @@
                            <td>{{student.firstName}}</td>
                            <td>{{student.lastName}}</td>
                            <td>{{student.email}}</td>
-                           <td>{{student.phone}}</td>
+                           <td>+885 {{student.phone}}</td>
                            <td>{{student.gender}}</td>
                            <td v-if="admin !=='Student'"> 
                                <div class="i-con">
@@ -100,8 +100,7 @@
   
 </template>
 <script>
- import axios from 'axios';
- const APP_URL = 'http://127.0.0.1:8000/api'
+  import axios from '../../../http-common'
   import Updatestudent from "../student/Updatestudent.vue";
   export default {
  
@@ -149,7 +148,7 @@
           this.showForm = hidden;
         },
         Updatestudent(id,student,hidden){
-          axios.put(APP_URL + '/students/' + id, student).then((res) =>{
+          axios.put('/students/' + id, student).then((res) =>{
             console.log(res.data);
             this.$emit("update-student", res.data);
             this.showForm = hidden;

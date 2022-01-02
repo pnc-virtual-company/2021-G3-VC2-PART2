@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return User::with(['student'])->latest()->get();
     }
 
     /**
@@ -40,6 +40,7 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
+        $user->student_id = $request->student_id;
         $user->password = bcrypt($request->password);
         $user->gender = $request->gender;
         $user->role = $request->role;
@@ -107,6 +108,7 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
+        $user->student_id = $request->student_id;
         $user->password = bcrypt($request->password);
         $user->gender = $request->gender;
         $user->role = $request->role;

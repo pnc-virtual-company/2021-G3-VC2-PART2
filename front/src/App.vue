@@ -37,13 +37,16 @@ export default {
       login(userData){
            axios.post(APP_URL + '/signin',userData).then(res =>{
                this.dataUser = res.data.user;
-               this.$router.push('/user');
                this.isLogin = true;
                this.user = res.data.user;
                localStorage.setItem("userId", res.data.user.id);
                localStorage.setItem("Userrole", res.data.user.role);
                localStorage.setItem("user", res.data.user.firstName);
-            
+              if(this.dataUser.role === 'Admin'){
+                 this.$router.push('/user');
+              }else{
+                 this.$router.push('/student');
+              }
            }).catch(error => {
             let statusCode = error.response.status;
             if(statusCode === 401) {
@@ -55,7 +58,6 @@ export default {
       Logout(isLogout) {
         localStorage.clear();
         this.isLogin = isLogout;
-        console.log("Hello");
       }
   },
   mounted() {

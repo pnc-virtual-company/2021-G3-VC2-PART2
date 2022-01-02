@@ -1,66 +1,93 @@
 <template>
   <v-container fluid class="card">
-    <v-row justify="center">
-      <v-subheader>Student Permission</v-subheader>
-      <v-expansion-panels 
-        popout
-        v-for="(permission, index) in dataPermission"
-        :key="index"
-      >
-        <v-expansion-panel hide-actions class="ma-3" >
-          <v-expansion-panel-header>
-            <v-row align="center" class="spacer mx-auto" no-gutters>
-              <v-col cols="4" sm="2" md="1">
-                <v-avatar size="50px">
-                  <img alt="Avatar" :src="url + permission.student.image" />
-                  <v-icon></v-icon>
-                </v-avatar>
-              </v-col>
-              <v-col>
-                <h3>
-                  {{ permission.student.firstName }}
-                  {{ permission.student.lastName }}
-                </h3>
-                  
-              </v-col>
-              <v-col>
-                <h5>{{permission.student.class}}</h5>
-              </v-col>
-              <v-col class="hidden-xs-only" sm="5" md="3">
-                <strong v-html="permission.reason"></strong>
-              </v-col>
-              <v-col>
-                <h5>{{ permission.end_date }} </h5>
-                <h5 class="mt-2">{{ permission.start_date }}</h5>
-              </v-col>
-              <v-col v-if="showBtn !=='Student'">
-                <v-icon
-                  @click="getPermissionId(permission.id)"
-                  class="red--text"
-                >
-                  mdi-delete
-                </v-icon>
-                <v-icon @click="getpermissionInfo(permission)">
-                  mdi-lead-pencil
-                </v-icon>
-                <update-permission
-                  v-if="showForm"
-                  :permissionInfo="permissionData"
-                  @cancel="Cancel"
-                  @update="UpdatePermission"
-                >
-                </update-permission>
-              </v-col>
-            </v-row>
-          </v-expansion-panel-header>
 
-          <v-expansion-panel-content>
-            <v-divider></v-divider>
-            <v-card-text v-text="permission.description"></v-card-text>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-row>
+    <section>
+        <template>
+        <v-card
+          class="mx-auto"
+          max-width="1000"
+        >
+          <v-card-text class="d-flex">
+            <v-card-subtitle class="d-flex">
+                <v-avatar size="90">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUgoHCc0rNp3hBP7yHkhIEkev-tVfaM4GrMQ&usqp=CAU" alt="">
+                </v-avatar>
+                <v-card-text>
+                  <p class="text-h6">{{dataPermission.student.firstName}}</p>
+                  <p>Class: {{dataPermission.student.class}}</p>
+                </v-card-text>
+            </v-card-subtitle>
+            <v-card-subtitle>
+                <v-card-text>
+                  <p class="text-h6"><v-icon class="blue--text">mdi-calendar-clock</v-icon> {{dataPermission.start_date}}</p>
+                  <p class="text-h6"><v-icon class="red--text">mdi-calendar-clock</v-icon> {{dataPermission.end_date}}</p>
+                </v-card-text>
+            </v-card-subtitle>
+            <v-card-subtitle>
+                <v-card-text>
+                    <p>Reason: {{dataPermission.reason}}</p>
+                    <p>Amount: 2 Days</p>
+                </v-card-text>
+            </v-card-subtitle>
+            <v-card-subtitle>
+                <v-card-text >
+                    <v-icon
+                      @click="getPermissionId(dataPermission.id)"
+                      class="red--text"
+                    >
+                      mdi-delete
+                    </v-icon>
+                    <v-icon @click="getpermissionInfo(dataPermission)">
+                      mdi-lead-pencil
+                    </v-icon>
+                    <update-permission
+                      v-if="showForm"
+                      :permissionInfo="permissionData"
+                      @cancel="Cancel"
+                      @update="UpdatePermission"
+                    >
+                    </update-permission>
+                </v-card-text>
+            </v-card-subtitle>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              text
+              color="teal accent-4"
+              @click="reveal = true"
+            >
+              Reason
+            </v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <v-card
+              v-if="reveal"
+              class="transition-fast-in-fast-out v-card--reveal"
+              style="height: 100%;"
+            >
+              <v-card-text class="pb-0">
+                <p class="text-h4 text--primary">
+                  Reason
+                </p>
+                <p>{{dataPermission.description}}</p>
+              </v-card-text>
+              <v-card-actions class="pt-0">
+                <v-btn
+                  text
+                  color="teal accent-4"
+                  bottom
+                  @click="reveal = false"
+                >
+                  Close
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-expand-transition>
+        </v-card>
+      </template>
+    </section>
+
     <!-- card permission -->
 
     <div class="text-center">
@@ -110,6 +137,7 @@ export default {
     url: "http://127.0.0.1:8000/storage/student/images/",
     showForm: false,
     permissionData: [],
+    reveal:false
   }),
   methods: {
     getPermissionId(id) {
@@ -141,18 +169,10 @@ export default {
 };
 </script>
 <style scoped>
-.card {
-  width: 80%;
-}
-.ma {
-  margin: 20px;
-}
-v-row {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-}
-.ma-3{
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+.v-card--reveal {
+  bottom: 0;
+  opacity: 1 !important;
+  position: absolute;
+  width: 100%;
 }
 </style>

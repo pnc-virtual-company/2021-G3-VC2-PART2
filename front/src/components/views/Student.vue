@@ -13,8 +13,7 @@
 <script>
 import Cardstudent from "../page/student/Cardstudent.vue";
 import Formstudent from "../page/student/Formstudent.vue";
-import axios from "axios";
-const APP_URL = "http://127.0.0.1:8000/api";
+import axios from '../../http-common.js'
 export default {
   name: "App",
   components: {
@@ -24,18 +23,22 @@ export default {
   data() {
     return {
       userStudent: [],
+      role:localStorage.getItem("Userrole")
     };
   },
   methods: {
     //========== get student =====================
     getStudent() {
-      axios.get(APP_URL + "/students").then((res) => {
+      
+        axios.get("/students").then((res) => {
         this.userStudent = res.data;
-      });
+        });
+      
+      
     },
     //=========== create student====================
     createStudent(newStudent) {
-      axios.post(APP_URL + "/students", newStudent).then((res) => {
+      axios.post("/students", newStudent).then((res) => {
         this.getStudent();
         console.log(res.data);  
       });
@@ -43,7 +46,7 @@ export default {
 
     //========== function delete student=============
     deleteStudent(studentId) {
-      axios.delete(APP_URL + "/students/" + studentId).then((res) => {
+      axios.delete("/students/" + studentId).then((res) => {
         console.log(res.data);
         this.getStudent();
       });
@@ -51,7 +54,7 @@ export default {
     //========= search student =====================
     searchStudent(search) {
       if (search !== "") {
-        axios.get(APP_URL + "/students" + "/search/" + search).then((res) => {
+        axios.get("/students" + "/search/" + search).then((res) => {
           this.userStudent = res.data;
         });
       } else {
