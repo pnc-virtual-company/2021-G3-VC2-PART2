@@ -3,18 +3,6 @@
   <template>
   <v-card class="table-student" color="#81BEF7"
         green>
-    <v-card-title >
-        Student List
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-        @keyup="searchUsername"
-      ></v-text-field>
-    </v-card-title>
         <v-simple-table>
                 <template v-slot:default>
                     <thead class="blue lighten-3" >
@@ -134,11 +122,6 @@
         deleteStudent(){
             this.$emit('deleteItem', this.deleteId);
             this.dialog = false;
-        },
-     // ============ search ============   
-        searchUsername(){
-            this.dialog = false;
-            this.$emit("search-user", this.search);
         },
         //======== get student=========
         getStudentInfo(student){

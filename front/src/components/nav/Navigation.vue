@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="position-stiky stiky-top">
     <v-navigation-drawer v-model="sidebar" app absolute left temporary>
       <v-list>
         <v-list-item-group
