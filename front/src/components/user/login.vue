@@ -4,7 +4,7 @@
         width="350"
         height="370"
         class="card"
-        color='#dcdcdc'
+       
         
     >
         <div class="d-flex align-center justify-center  "   >
@@ -39,7 +39,7 @@
                 <div class="text-center">
                 <v-btn
                     class="btn"
-                    color="primary"
+                    color="blue lighten-1"
                     large
                     type="submit"
                     text

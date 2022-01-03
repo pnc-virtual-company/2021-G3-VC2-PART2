@@ -79,6 +79,6 @@ export default {
 </script>
 <style scoped>
   *{
-    background-color: beige;
+    background-color: rgb(226, 226, 219);
   }
 </style>
