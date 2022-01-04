@@ -64,28 +64,28 @@
           width="500"
         >
         <v-card>
-            <v-card-title class="text-h5 blue lighten-2 white--text">
+            <v-card-title class="text-h5 grey lighten-2 black--text">
               Delete User
             </v-card-title>
             <h3 class="ma"><v-icon class="orange--text"  mdi-48px>mdi-alert-outline</v-icon>Are you sure you want to delete?</h3>
             <v-divider></v-divider>
 
-            <v-card-actions class="blue lighten-2">
+            <v-card-actions class="grey lighten-2">
               <v-spacer></v-spacer>
               <v-btn
-              @click="dialog = false"
-                class="teal darken-4 white--text"
-              text
+                @click="dialog = false"
+                color='blue'
+                text
               >
                 Cancel
               </v-btn>
               <v-btn
-                class="red white--text"
+                color='red'
                 text
                 @click="deleteStudent"
                 
               >
-                Confirm
+                Delete
               </v-btn>
             </v-card-actions>
           </v-card>
