@@ -7,7 +7,6 @@
           <v-expansion-panel
             hide-actions
             class="ma-3"
-            
           >
             <v-expansion-panel-header>
               <v-row align="center" class="spacer mx-auto" no-gutters>

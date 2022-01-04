@@ -1,11 +1,14 @@
 <template>
   <section>
-    <form-student @add-student="createStudent"></form-student>
+    <form-student @add-student="createStudent" :hideData="hide"></form-student>
+    <search-student @search-student=" searchStudent" :hideData="hide"></search-student>
     <card-student
       :dataUser="userStudent"
       @deleteItem="deleteStudent"
       @search-user="searchStudent"
       @update-student="getStudent"
+      @showAll="hideAll"
+      @showTwo="showAll"
     ></card-student>
   </section>
 </template>
@@ -13,20 +16,29 @@
 <script>
 import Cardstudent from "../page/student/Cardstudent.vue";
 import Formstudent from "../page/student/Formstudent.vue";
+import Searchstudent from "../page/student/Searchstudent.vue"
 import axios from '../../http-common.js'
 export default {
   name: "App",
   components: {
     "card-student": Cardstudent,
     "form-student": Formstudent,
+    "search-student":Searchstudent,
   },
   data() {
     return {
       userStudent: [],
-      role:localStorage.getItem("Userrole")
+      role:localStorage.getItem("Userrole"),
+      hide: true
     };
   },
   methods: {
+    hideAll(hide){
+      this.hide=hide;
+    },
+    showAll(show){
+      this.hide=show;
+    },
     //========== get student =====================
     getStudent() {
       

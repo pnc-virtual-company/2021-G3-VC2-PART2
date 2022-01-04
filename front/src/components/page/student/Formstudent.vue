@@ -1,7 +1,7 @@
 <template>
   <div class="text" v-if="admin !=='Student'">
     <v-dialog v-model="dialog" width="500">
-      <template v-slot:activator="{ on, attrs }">
+      <template v-slot:activator="{ on, attrs }" v-if="hideData">
         <v-btn
             color="blue"
             dark
@@ -102,6 +102,7 @@
 <script>
 export default {
   emits: ["add-student"],
+  props: ['hideData'],
   data() {
     return {
       dialog: false,

@@ -89,7 +89,6 @@ export default {
     },
     mounted() {
         this.userID = localStorage.getItem("userId");
-        
         this.getUserAction();
         this.getDiscipline();
         this.getPermission();

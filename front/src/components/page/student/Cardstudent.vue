@@ -1,20 +1,13 @@
 <template>
+  <section>
+   <detail-student v-if="vShowdetail" 
+   :oneData="oneInfo" @isBack="back" 
+   :permissions="countPermission"
+   :disciplines="countDiscipline"></detail-student>
   <v-container>
-  <template>
+  <template v-if="vShowCard">
   <v-card class="table-student" color="#81BEF7"
         green>
-    <v-card-title >
-        Student List
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-        @keyup="searchUsername"
-      ></v-text-field>
-    </v-card-title>
         <v-simple-table>
                 <template v-slot:default>
                     <thead class="blue lighten-3" >
@@ -38,13 +31,13 @@
                                   width="50"
                                   height="50"
                               />
-                            </td>
-                           <td>{{student.firstName}}</td>
-                           <td>{{student.lastName}}</td>
-                           <td>{{student.email}}</td>
-                           <td>+885 {{student.phone}}</td>
-                           <td>{{student.birthday}}</td>
-                           <td>{{student.gender}}</td>
+                            </td >
+                           <td @click="getStudent(student)">{{student.firstName}}</td>
+                           <td @click="getStudent(student)">{{student.lastName}}</td>
+                           <td @click="getStudent(student)">{{student.email}}</td>
+                           <td @click="getStudent(student)">+885 {{student.phone}}</td>
+                           <td @click="getStudent(student)">{{student.birthday}}</td>
+                           <td @click="getStudent(student)">{{student.gender}}</td>
                            <td v-if="admin !=='Student'"> 
                                <div class="i-con">
                                   <v-icon class="red--text"  @click="getStudentId(student.id)">mdi-delete</v-icon>
@@ -99,21 +92,21 @@
         </v-dialog>
       </div>
   </v-container>
-  
+  </section>
 </template>
 <script>
   import axios from '../../../http-common'
+  import Detailstudentinfo from "../student/Detailstudentinfo.vue"
   import Updatestudent from "../student/Updatestudent.vue";
   export default {
  
     props:['dataUser'],
-    emits:['deleteItem',"search-user","update-student"],
+    emits:['deleteItem',"search-user","update-student",'showAll',"showTwo"],
     components:{
         'update-student':Updatestudent,
+        'detail-student':Detailstudentinfo
     },
     data () {
-      
-      
       return {
         search: '',
         studentId:0,
@@ -122,9 +115,32 @@
         dialog:false,
         studentData:[],
         admin:localStorage.getItem('Userrole'),
+        vShowdetail:false,
+        vShowCard:true,
+        oneInfo:[],
+        countPermission:0,
+        countDiscipline:0,
       }
     },
     methods: {
+        getStudent(student){
+          this.oneInfo = student;
+          this.vShowdetail = true;
+          this.vShowCard = false;
+          this.$emit('showAll', false);
+          for(student of this.oneInfo.permission){
+            this.countPermission ++;
+          }
+          for(student of this.oneInfo.discipline){
+            this.countDiscipline ++;
+          }
+
+        },
+        back(back){
+          this.vShowdetail = back;
+          this.vShowCard = true;
+          this.$emit("showTwo", true);
+        },
     //  ============= delete ============
         getStudentId(id){
             this.dialog = true;
@@ -135,15 +151,11 @@
             this.$emit('deleteItem', this.deleteId);
             this.dialog = false;
         },
-     // ============ search ============   
-        searchUsername(){
-            this.dialog = false;
-            this.$emit("search-user", this.search);
-        },
         //======== get student=========
         getStudentInfo(student){
           this.showForm = true;
           this.studentData = student;
+         
         },
         // =========== update student=========
         Cencel(hidden){

@@ -3,7 +3,7 @@
         <v-form>
             <v-container>
                 <v-row class="input">
-                    <h1><v-icon class="blue--text">mdi-account-key </v-icon> Discipline</h1>
+                    <h1><v-icon class="blue--text">mdi-account</v-icon> Users</h1>
                     <v-col
                         cols="12"
                         sm="6"
@@ -27,7 +27,7 @@
 <script>
     
   export default {
-      emists:['search-disciple'],
+      emists:['search-user'],
     data: () => ({
       search: '',
       
@@ -36,7 +36,7 @@
     methods: {
  
         searchName(){
-            this.$emit('search-disciple', this.search);
+            this.$emit('search-user', this.search);
         },
     },
     mounted() {
@@ -50,7 +50,6 @@
        display: flex;
        justify-content: space-between;
        margin-top: 25px;
-       margin-right: 50px;
    }
    h1{
        margin-top: 10px;

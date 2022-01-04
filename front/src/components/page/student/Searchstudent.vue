@@ -1,9 +1,9 @@
 <template>
     <section>
-        <v-form>
+        <v-form v-if="hideData">
             <v-container>
                 <v-row class="input">
-                    <h1><v-icon class="blue--text">mdi-account-key </v-icon> Discipline</h1>
+                    <h1><v-icon class="blue--text">mdi-account</v-icon>Students</h1>
                     <v-col
                         cols="12"
                         sm="6"
@@ -27,7 +27,8 @@
 <script>
     
   export default {
-      emists:['search-disciple'],
+      props: ['hideData'],
+    emists:['search-student'],
     data: () => ({
       search: '',
       
@@ -36,7 +37,7 @@
     methods: {
  
         searchName(){
-            this.$emit('search-disciple', this.search);
+            this.$emit('search-student', this.search);
         },
     },
     mounted() {
@@ -50,7 +51,6 @@
        display: flex;
        justify-content: space-between;
        margin-top: 25px;
-       margin-right: 50px;
    }
    h1{
        margin-top: 10px;
