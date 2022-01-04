@@ -78,7 +78,7 @@ export default {
   emits: ['log-out'],
   data() {
     return {
-        appTitle: 'PNC Cambodia',
+        appTitle: 'PN Cambodia',
         setUser:true,
         sidebar: false,
         group: false,

@@ -145,12 +145,9 @@ export default {
 table,th{
        font-size:25px;
    }
-table,td{
-       background:rgb(242, 242, 245);
 
-   }
 .table-user{
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .ma{
   margin:20px;

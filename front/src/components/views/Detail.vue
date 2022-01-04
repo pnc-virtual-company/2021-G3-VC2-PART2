@@ -8,6 +8,7 @@
                 color="red"
                 :content="countDiscipline"
                 class="text-h5"
+                
             >
                 Warning letter
             </v-badge>

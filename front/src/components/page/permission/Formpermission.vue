@@ -72,7 +72,7 @@
                 </v-text-field>
                 <v-text-field
                     label="Start date"
-                    type="datetime-local"
+                    type="date"
                     :rules="rules.name"
                     prepend-icon="mdi-calendar-today"
                     v-model = "start_date"
@@ -80,7 +80,7 @@
                 </v-text-field>
                 <v-text-field
                     label="End date"
-                    type="datetime-local"
+                    type="date"
                     :rules="rules.name"
                     prepend-icon="mdi-calendar-today"
                     v-model = "end_date"

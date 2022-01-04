@@ -12,12 +12,12 @@
                 <template v-slot:default>
                     <thead class="blue lighten-3" >
                       <tr>
-                            <th>profile</th>
+                            <th>Profile</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>birthday</th>
+                            <th>Birthday</th>
                             <th>Gender</th>
                             <th v-if="admin !=='Student'">Action</th>
                       </tr>
@@ -193,7 +193,7 @@
       margin-top: 5px;
     }
     .table-student{
-       margin-top: 25px;
+       margin-top: 20px;
     }
     .ma{
       margin:20px;

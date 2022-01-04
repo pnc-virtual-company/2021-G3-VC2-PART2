@@ -3,17 +3,17 @@
         <v-form v-if="hideData">
             <v-container>
                 <v-row class="input">
-                    <h1><v-icon class="blue--text">mdi-account</v-icon>Students</h1>
+                    <h1><v-icon class="blue--text">mdi-account-box mdi-48px</v-icon>Students</h1>
                     <v-col
                         cols="12"
                         sm="6"
                     >
                         <v-text-field
-                        v-model="search"
-                        prepend-icon="mdi-account-search"
-                        filled
-                        label="Search"
-                        @keyup="searchName"
+                            v-model="search"
+                            prepend-icon="mdi-account-search"
+                            filled
+                            label="Search"
+                            @keyup="searchName"
                         >
                            
                         </v-text-field>

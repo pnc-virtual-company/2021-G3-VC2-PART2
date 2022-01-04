@@ -51,17 +51,16 @@
                 <v-badge
                     color="red"
                     :content="disciplines"
-                    class="text-h5"
+                    class="text-h5 white--text"
+                    id='backD'
                 >
-                    Discipline
+
+                    <v-icon class="white--text">mdi-account-star</v-icon> Discipline
                 </v-badge>
             </v-tab>
-            <v-card
-                class="mx-auto"
-                max-width="800"
-                >
+   
                     
-                    <v-row justify="center" v-for="(item, index) in oneData.discipline" :key="index">
+                    <v-row justify="center" class="permission mx-auto" v-for="(item, index) in oneData.discipline" :key="index">
                         <v-expansion-panels popout >
                         <v-expansion-panel
                             hide-actions
@@ -72,7 +71,11 @@
                                 <v-card-title class="d-flex">
                                 <v-card-subtitle class="d-flex">
                                     <v-card-text class="ms-3">
-                                    <p class="text-h6"><v-icon>{{item.icon_type}} mdi-48px</v-icon> {{item.notice_type}}</p>
+                                    <p class="text-h6"><v-icon
+                                    :color=" item.notice_type == 'Misconduct' ? 'error'
+                                    :item.notice_type == 'Warning letter' ? 'yellow'
+                                    :item.notice_type == 'Termination' ? 'red'
+                                    :'orange' ">{{item.icon_type}} mdi-48px</v-icon> {{item.notice_type}}</p>
                                     </v-card-text>
                                 </v-card-subtitle>
                                 <v-card-subtitle>
@@ -88,22 +91,19 @@
                         </v-expansion-panel>
                         </v-expansion-panels>
                     </v-row>
-                </v-card>
             <!-- card permissions  -->
              <v-tab class="tap">
                     <v-badge
                         color="yellow"
                         :content="permissions "
-                        class="text-h5"
+                        class="text-h5 white--text"
+                        id='back'
+                        
                     >
-                        Permissions
+                        <v-icon class="white--text">mdi-account-key </v-icon> Permissions
                     </v-badge>
                 </v-tab>
-            <v-card
-                class="mx-auto"
-                max-width="800"
-            >
-                <v-row justify="center">
+                <v-row justify="center" class="permission mx-auto">
                     <v-expansion-panels popout >
                     <v-expansion-panel
                         hide-actions
@@ -142,9 +142,6 @@
                     </v-expansion-panel>
                     </v-expansion-panels>
                 </v-row>
-            </v-card>    
-            
-
     </section>
 </template>
 
@@ -183,5 +180,22 @@ export default {
 .top{
     margin-top:30px;
 }
+#back{
+    background-color: rgb(63, 159, 243);
+    border-radius: 0.1cm;
+    margin-left: 1cm;
+    padding: 5px;
+}
+#backD{
+    background-color: rgb(63, 159, 243);
+    border-radius: 0.1cm;
+    padding: 5px;
+}
 
+.permission{
+    width: 830px;
+}
+.white--text{
+    margin-bottom: 5px;
+}
 </style>

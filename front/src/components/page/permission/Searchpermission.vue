@@ -1,25 +1,25 @@
 <template>
 
-    <v-form class="mx-auto">
-        <v-container>
-            <v-row class="searchForm">
-                <v-col cols="11" class="me-4">
-                <v-text-field
-                    prepend-icon="mdi-account-search"
-                    class="ma"
-                    v-model="searchPermission"
-                    filled
-                    clear-icon="mdi-close-circle"
-                    clearable
-                    label="Search"
-                    type="text"
-                    @click:clear="clearMessage"
-                    @keyup="searchName"
-                ></v-text-field>
-                </v-col>
-            </v-row>
-        </v-container>
-    </v-form>
+  
+  <v-form>
+    <v-container>
+      <v-row class="input">
+        <h1><v-icon class="blue--text">mdi-account-key mdi-48px</v-icon> Permission</h1>
+        <v-col
+            cols="12"
+            sm="6"
+        >
+            <v-text-field
+                v-model="searchPermission"
+                prepend-icon="mdi-account-search"
+                filled
+                label="Search"
+                @keyup="searchName"
+            ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-form>
 </template>
 <script>
 export default {
@@ -30,9 +30,7 @@ export default {
     }
   },
   methods: {
-    clearMessage () {
-        this.search = ''
-    },
+  
     searchName(){
       this.searchPermission;
       this.$emit('search', this.searchPermission);
@@ -43,11 +41,15 @@ export default {
 }
 </script>
 <style scoped>
-.searchForm{
-    margin-top: 20px;
+.input{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+        margin-right: 50px;
   }
-  .ma{
-    margin-left: 100px;
+  h1{
+      font-size: 30px;
+      margin-top:10px ;
   }
 
 </style>

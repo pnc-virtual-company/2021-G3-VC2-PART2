@@ -3,7 +3,7 @@
         <v-form>
             <v-container>
                 <v-row class="input">
-                    <h1><v-icon class="blue--text">mdi-account</v-icon> Users</h1>
+                    <h1><v-icon class="blue--text" >mdi-account-multiple-plus mdi-48px</v-icon> Users</h1>
                     <v-col
                         cols="12"
                         sm="6"

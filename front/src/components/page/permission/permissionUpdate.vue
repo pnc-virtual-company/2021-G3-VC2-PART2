@@ -1,16 +1,18 @@
 <template>
-  <div class="overlay">
+  <div class="overlay" >
     <v-card >
       <h2 id="edit">Do you want to update?</h2>
       <v-card-text>
          <v-combobox
             prepend-icon="mdi-account-multiple"
             label="Student"
+            :rules="rules.name"
             :items="dataStudent"
             item-text="firstName"
             item-value="id"
             v-model="student_id"
             color="purple darken-2"
+           
         >
             <template v-slot:item="dataStudent">
               <template>
@@ -31,7 +33,7 @@
         <v-autocomplete
            
             v-model="reason"
-          
+            :rules="rules.name"
             :items="reasons"
             prepend-icon="mdi-weather-lightning"
             label="Reason"
@@ -42,13 +44,15 @@
         <v-text-field
           label="Description"
           type="text"
+          :rules="rules.name"
           prepend-icon="mdi-menu"
           v-model="description"
         >
         </v-text-field>
         <v-text-field
           label="start_date"
-          type="datetime-local"
+          type="date"
+          :rules="rules.name"
           prepend-icon="mdi-account-clock"
           v-model="start_date"
         >
@@ -56,7 +60,8 @@
 
         <v-text-field
           label="End_date"
-          type="datetime-local"
+          type="date"
+          :rules="rules.name"
           prepend-icon="mdi-account-clock-outline"
           v-model="end_date"
         >
@@ -92,7 +97,7 @@ export default {
       student_id:"",
       dataStudent:[],
       reasons:['Sick', "Wedding's relative", "Busy", "Interview"],
-      idPer: null,
+      idPermission: null,
     };
   },
 
@@ -122,6 +127,7 @@ export default {
     this.description = this.permissionInfo.description;
     this.student_id = this.permissionInfo.student_id;
     this.idPermission = this.permissionInfo.id;
+    this.start_date = this.permissionInfo.start_date;
     this.end_date = this.permissionInfo.end_date;
   },
 };
@@ -151,4 +157,5 @@ h3 {
   color: #fff;
   background: rgb(108, 185, 226);
 }
+
 </style>

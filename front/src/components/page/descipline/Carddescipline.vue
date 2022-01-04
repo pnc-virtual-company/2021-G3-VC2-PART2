@@ -6,12 +6,12 @@
             :key="index">
           <v-expansion-panel
             hide-actions
-            class="ma-3"
+            class="ma-3 "
           >
             <v-expansion-panel-header>
               <v-row align="center" class="spacer mx-auto" no-gutters>
-                <v-card-title class="d-flex">
-                  <v-card-subtitle class="d-flex">
+                <v-card-title id='just'>
+                  <v-card-subtitle class="d-flex" >
                     <v-avatar size="100" mx-auto>
                       <img :src="url + discipline.student.image" alt="" />
                     </v-avatar>
@@ -20,11 +20,14 @@
                       <p>{{ discipline.student.class }}</p>
                     </v-card-text>
                   </v-card-subtitle>
-                  <v-card-subtitle>
-                    <v-icon class="ma-4">{{discipline.icon_type}} mdi-48px</v-icon>
+                  <v-card-subtitle class="card1">
+                    <v-icon class="ma-4" :color=" discipline.notice_type == 'Misconduct' ? 'error'
+                    :discipline.notice_type == 'Warning letter' ? 'yellow'
+                    :discipline.notice_type == 'Termination' ? 'red'
+                    :'orange' ">{{discipline.icon_type}} mdi-48px</v-icon>
                     <p class="text-p"> {{discipline.notice_type}}</p>
                   </v-card-subtitle>
-                  <v-card-subtitle class="content ms-5">
+                  <v-card-subtitle class="content card2">
                     <v-card-text class="text-p">
                       <p class="text-h6">
                         <v-icon color="blue">mdi-calendar-multiple</v-icon> 12
@@ -36,7 +39,7 @@
                       </p>
                     </v-card-text>
                   </v-card-subtitle>
-                  <v-card-subtitle class="display">
+                  <v-card-subtitle class="display card3">
                     <v-icon
                       color="red"
                       class="red--text"
@@ -155,9 +158,13 @@ v-row {
   border: 1px solid #ccc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cfdd0dc3615cc4cceabad55c16744fce4a402cf8
+.mx-auto{
+  display: flex;
+  justify-content: space-between;
+}
+.card1,
+.card2,
+.card3{
+  margin-left: 60px;
+}
 </style>

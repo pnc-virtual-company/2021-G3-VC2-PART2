@@ -53,7 +53,7 @@
           color="purple darken-2"
           prepend-icon="mdi-calendar-clock"
           label="Date"
-          type="date"
+          type="datetime-local"
           v-model="start_date"
           required
         ></v-text-field>
@@ -86,12 +86,13 @@ export default {
       start_date: "",
       student_id: "",
       types:[
-          {name:'Misconduct', icon:'https://o.remove.bg/downloads/6b5cf122-3248-4794-a513-0dbf175d7a39/image-removebg-preview.png'},
-          {name:'Oral warning', icon:'https://o.remove.bg/downloads/0b4c2326-55b0-4acb-8377-fdd7895f59ed/image-removebg-preview.png'},
-          {name:'Warning letter',icon:'https://o.remove.bg/downloads/83c2a024-794d-4ff0-83d7-081e84ab9bfa/image-removebg-preview.png'},
-          {name:'Termination', icon:'https://o.remove.bg/downloads/39181206-f6b0-4ecf-a70a-bc6401bbbb96/image-removebg-preview.png'}
+          {name:'Misconduct', icon:'mdi-cards'},
+          {name:'Oral warning', icon:'mdi-alert-octagon'},
+          {name:'Warning letter',icon:'mdi-alert'},
+          {name:'Termination', icon:'mdi-cancel'}
         ],
-      dataStudent:[]
+      dataStudent:[],
+      idDisciple:null
     };
   },
   methods: {
@@ -106,9 +107,9 @@ export default {
         notice_type: this.type.name,
         icon_type: this.type.icon,
         start_date: this.start_date,
-        student_id: this.student_id,
+        student_id: this.student_id.id,
       };
-      this.$emit("update", this.disciplineInfo.id, discipline, false);
+      this.$emit("update", this.idDisciple, discipline, false);
     },
     cancel() {
       this.$emit("cancel", false);
@@ -120,6 +121,7 @@ export default {
     this.notice_type = this.disciplineInfo.type;
     this.start_date = this.disciplineInfo.start_date;
     this.student_id = this.disciplineInfo.student_id;
+    this.idDisciple = this.disciplineInfo.id;
   },
 };
 </script>
@@ -127,8 +129,8 @@ export default {
 <style scoped>
 .overlay {
   position: fixed;
-  background: #fff;
-  top: 5%;
+  background: blue;
+  top: 20%;
   left: 35%;
   width: 35%;
   z-index: 100;
@@ -139,8 +141,8 @@ export default {
 h2 {
   text-align: center;
   padding: 15px;
-  color:black;
-  background:white
+  color:rgb(248, 246, 246);
+  background:blue;
 }
 h3 {
   text-align: center;

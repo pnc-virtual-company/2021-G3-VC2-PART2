@@ -78,7 +78,7 @@
               color="purple darken-2"
               prepend-icon="mdi-calendar-clock"
               label="Date"
-              type="date"
+              type="datetime-local"
               v-model="date"
               required
             ></v-text-field>
