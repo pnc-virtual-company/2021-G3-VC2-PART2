@@ -1,6 +1,7 @@
 <template>
   <section>
     <form-student @add-student="createStudent"></form-student>
+    <search-student @search-student=" searchStudent"></search-student>
     <card-student
       :dataUser="userStudent"
       @deleteItem="deleteStudent"
@@ -13,12 +14,14 @@
 <script>
 import Cardstudent from "../page/student/Cardstudent.vue";
 import Formstudent from "../page/student/Formstudent.vue";
+import Searchstudent from "../page/student/Searchstudent.vue"
 import axios from '../../http-common.js'
 export default {
   name: "App",
   components: {
     "card-student": Cardstudent,
     "form-student": Formstudent,
+    "search-student":Searchstudent,
   },
   data() {
     return {

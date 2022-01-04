@@ -103,13 +103,12 @@ export default {
     update() {
       let discipline = {
         reason: this.reason,
-        notice_type: this.type.icon,
-        icon_type: this.type.name,
+        notice_type: this.type.name,
+        icon_type: this.type.icon,
         start_date: this.start_date,
         student_id: this.student_id,
       };
       this.$emit("update", this.disciplineInfo.id, discipline, false);
-      console.log(this.notice_type);
     },
     cancel() {
       this.$emit("cancel", false);

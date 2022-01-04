@@ -1,6 +1,8 @@
 <template>
   <section>
+    
     <form-user @add-user="createUser"></form-user>
+    <search-user @search-user="searchUser"></search-user>
     <card-user
       :userinfo="userData"
       @delete-Item="deleteUser"
@@ -15,13 +17,14 @@
 import axios from '../../http-common.js'
 import Carduser from "../page/user/Carduser.vue";
 import Formsearch from "../page/user/Formuser.vue";
-
+import Searchuser from "../page/user/Searchuser.vue"
 export default {
   name: "App",
 
   components: {
     "card-user": Carduser,
     "form-user": Formsearch,
+    "search-user":Searchuser
   },
   data() {
     return {

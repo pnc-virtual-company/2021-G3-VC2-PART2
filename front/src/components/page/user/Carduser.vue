@@ -4,18 +4,6 @@
   <template>
   <v-card class="table-user" color="#81BEF7"
         green>
-    <v-card-title >
-        User List
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-        @keyup="searchUser"
-      ></v-text-field>
-    </v-card-title>
         <v-simple-table>
                 <template v-slot:default>
                     <thead class="blue lighten-3" >
@@ -129,10 +117,7 @@ export default {
       this.$emit("delete-Item",this.deleteId);
       this.dialog = false;
     },
-  //======= fucntion==========
-    searchUser(){
-        this.$emit("search-user", this.search);
-    },
+
 
 // ========== fucntion update========
 

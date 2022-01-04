@@ -23,7 +23,7 @@
                   </v-card-subtitle>
                   <v-card-subtitle>
                     <v-avatar size="70px">
-                     <img :src="discipline.icon_type" alt="">
+                        <img :src="discipline.icon_type" alt="">
                     </v-avatar>
                     <p class="text-p"> {{discipline.notice_type}}</p>
                   </v-card-subtitle>
