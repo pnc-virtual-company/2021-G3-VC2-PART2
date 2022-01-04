@@ -47,7 +47,7 @@ export default {
     margin-top: 20px;
   }
   .ma{
-    margin-left: 50px;
+    margin-left: 100px;
   }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <section>
-    
+      <Formdiscipline @add-discipline="createDiscripline"></Formdiscipline>
     <Searchdiscipline @search-disciple="searchDisciple"></Searchdiscipline>
-    <Formdiscipline @add-discipline="createDiscripline"></Formdiscipline>
+  
     <Carddescipline :datadiscipline="discipline"  @delete-item="deleteStudentdiscipline" @update-discipline="getdiscipline"></Carddescipline>
   </section>
 </template>

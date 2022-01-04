@@ -18,6 +18,10 @@ class Discipline extends Model
         'created_at',
         'updated_at'
     ];
+    protected $casts= [
+        'start_date'=>'datetime:l-g-Y ',
+        'end_date'=>'datetime:l-g-Y '
+    ];
 
     public function student()
     {

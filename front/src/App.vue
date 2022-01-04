@@ -44,8 +44,10 @@ export default {
                localStorage.setItem("user", res.data.user.firstName);
               if(this.dataUser.role === 'Admin'){
                  this.$router.push('/user');
+              }else if(this.dataUser.role === 'Student'){
+                 this.$router.push('/studentDetails');
               }else{
-                 this.$router.push('/student');
+                this.$router.push('/student');
               }
            }).catch(error => {
             let statusCode = error.response.status;
@@ -58,6 +60,7 @@ export default {
       Logout(isLogout) {
         localStorage.clear();
         this.isLogin = isLogout;
+        this.$router.push('/');
       }
   },
   mounted() {

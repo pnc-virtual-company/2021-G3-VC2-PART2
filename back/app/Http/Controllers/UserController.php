@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::with(['student'])->latest()->get();
+        return User::with('student')->latest()->get();
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::findOrFail($id);
+        return User::with('student')->findOrFail($id);
     }
 
     /**

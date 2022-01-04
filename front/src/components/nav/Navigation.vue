@@ -18,7 +18,7 @@
           </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar >
+    <v-app-bar app>
       <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar">
         </v-app-bar-nav-icon>
@@ -47,11 +47,14 @@
           USERS
         </v-btn>
         <v-btn
+          v-show="usermanage"
           active-class="grey-5 red--text" 
           text
           v-for="item in menuItems"
           :key="item.title"
-          :to="item.path">
+          :to="item.path"
+          
+          >
           
           <v-icon left class="orange--text">{{item.icon}}</v-icon>
           {{ item.title }}
@@ -66,7 +69,7 @@
            Log out
         </v-btn>
       </v-toolbar-items> 
-    </v-toolbar>
+    </v-app-bar>
   </nav>
 </template>
 
@@ -76,6 +79,7 @@ export default {
   data() {
     return {
         appTitle: 'PNC Cambodia',
+        setUser:true,
         sidebar: false,
         group: false,
         usermanage:true,
@@ -95,9 +99,15 @@ export default {
   mounted() {
     if(localStorage.getItem("Userrole") === "Admin"){
       this.usermanage = true;
-    }else{
+    }else if(localStorage.getItem("Userrole") === "Student"){
+      this.setUser = false;
       this.usermanage = false;
     }
+    else{
+      this.usermanage = false;
+    }
+
+
   },
 }
 </script>

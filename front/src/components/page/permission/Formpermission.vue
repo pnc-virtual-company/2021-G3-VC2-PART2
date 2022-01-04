@@ -65,20 +65,23 @@
                 <v-text-field
                     label="Description"
                     type="text"
+                    :rules="rules.name"
                     prepend-icon="mdi-comment-text"
                     v-model = "description"
                 >
                 </v-text-field>
                 <v-text-field
                     label="Start date"
-                    type="date"
+                    type="datetime-local"
+                    :rules="rules.name"
                     prepend-icon="mdi-calendar-today"
                     v-model = "start_date"
                 >
                 </v-text-field>
                 <v-text-field
                     label="End date"
-                    type="date"
+                    type="datetime-local"
+                    :rules="rules.name"
                     prepend-icon="mdi-calendar-today"
                     v-model = "end_date"
                 >
@@ -115,7 +118,7 @@ export default {
                 name: [val => (val || '').length > 0 || 'This field is required'],
             },
             dataStudent:[],
-            reasons:['Sick', "Wedding's relative", "Busy", "Interview"],
+            reasons:['Sick', "Wedding's relative", "Busy", "Interview","Funeral", "Any ceremony ", "Grade 12 exam (he/she failed grade 12 last year)"],
             studentId:[],
             student_id: null,
             reason: "",

@@ -3,10 +3,71 @@
     <v-card>
       <h2 id="edit">Update here</h2>
       <v-card-text>
-        <input type="text" placeholder="firstName" v-model="firstName" />
-        <input type="text" placeholder="lastName" v-model="lastName" />
-        <input type="email" placeholder="Email" v-model="email" />
-        <br /><br />
+        <v-text-field
+          v-model="firstName"
+          prepend-icon="mdi-account"
+          :rules="rules.name"
+          color="purple darken-2"
+          label="First name"
+          required
+        ></v-text-field>
+        <v-text-field
+            v-model="lastName"
+            prepend-icon="mdi-account"
+            :rules="rules.name"
+            color="purple darken-2"
+            label="Last name"
+            required
+          ></v-text-field>
+        <v-text-field
+              v-model="email"
+              prepend-icon="mdi-gmail"
+              :rules="rules.name"
+              color="purple darken-2"
+              type='email'
+              label="Email"
+              required
+            ></v-text-field>
+            <v-autocomplete
+              ref="role"
+              v-model="role"
+              :rules="[() => !!role || 'This field is required']"
+              :items="roles"
+              prepend-icon="mdi-account-star"
+              color="purple darken-2"
+              label="Role"
+              placeholder="Select..."
+              required
+            ></v-autocomplete>
+              <v-combobox
+                v-if="role === 'Student'"
+                :rules="[() => !!role || 'This field is required']"
+                prepend-icon="mdi-account-multiple"
+                label="Choose"
+                color="purple darken-2"
+                v-model="student_id"
+                :items="dataStudent"
+                item-text="firstName"
+                item-value="id"
+                required
+              >
+                <template v-slot:item="dataStudent">
+                  <template>
+                    <v-list-item-avatar>
+                      <img :src="url + dataStudent.item.image"/>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        v-html="dataStudent.item.firstName"
+                      ></v-list-item-title>
+                      <v-list-item-subtitle
+                        v-html="dataStudent.item.class"
+                      ></v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                </template>
+              </v-combobox>
+        
         <input
           type="radio"
           name="fav_language"
@@ -20,32 +81,32 @@
           v-model="gender"
         />Male
         <br />
-        <label for="role">Role :</label>
-        <select name="role" v-model="role">
-          <option value="Select role" disabled>Select role</option>
-          <option value="Student">Student</option>
-          <option value="Admin">Admin</option>
-          <option value="Social Affair">Social Affair</option>
-        </select>
+        
       </v-card-text>
-
       <v-divider></v-divider>
 
-      <v-card-actions>
+      <v-card-actions class="blue ">
         <v-spacer></v-spacer>
-        <v-btn @click="cancel" color="primary" text>Cancel</v-btn>
-        <v-btn @click="Update" color="success" text>Update</v-btn>
+        <v-btn @click="cancel" color="white" text>Cancel</v-btn>
+        <v-btn @click="Update" color="white" text>Update</v-btn>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
+import axios from "../../../http-common"
 export default {
   props: ["userInfo"],
   emits: ["update", "cancel"],
   data() {
     return {
+      url: "http://127.0.0.1:8000/storage/student/images/",
+      dataStudent:[],
+      rules: {
+        name: [val => (val || '').length > 0 || 'This field is required'],
+      },
+       roles:['Admin', 'Student', 'Social Affair'],
       firstName: "",
       lastName: "",
       email: "",
@@ -55,6 +116,11 @@ export default {
   },
 
   methods: {
+     getStudent(){
+              axios.get("/students").then(res =>{
+                this.dataStudent = res.data;
+              })
+          },
     Update() {
       let user = {
         firstName: this.firstName,
@@ -62,6 +128,7 @@ export default {
         gender: this.gender,
         email: this.email,
         role: this.role,
+        student_id: this.student_id.id
       };
 
       this.$emit("update", this.userInfo.id, user, false);
@@ -72,11 +139,14 @@ export default {
     },
   },
   mounted() {
+    this.getStudent();
     this.firstName = this.userInfo.firstName;
     this.lastName = this.userInfo.lastName;
     this.email = this.userInfo.email;
     this.gender = this.userInfo.gender;
     this.role = this.userInfo.role;
+    this.student_id = this.userInfo.student_id;
+    
   },
 };
 </script>
@@ -97,13 +167,13 @@ h2 {
   text-align: center;
   padding: 10px;
   color: #fff;
-  background: #0096;
+  background: blue;
 }
 h3 {
   text-align: center;
   padding: 10px;
   color: #fff;
-  background: rgb(108, 185, 226);
+  background: rgb(58, 184, 252);
 }
 input[type="text"],
 input[type="email"],

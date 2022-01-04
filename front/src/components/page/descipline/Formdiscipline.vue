@@ -12,7 +12,7 @@
                 fixed
                 right
                 v-bind="attrs" v-on="on"
-                class="btn-create"
+                class="ma-4"
             >
                 <v-icon dark>
                     mdi-plus
@@ -35,19 +35,36 @@
                 v-model="student_id"
                 required
             >
+
+                <template v-slot:item="dataStudent">
+                  <template>
+                      <v-list-item-avatar>
+                      <img :src="url + dataStudent.item.image"/>
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                      <v-list-item-title
+                          v-html="dataStudent.item.firstName"
+                      ></v-list-item-title>
+                      <v-list-item-subtitle
+                          v-html="dataStudent.item.class"
+                      ></v-list-item-subtitle>
+                      </v-list-item-content>
+                  </template>
+              </template>
             </v-combobox>
             
-             <v-autocomplete
+             <v-combobox
               ref="role"
-              :rules="rules.name"
               :items="types"
               prepend-icon="mdi-note-text"
               label="Notice Type"
               placeholder="Select..."
               color="purple darken-2"
+              item-text="name"
+              item-value="type"
               v-model="type"
               required
-            ></v-autocomplete>
+            ></v-combobox>
             <v-text-field
               :rules="rules.name"
               color="purple darken-2"
@@ -94,7 +111,13 @@
              name: [val => (val || '').length > 0 || 'This field is required'],
             },
         userStudent:[],
-        types:['Misconduct','Oral warning', 'Warning letter','Termination'],
+        url: "http://127.0.0.1:8000/storage/student/images/",
+        types:[
+          {name:'Misconduct', icon:'mdi-cards'},
+          {name:'Oral warning', icon:'mdi-alert-octagon'},
+          {name:'Warning letter',icon:'mdi-alert'},
+          {name:'Termination', icon:'mdi-cancel'}
+        ],
         student_id:null,
         reason:'',
         date:'',
@@ -112,10 +135,10 @@
           this.dialog = false;
           let discipline = new FormData();
           discipline.append('student_id', this.student_id.id);
-          discipline.append('notice_type', this.type);
+          discipline.append('notice_type', this.type.name);
           discipline.append('reason', this.reason);
           discipline.append('start_date', this.date);
-
+          discipline.append('icon_type', this.type.icon);
           this.$emit('add-discipline', discipline);
         },
         
@@ -127,7 +150,5 @@
   }
 </script>
 <style scoped>
-    .btn-create{
-        margin-top: 10px;
-    }
+    
 </style>

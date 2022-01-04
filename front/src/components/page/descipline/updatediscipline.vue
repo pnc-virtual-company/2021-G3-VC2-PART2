@@ -3,31 +3,43 @@
     <v-card>
       <h2 id="edit">Do you want to update?</h2>
       <v-card-text>
-        <div>
-          <small>Student</small> <br />
-          <v-icon>mdi-account</v-icon>
-          <select v-model="student_id">
-            <option
-              v-for="student of dataStudent"
-              :key="student.id"
-              :value="student.id"
-            >
-              {{ student.firstName }}
-            </option>
-          </select>
-          <hr />
-        </div>
-        <v-autocomplete
-          ref="role"
-          :rules="rules.name"
-          :items="types"
-          prepend-icon="mdi-note-text"
-          label="Notice Type"
-          placeholder="Select..."
+        <v-combobox
+          prepend-icon="mdi-account-multiple"
+          label="Student"
+          :items="dataStudent"
+          item-text="firstName"
+          item-value="id"
+          v-model="student_id"
           color="purple darken-2"
-          v-model="notice_type"
-          required
-        ></v-autocomplete>
+        >
+            <template v-slot:item="dataStudent">
+              <template>
+                  <v-list-item-avatar>
+                  <img :src="url + dataStudent.item.image"/>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                  <v-list-item-title
+                      v-html="dataStudent.item.firstName"
+                  ></v-list-item-title>
+                  <v-list-item-subtitle
+                      v-html="dataStudent.item.class"
+                  ></v-list-item-subtitle>
+                  </v-list-item-content>
+              </template>
+          </template>
+      </v-combobox>
+        <v-combobox
+              ref="role"
+              :items="types"
+              prepend-icon="mdi-note-text"
+              label="Notice Type"
+              placeholder="Select..."
+              color="purple darken-2"
+              item-text="name"
+              item-value="type"
+              v-model="type"
+              required
+        ></v-combobox>
         <v-text-field
           :rules="rules.name"
           color="purple darken-2"
@@ -65,15 +77,21 @@ export default {
   emits: ["update", "cancel"],
   data() {
     return {
+      url: "http://127.0.0.1:8000/storage/student/images/",
       reason: "",
        rules: {
              name: [val => (val || '').length > 0 || 'This field is required'],
             },
-      notice_type: "",
+      type: [],
       start_date: "",
       student_id: "",
-      dataStudent: [],
-      types: ["Misconduct", "Oral warning", "Warning letter", "Termination"],
+      types:[
+          {name:'Misconduct', icon:'https://o.remove.bg/downloads/6b5cf122-3248-4794-a513-0dbf175d7a39/image-removebg-preview.png'},
+          {name:'Oral warning', icon:'https://o.remove.bg/downloads/0b4c2326-55b0-4acb-8377-fdd7895f59ed/image-removebg-preview.png'},
+          {name:'Warning letter',icon:'https://o.remove.bg/downloads/83c2a024-794d-4ff0-83d7-081e84ab9bfa/image-removebg-preview.png'},
+          {name:'Termination', icon:'https://o.remove.bg/downloads/39181206-f6b0-4ecf-a70a-bc6401bbbb96/image-removebg-preview.png'}
+        ],
+      dataStudent:[]
     };
   },
   methods: {
@@ -85,12 +103,13 @@ export default {
     update() {
       let discipline = {
         reason: this.reason,
-        notice_type: this.notice_type,
+        notice_type: this.type.icon,
+        icon_type: this.type.name,
         start_date: this.start_date,
         student_id: this.student_id,
       };
       this.$emit("update", this.disciplineInfo.id, discipline, false);
-      console.log(discipline);
+      console.log(this.notice_type);
     },
     cancel() {
       this.$emit("cancel", false);
@@ -99,7 +118,7 @@ export default {
   mounted() {
     this.getStudent();
     this.reason = this.disciplineInfo.reason;
-    this.notice_type = this.disciplineInfo.notice_type;
+    this.notice_type = this.disciplineInfo.type;
     this.start_date = this.disciplineInfo.start_date;
     this.student_id = this.disciplineInfo.student_id;
   },

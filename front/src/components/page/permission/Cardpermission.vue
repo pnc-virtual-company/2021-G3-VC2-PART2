@@ -13,7 +13,7 @@
                   <img :src="url + dataPermission.student.image" alt="">
                 </v-avatar>
                 <v-card-text>
-                  <p class="text-h6">{{dataPermission.student.firstName}}</p>
+                  <p class="text-h6">USERNAME: {{dataPermission.student.firstName}}</p>
                   <p>Class: {{dataPermission.student.class}}</p>
                 </v-card-text>
             </v-card-subtitle>
@@ -26,7 +26,7 @@
             <v-card-subtitle>
                 <v-card-text>
                     <p>Reason: {{dataPermission.reason}}</p>
-                    <strong> Amount:</strong> <strong v-html="((new Date(dataPermission.end_date)).getTime() - (new Date(dataPermission.start_date)).getTime()) / (1000 * 3600 * 24)" > </strong> |DAYS
+                    <strong> Amount:</strong> <strong v-html="Math.round(((new Date(dataPermission.end_date)).getTime() - (new Date(dataPermission.start_date)).getTime()) / (1000 * 3600 * 24))" > </strong> |DAYS
                 </v-card-text>
             </v-card-subtitle>
             <v-card-subtitle>

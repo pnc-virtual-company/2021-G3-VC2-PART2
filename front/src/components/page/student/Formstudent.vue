@@ -26,12 +26,14 @@
           <v-text-field
             label="Firstname"
             type="text"
+             :rules="rules.name"
             prepend-icon="mdi-account"
             v-model="firstname"
           >
           </v-text-field>
           <v-text-field
             label="Lastname"
+             :rules="rules.name"
             type="text"
             prepend-icon="mdi-account"
             v-model="lastname"
@@ -40,6 +42,7 @@
           <v-text-field
             label="Email"
             type="text"
+            :rules="rules.email"
             prepend-icon="mdi-gmail"
             v-model="email"
           >
@@ -48,18 +51,29 @@
           <v-text-field
             label="Class"
             type="text"
+            :rules="rules.name"
             prepend-icon="mdi-home"
             v-model="classes"
           >
           </v-text-field>
           <v-text-field
             label="Phone"
+            :rules="rules.name"
             type="number"
             prepend-icon="mdi-cellphone"
             v-model="phone"
           >
           </v-text-field>
           <v-text-field
+            label="birthday"
+            :rules="rules.name"
+            type="text"
+            prepend-icon="mdi-cake-variant"
+            v-model="birthday"
+          >
+          </v-text-field>
+          <v-text-field
+            :rules="rules.name"
             label="Password"
             type="password"
             prepend-icon="mdi-lock"
@@ -91,12 +105,18 @@ export default {
   data() {
     return {
       dialog: false,
+      rules: {
+        name: [val => (val || '').length > 0 || 'This field is required'],
+        email:[val =>(val || '').length>0 || 'This field is required Email'
+          ]
+      },
       genders: ["Male", "Female"],
       firstname: "",
       lastname: "",
       email: "",
       phone: "",
       classes: "",
+      birthday:"",
       image: "",
       password: "",
       gender: "Male",
@@ -120,6 +140,7 @@ export default {
         newStudent.append("image", this.image);
         newStudent.append("gender", this.gender);
         newStudent.append("phone", this.phone);
+        newStudent.append("birthday", this.birthday);
         this.$emit("add-student", newStudent);
       }
     },

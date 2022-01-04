@@ -1,30 +1,39 @@
 <template>
     <section>
         <template>
+            <v-container>
+                <h1 class="text-center">Background</h1>
+            </v-container>
             <v-card
                 class="mx-auto"
                 max-width="800"
                 
             >
+
             <v-card-subtitle>
-                <v-card-subtitle class="text-center">
-                        <v-avatar size="120"  >
-                            <img src="https://www.tandemconstruction.com/sites/default/files/styles/project_slider_main/public/images/project-images/IMG-Fieldhouse-10.jpg?itok=Whi8hHo9" alt="">
-                        </v-avatar>
-                        <v-card-text>
-                            <p class="text-h4"> DIANA</p>
+                <v-card-subtitle class="d-flex mr-4">
+                        
+                        <v-img
+                            lazy-src="https://picsum.photos/id/11/10/6"
+                            max-height="150"
+                            max-width="120"
+                            src="https://picsum.photos/id/11/500/300"
+                            
+                        ></v-img>
+                        <v-card-text >
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-account mdi-20px</v-icon>{{studentBacground.firstName}}</h6>
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-cake-variant mdi-20px</v-icon>{{studentBacground.birthday}}</h6>
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-gender-transgender mdi-20px</v-icon> {{studentBacground.gender}}</h6>
                         </v-card-text>
+                        <v-card-text>
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-email mdi-20px</v-icon>{{studentBacground.email}}</h6>
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-school mdi-20px</v-icon>{{studentBacground.class}}</h6>
+                            <h6 class="text-h6"><v-icon class="blue--text">mdi-phone mdi-20px</v-icon>{{studentBacground.phone}}</h6>
+                            
+                        </v-card-text>
+                        
                 </v-card-subtitle>
-                <div class="d-flex">
-                    <v-card-text>
-                        <h5 class="text-h5"><v-icon class="blue--text">mdi-email mdi-36px</v-icon> diana@gmail.com</h5>
-                        <h5 class="text-h5"><v-icon class="blue--text">mdi-school mdi-36px</v-icon> WEB 2021B</h5>
-                    </v-card-text>
-                    <v-card-text>
-                        <h5 class="text-h5"><v-icon class="blue--text">mdi-phone mdi-36px</v-icon> +885 097204595</h5>
-                        <h5 class="text-h5"><v-icon class="blue--text">mdi-gender-transgender mdi-36px</v-icon> Female</h5>
-                    </v-card-text>
-                </div>
+               
             </v-card-subtitle>
         </v-card>
     </template>
@@ -33,6 +42,21 @@
 
 <script>
 export default {
+    props:['studentBacground'],
+    data(){
+        return{
+            studentdata:[],
+            
+        }
+    },
+
+    methods:{
+        getStudentInfo(student){
+          this.studentData = student;
+        },
+
+    }
+
 
 }
 </script>
@@ -53,5 +77,8 @@ export default {
     .d-flex{
         display: flex;
         justify-content: space-between;
+    }
+    .text-center{
+        font-size: 40px;
     }
 </style>
