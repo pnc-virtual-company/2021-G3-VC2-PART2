@@ -45,6 +45,7 @@ export default {
     axios.delete( "/permission/" +   deleteId).then(res =>{
       console.log(res.data);
       this.getPermission();
+      
       })
 
     },
