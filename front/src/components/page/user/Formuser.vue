@@ -73,7 +73,7 @@
                 prepend-icon="mdi-account-multiple"
                 label="Choose"
                 color="purple darken-2"
-                v-model="student_id"
+                v-model="student"
                 :items="dataStudent"
                 item-text="firstName"
                 item-value="id"
@@ -163,7 +163,7 @@
             lastname: '',
             email:'',
             password: '',
-            student_id:null,
+            student:'',
             gender:'Female',
             image:'',
             role:'',
@@ -185,6 +185,10 @@
             this.image = event.target.files[0];
           },
           createUser(){
+            let student_id = ''
+            if(this.student!==''){
+              student_id = this.student.id
+            }
             if((this.firstname && this.lastname && this.email && this.role && this.password && this.confirm && this.image) !==''){
               this.isBtn = true
               this.dialog = false;
@@ -197,9 +201,8 @@
               newUser.append('password_confirmation', this.confirm);
               newUser.append('gender', this.gender);
               newUser.append('profile', this.image);
-              newUser.append('student_id', this.student_id.id);
+              newUser.append('student_id', student_id);
               this.$emit("add-user",newUser);
-              console.log(this.student_id);
             }
               
           }

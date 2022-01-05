@@ -45,7 +45,7 @@
                 prepend-icon="mdi-account-multiple"
                 label="Choose"
                 color="purple darken-2"
-                v-model="student_id"
+                v-model="student"
                 :items="dataStudent"
                 item-text="firstName"
                 item-value="id"
@@ -112,6 +112,7 @@ export default {
       email: "",
       gender: "",
       role: "",
+      student:''
     };
   },
 
@@ -122,13 +123,17 @@ export default {
               })
           },
     Update() {
+      let student_id = ''
+      if(this.student !== ''){
+        this.student_id = this.student.id;
+      }
       let user = {
         firstName: this.firstName,
         lastName: this.lastName,
         gender: this.gender,
         email: this.email,
         role: this.role,
-        student_id: this.student_id.id
+        student_id: student_id,
       };
 
       this.$emit("update", this.userInfo.id, user, false);
