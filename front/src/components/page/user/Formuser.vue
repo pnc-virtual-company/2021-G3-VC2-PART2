@@ -203,8 +203,16 @@
               newUser.append('profile', this.image);
               newUser.append('student_id', student_id);
               this.$emit("add-user",newUser);
-            }
+
               
+            }
+              this.firstname= ''
+              this.lastname= ''
+              this.email ='' 
+              this.role =''
+              this.password= ''
+              this.confirm =''
+              this.image = ''
           }
         },
        mounted() {

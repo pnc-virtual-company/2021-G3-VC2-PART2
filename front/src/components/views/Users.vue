@@ -47,7 +47,7 @@ export default {
       axios.delete("/users/" + deleteId).then((res) => {
         console.log(res.data);
         this.getUser();
-      
+
       });
     },
     searchUser(search) {

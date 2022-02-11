@@ -41,19 +41,20 @@
           text
           :to="{ path: '/user'}"
           v-if="usermanage"
+        
           
         >
           <v-icon left class="orange--text">mdi-account-multiple-plus</v-icon>
           USERS
         </v-btn>
         <v-btn
-          v-show="usermanage"
+           v-show="isnotStudent"
           active-class="grey-5 red--text" 
           text
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path"
-          
+         
           >
           
           <v-icon left class="orange--text">{{item.icon}}</v-icon>
@@ -83,7 +84,9 @@ export default {
         sidebar: false,
         group: false,
         usermanage:true,
+        isnotStudent:true,
         isLogout: false,
+        isNotStudent:true,
         menuItems: [
             { title: 'Students', path: '/student', icon: 'mdi-account-box' },
             { title: 'Permission', path: '/permission', icon: 'mdi-account-key' },
@@ -99,12 +102,14 @@ export default {
   mounted() {
     if(localStorage.getItem("Userrole") === "Admin"){
       this.usermanage = true;
-    }else if(localStorage.getItem("Userrole") === "Student"){
+    }
+    else if(localStorage.getItem("Userrole") === "Student"){
       this.setUser = false;
       this.usermanage = false;
-    }
-    else{
+      this.isnotStudent=false;
+    }else{
       this.usermanage = false;
+      this.setUser = true;
     }
 
 

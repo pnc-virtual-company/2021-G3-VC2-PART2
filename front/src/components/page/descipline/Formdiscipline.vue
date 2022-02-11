@@ -78,7 +78,7 @@
               color="purple darken-2"
               prepend-icon="mdi-calendar-clock"
               label="Date"
-              type="datetime-local"
+              type="date"
               v-model="date"
               required
             ></v-text-field>
@@ -140,6 +140,11 @@
           discipline.append('start_date', this.date);
           discipline.append('icon_type', this.type.icon);
           this.$emit('add-discipline', discipline);
+
+          this.student_id = '';
+          this.type = '';
+          this.date = '';
+          this.reason = '';
         },
         
 

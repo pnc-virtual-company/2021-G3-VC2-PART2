@@ -143,8 +143,19 @@ export default {
         newStudent.append("phone", this.phone);
         newStudent.append("birthday", this.birthday);
         this.$emit("add-student", newStudent);
+
+      
       }
+      this.firstname= ''
+      this.lastname= ''
+      this.email ='' 
+      this.classes =''
+      this.password= ''
+      this.phone =''
+      this.image = ''
+      this.birthday = ''
     },
+    
   },
 };
 </script>

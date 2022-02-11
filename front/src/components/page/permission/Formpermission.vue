@@ -144,8 +144,14 @@ export default {
             newPermission.append('start_date', this.start_date);
             newPermission.append('end_date', this.end_date);
             this.$emit('add-permission', newPermission);
-
+            this.student_id = '';
+            this.reason = '';
+            this.description = '';
+            this.start_date = '';
+            this.end_date = '';
+            
         }
+        
     },
     mounted() {
        this.getStudent(); 
